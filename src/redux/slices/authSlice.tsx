@@ -49,4 +49,4 @@ export default authSlice.reducer;
 export const selectUser = (state: { auth: { user: string } }) => state.auth.user;
 export const selectToken = (state: { auth: { token: string } }) => state.auth.token;
 export const isAuthenticated = (state: { auth: { isAuthenticated: boolean } }) => state.auth.isAuthenticated;
-export const userType = (state: { auth: { userType: string } }) => state.auth.userType;
+export const selectUserType = (state: { auth: { userType: string } }) => state.auth.userType;
