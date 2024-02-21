@@ -11,6 +11,9 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   ];
   return (
     <div>
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
       <MobileTabNavigation tabs={tabs} />
     </div>
   );

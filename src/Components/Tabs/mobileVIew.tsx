@@ -24,7 +24,7 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs }) => {
         style={{ position: 'fixed', bottom: 0, width: '100%', background: 'white', borderTop: '1px solid #ddd' }}
       >
         {tabs.map(({ value, label }) => (
-          <Tabs.Trigger  value={value} style={{ flex: 4,width: '25%', textAlign: 'center' }}>
+          <Tabs.Trigger key={value} value={value} style={{ flex: 4, width: '25%', textAlign: 'center' }}>
             {label}
           </Tabs.Trigger>
         ))}
