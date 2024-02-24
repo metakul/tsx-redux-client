@@ -1,0 +1,18 @@
+/* custom-marquee.css */
+
+/* Set max width for smaller screens */
+@media (max-width: 640px) {
+    coingecko-coin-price-marquee-widget {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: auto !important;
+    }
+  }
+  
+  /* Set a specific width for larger screens if needed */
+  @media (min-width: 641px) {
+    coingecko-coin-price-marquee-widget {
+      width: 600px  !important; /* Set your preferred width */
+    }
+  }
+  

@@ -12,13 +12,13 @@ const Router: React.FC = () => {
 
   const routes = useRoutes([
     {
-      path: Pages.HOME,
-      element: token ? <Navigate to={`${Pages.DASHBOARD}`} /> : <HomePage pageTitle="HomePage" pageDescription="This is Home Page" />,
-    },
-    {
-      path: "",
-      element: token ? <DashboardOutlet /> : <Navigate to={Pages.HOME} />,
+      path: "/",
+      element: <DashboardOutlet />,
       children: [
+        {
+          path: Pages.HOME,
+          element: token ? <Navigate to={`${Pages.DASHBOARD}`} /> : <HomePage pageTitle="HomePage" pageDescription="This is Home Page" />,
+        },
         {
           path: Pages.DASHBOARD,
           element: token ? <ProtectedPage pageTitle="Logged In" pageDescription="This is Protected page" /> : <Navigate to={Pages.HOME} />,
