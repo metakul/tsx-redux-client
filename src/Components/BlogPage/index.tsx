@@ -2,9 +2,13 @@
 
 import { Box } from '@radix-ui/themes';
 import Blogs from './Blogs';
+// import Marquee from '../MarqueCrypto';
 const Tab1 = () => {
   return (
-    <Box>
+    <Box className="overflow-hidden w-full p-4">
+        {/* <section className="overflow-hidden w-full p-4">
+        <Marquee/>
+        </section> */}
         <Blogs />
     </Box>
         

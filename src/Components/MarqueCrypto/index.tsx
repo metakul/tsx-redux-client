@@ -1,28 +1,25 @@
-import React, { useEffect } from 'react';
-import '../../@customType/typings.d.ts';
-import './custom-marquee.css'; // Import the custom CSS file
+// MarqueeCrypto.jsx
 
-const Marquee = () => {
-  useEffect(() => {
-    // Dynamically create and load the CoinGecko script
-    const script = document.createElement('script');
-    script.src = 'https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js';
-    script.async = true;
-    document.body.appendChild(script);
+import { Box } from '@radix-ui/themes';
+import './custom-marquee.css'; 
+import { cryptoData } from './mockData';
 
-    // Cleanup function to remove the script when the component unmounts
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
+const MarqueeCrypto = () => {
   return (
-    <coingecko-coin-price-marquee-widget
-      coin-ids="bitcoin,ethereum,eos,ripple,litecoin"
-      currency="usd"
-      locale="en"
-    ></coingecko-coin-price-marquee-widget>
+    <Box>
+    <div className="mb-8 flex animate-marquee space-x-8">
+      {cryptoData.map((crypto, index) => (
+        <div key={index} className="flex animate-marquee space-x-8">
+          <img src={crypto.icon} alt={crypto.title} className="crypto-icon" />
+          <div className="crypto-info">
+            <div className="crypto-title">{crypto.title}</div>
+            <div className="crypto-price">{crypto.price}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+      </Box>
   );
 };
 
-export default Marquee;
+export default MarqueeCrypto;

@@ -1,18 +1,44 @@
 /* custom-marquee.css */
 
-/* Set max width for smaller screens */
-@media (max-width: 640px) {
-    coingecko-coin-price-marquee-widget {
-      width: 100% !important;
-      max-width: 100% !important;
-      overflow-x: auto !important;
-    }
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.crypto-item {
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
   }
-  
-  /* Set a specific width for larger screens if needed */
-  @media (min-width: 641px) {
-    coingecko-coin-price-marquee-widget {
-      width: 600px  !important; /* Set your preferred width */
-    }
+  to {
+    transform: translateX(-100%);
   }
-  
+}
+
+.crypto-icon {
+  width: 30px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.crypto-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.crypto-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.crypto-price {
+  font-size: 12px;
+  color: #888;
+}

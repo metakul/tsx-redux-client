@@ -3,6 +3,7 @@ import { Card, Inset, Grid } from '@radix-ui/themes';
 import blogData from './blogData.json';
 
 const Blogs = () => {
+  
   return (
 
     <div className="w-full p-4">
