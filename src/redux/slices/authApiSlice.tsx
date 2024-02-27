@@ -5,6 +5,7 @@ import { ApiError, LoginData } from '../../interfaces/interface';
 import { ApiEndpoint } from '../../DataTypes/enums';
 import request from '../../Backend/axiosCall/apiCall';
 import { ApiSuccess } from '../../interfaces/interface';
+
 export const loginUser = createAsyncThunk(
   'auth/login',
   async ({ email, password }: LoginData, { rejectWithValue, dispatch }) => {

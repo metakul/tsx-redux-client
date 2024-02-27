@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/slices/authSlice'
 import { AppDispatch } from '../../redux/store'
-import { selectUser } from './../../redux/slices/authSlice';
+import { selectUser } from '../../redux/slices/authSlice';
+import { Button, Container } from '@radix-ui/themes'
 
 const ProtectedPage: React.FC<ProtectedPageProps> = (props) => {    
  const selectedUser=useSelector(selectUser)
@@ -21,14 +22,13 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (props) => {
 };
 
   return (
-    <div >
-        <h2>{props.pageTitle}</h2>
-        <h2>{props.pageDescription}</h2>
-        <>Hi </> {selectedUser}
-        <button onClick={handleLogout}>
+    <Container >
+        {props.pageTitle} {props.pageDescription}
+        {selectedUser}
+        <Button onClick={handleLogout}>
           Logout
-      </button>
-    </div>
+      </Button>
+    </Container>
   )
 }
 

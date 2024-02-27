@@ -1,3 +1,4 @@
+import { UserType } from "../DataTypes/enums";
 //pages interface
 import { AxiosRequestConfig } from "axios"
 export interface Layoutprops {
@@ -13,10 +14,18 @@ export interface ProtectedPageProps {
   pageDescription:string
 }
 
+
+export interface LoginFormProps {
+  loginTitle: string;
+  userType: UserType;
+}
+
+
 //login form state
 export interface LoginData {
   email: string;
   password: string;
+  userType:string;
 }
 
 //logged in state

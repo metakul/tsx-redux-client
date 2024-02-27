@@ -13,7 +13,7 @@ const Router: React.FC = () => {
   const routes = useRoutes([
     {
       path: Pages.HOME,
-      element: token ? <Navigate to={`${Pages.DASHBOARD}`} /> : <HomePage pageTitle="HomePage" pageDescription="This is Home Page" />,
+      element: token ? <Navigate to={`${Pages.DASHBOARD}`} /> : <HomePage pageTitle="HomePage" pageDescription="This is Home Page"/>,
     },
     {
       path: "",
