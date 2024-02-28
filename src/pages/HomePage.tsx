@@ -9,11 +9,15 @@ import { UserType } from '../DataTypes/enums';
 
 const HomePage: React.FC<HomePageProps> = (props) => {
 
-  const buttonDataTop = [
-    { endpoint: UserType.ADMIN, text: `${UserType.ADMIN} Login` },
-    { endpoint: UserType.USER, text: `${UserType.USER} Login` },
-    { endpoint: UserType.RANDOM, text: `${UserType.RANDOM} Login` },
-  ];
+  const generateButtonDataTop = () => {
+    const userTypeKeys = Object.keys(UserType) as Array<keyof typeof UserType>;
+    return userTypeKeys.map(key => ({
+      endpoint: UserType[key],
+      text: `${UserType[key]} Login`,
+    }));
+  };
+
+  const buttonDataTop = generateButtonDataTop();
 
   return (
     <Container>

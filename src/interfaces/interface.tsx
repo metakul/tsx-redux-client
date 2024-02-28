@@ -14,18 +14,23 @@ export interface ProtectedPageProps {
   pageDescription:string
 }
 
-
 export interface LoginFormProps {
   loginTitle: string;
   userType: UserType;
 }
 
-
 //login form state
 export interface LoginData {
   email: string;
   password: string;
-  userType:string;
+  userType:UserType;
+}
+
+//verify login data
+export interface VerifyLoginData{
+  adminId:string,
+  otp:string,
+  userType:UserType
 }
 
 //logged in state
@@ -33,7 +38,7 @@ export interface AuthState {
   isAuthenticated: boolean;
   user: string | null;
   token: string | null;
-  userType: string | null;
+  userType: UserType | null;
 }
 
 // api request

@@ -1,6 +1,7 @@
 // authSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthState } from '../../interfaces/interface';
+import { UserType } from '../../DataTypes/enums';
 
 const storedUser = localStorage.getItem('user');
 const storedToken = localStorage.getItem('token');
@@ -10,14 +11,14 @@ const initialState: AuthState = {
   isAuthenticated: false,
   user: storedUser ? storedUser : null,
   token: storedToken ? storedToken : null,
-  userType: storedUserType ? storedUserType : null,
+  userType: storedUserType ? (storedUserType as UserType) : null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setCredentials: (state, action: PayloadAction<{ user: string; token: string; userType: string }>) => {
+    setCredentials: (state, action: PayloadAction<{ user: string; token: string; userType: UserType }>) => {
 
       // $TODO Update the user authentication logic
       state.isAuthenticated = true;

@@ -9,7 +9,8 @@ import { Button, Container } from '@radix-ui/themes'
 
 const ProtectedPage: React.FC<ProtectedPageProps> = (props) => {    
  const selectedUser=useSelector(selectUser)
- const dispatch = useDispatch(); 
+ const dispatch = useDispatch();
+ console.log(selectedUser)
 
  const handleLogout = async (event: React.FormEvent) => {
   event.preventDefault();
@@ -24,7 +25,7 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (props) => {
   return (
     <Container >
         {props.pageTitle} {props.pageDescription}
-        {selectedUser}
+        Hi this is dashboard
         <Button onClick={handleLogout}>
           Logout
       </Button>

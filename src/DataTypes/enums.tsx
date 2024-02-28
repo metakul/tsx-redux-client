@@ -1,9 +1,10 @@
 import { RequestOptions } from "../interfaces/interface";
 // enums.ts
 export enum UserType {
-  ADMIN = 'admin',
-  USER = 'user',
-  RANDOM = 'random',
+  ADMIN = 'Admin',
+  USER = 'User',
+  DOCTOR = 'Doctor',
+  RANDOM = 'Random',
 }
 
 export enum Pages {
@@ -14,4 +15,5 @@ export enum Pages {
 // define endpoints here
 export const ApiEndpoint: Record<string, RequestOptions> = {
   LOGIN: { url: '/login', method: 'POST', headers: { 'Content-Type': 'application/json'}},
+  LOGINVERIFY: { url: '/login/verify', method: 'POST', headers: { 'Content-Type': 'application/json'}},
 };

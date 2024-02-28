@@ -1,6 +1,7 @@
 import axios, {  AxiosResponse } from 'axios';
 import { RequestOptions } from '../../interfaces/interface';
-const apiEndpoint = 'http://localhost:8001';
+
+const apiEndpoint = import.meta.env.VITE_BACKEND_AUTH_IP;
 
 const request = async (options: RequestOptions) => {
   try {
