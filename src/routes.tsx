@@ -6,7 +6,7 @@ import ProtectedPage from "./pages/ProtecTedPages/Welcome";
 import { Pages } from "./DataTypes/enums";
 import { selectToken } from "./redux/slices/authSlice";
 import DashboardOutlet from "./layout/DashboardLayout";
-
+import { ProtectedPageInfo, HomePageInfo } from "./DataTypes/enums";
 const Router: React.FC = () => {
   const token = useSelector(selectToken);
 
@@ -17,11 +17,11 @@ const Router: React.FC = () => {
       children: [
         {
           path: Pages.HOME,
-          element: token ? <Navigate to={`${Pages.DASHBOARD}`} /> : <HomePage pageTitle="HomePage" pageDescription="This is Home Page" />,
+          element: token ? <Navigate to={`${Pages.DASHBOARD}`} /> : <HomePage pageTitle={HomePageInfo.pageTitle} pageDescription={HomePageInfo.pageDescription} />,
         },
         {
           path: Pages.DASHBOARD,
-          element: token ? <ProtectedPage pageTitle="Logged In" pageDescription="This is Protected page" /> : <Navigate to={Pages.HOME} />,
+          element: token ? <ProtectedPage pageTitle={ProtectedPageInfo.pageTitle} pageDescription={ProtectedPageInfo.pageDescription}/> : <Navigate to={Pages.HOME} />,
         },
       ],
     },

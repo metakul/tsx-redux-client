@@ -7,11 +7,10 @@ interface MobileTabNavigationProps {
 }
 
 const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,  }) => {
-  console.log(tabs)
   const firstTabValue = tabs.length > 0 ? tabs[0].value : undefined;
 
   return (
-    <Container className='justify-center '>
+    <Container>
       <Box>
       <Tabs.Root  defaultValue={firstTabValue}>
         {tabs.map(({ value, content }) => (
@@ -21,10 +20,10 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,  }) => 
         ))}
 
         <Tabs.List
-          className="bottom-tabs fixed bottom-0 w-full bg-orange-500 "
+          className="bottom-tabs fixed bottom-0 w-full  "
         >
           {tabs.map(({ value, label }) => (
-            <Tabs.Trigger key={value} value={value} className='w-1/4 ' >
+            <Tabs.Trigger key={value} value={value} className='w-1/4 h-10 bg-orange border border-black-500 rounded-lg ' >
               {label}
             </Tabs.Trigger>
           ))}

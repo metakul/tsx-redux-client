@@ -5,8 +5,10 @@ export interface Layoutprops {
 
 export interface HomePageProps {
   pageTitle: string;
-  pageDescription:string
+  pageDescription:string;
 }
+
+//tab title
 
 export interface ProtectedPageProps {
   pageTitle: string;

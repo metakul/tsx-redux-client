@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
-import { Card, Inset, Grid } from '@radix-ui/themes';
+import { Card, Inset } from '@radix-ui/themes';
 import blogData from './blogData.json';
 
 const Blogs = () => {
   
   return (
 
-    <div className="w-full p-4">
-      {blogData.map((post) => (
-        <Grid className='border w-full border-jacarta-100 p-4 m-2' >
-          <Card key={post.id}>
+    <div className="w-full overflow-hidden p-4">
+      {blogData.map((post,index) => (
+        <section  key={index} className="relative py-4 md:py-6">
+          <Card>
             <Inset clip="padding-box" side="top" pb="current">
-              <div className="flex flex-col rounded-2.5xl transition-shadow hover:shadow-lg md:flex-row">
+              <div className="flex flex-col rounded-2.5xl transition-shadow shadow-lg md:flex-row">
                 <figure className="group  md:w-1/2 p-4">
                   <Link to={`/singleBlog/${post.id}`}>
                     <img
@@ -34,8 +34,8 @@ const Blogs = () => {
                     </a>
                     <span className="dark:text-jacarta-400">in</span>
                     <span className="inline-flex flex-wrap items-center space-x-1 text-accent">
-                      {post.categories.map((category) => (
-                        <a key={category} href="#">
+                      {post.categories.map((category,index) => (
+                        <a key={index} href="#">
                           {category}
                         </a>
                       ))}
@@ -60,7 +60,7 @@ const Blogs = () => {
               </div>
             </Inset>
           </Card>
-        </Grid>
+        </section>
       ))}
 
     </div>

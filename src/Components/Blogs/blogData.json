@@ -2,7 +2,7 @@
     {
       "id": 1,
       "title": "List your collection for secondary sales",
-      "image": "public/logo.svg",
+      "image": "/logo.svg",
       "author": "Deothemes",
       "categories": ["NFT's", "DIGITAL ART"],
       "date": "2022-02-05",
@@ -10,8 +10,8 @@
     },
     {
       "id": 2,
-      "title": "List your collection for secondary sales",
-      "image": "public/logo.svg",
+      "title": "Dive into the future of nft",
+      "image": "logo.svg",
       "author": "Deothemes",
       "categories": ["NFT's", "DIGITAL ART"],
       "date": "2022-02-05",

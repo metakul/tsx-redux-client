@@ -6,9 +6,25 @@ export enum UserType {
   RANDOM = 'random',
 }
 
+export enum Tabs {
+  tabTitle1="Home",
+  tabTitle2="BTC",
+  tabTitle3="Wallet",
+  tabTitle4="PROFILE"
+}
 export enum Pages {
   HOME = '/',
   DASHBOARD = '/dashboard/app'
+}
+
+export enum HomePageInfo{
+  pageTitle="HomePage",
+  pageDescription="This is home page",
+  
+}
+export enum ProtectedPageInfo{
+  pageTitle="Dashboard",
+  pageDescription="This is Protected page",
 }
 
 // define endpoints here
