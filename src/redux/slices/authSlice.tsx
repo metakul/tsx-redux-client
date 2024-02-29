@@ -20,7 +20,7 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action: PayloadAction<{ user: string; token: string; userType: UserType }>) => {
 
-      // $TODO Update the user authentication logic
+      // TODO: Update the user authentication logic
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
@@ -39,7 +39,7 @@ const authSlice = createSlice({
       localStorage.removeItem('token');
       localStorage.removeItem('userType');
     },
-    // $TODO Add syncAuthState with autContext
+    // TODO: Add syncAuthState with autContext
   },
 });
 
@@ -51,4 +51,4 @@ export default authSlice.reducer;
 export const selectUser = (state: { auth: { user: string } }) => state.auth.user;
 export const selectToken = (state: { auth: { token: string } }) => state.auth.token;
 export const isAuthenticated = (state: { auth: { isAuthenticated: boolean } }) => state.auth.isAuthenticated;
-export const userType = (state: { auth: { userType: string } }) => state.auth.userType;
+export const selectUserType = (state: { auth: { userType: string } }) => state.auth.userType;

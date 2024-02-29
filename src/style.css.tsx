@@ -1,16 +1,16 @@
 
 import { styled } from '@stitches/react';
 
-export const Main = styled("div",{
+export const Main = styled("div", {
     flexGrow: 1,
     overflow: "auto",
     minHeight: "100%",
-    backgroundColor:"green"
+    backgroundColor: "green"
 })
 
-export const StyledRoot = styled('button', {
+export const StyledRoot = styled('div', {
     display: "flex",
     minHeight: "100%",
     overflow: "hidden",
-    backgroundColor:"red"
+    backgroundColor: "red"
 });

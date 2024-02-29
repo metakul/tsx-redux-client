@@ -21,7 +21,7 @@ const Router: React.FC = () => {
       children: [
         {
           path: Pages.DASHBOARD,
-          element: token ? <ProtectedPage pageTitle="Logged In" pageDescription="This is Protected page" /> : <Navigate to={Pages.HOME} />,
+          element: token ? <ProtectedPage pageTitle="DASHBOARD" pageDescription="This is Protected page" /> : <Navigate to={Pages.HOME} />,
         },
       ],
     },
