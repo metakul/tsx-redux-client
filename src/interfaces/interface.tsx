@@ -64,5 +64,14 @@ export interface CustomError {
 ///Nft Page
 
 export interface NFTCollectionState {
-  nfts:object
+  nfts: unknown[];
+}
+
+export interface BalanceItem {
+  metadata?: {
+    name: string;
+    id: string;
+    image: string;
+  };
+  historyLink?: string;
 }

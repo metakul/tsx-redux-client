@@ -27,7 +27,8 @@ export const nftData = [
     "id": "0",
     "image": "https://ed7a4b64885c72be1dc347066f4e51ce.ipfscdn.io/ipfs/bafybeibagl7z4riq6k5dqzeh2liwvz2gncew7jeq6iceajn3ghb47gkwdy/2.png",
     "name": "METAKUL #1",
-    "uri": "ipfs://QmPGpW8wzjbEdeadBffwhbSsRvTt3ysFTebHrW2zLotWBq/0"
+    "uri": "ipfs://QmPGpW8wzjbEdeadBffwhbSsRvTt3ysFTebHrW2zLotWBq/0",
+    "historyLink":"https://metakul.live"
   },
   {
     "owner": "0x35d117AC4C0f84888a6949BfcBd3201267b572C3",

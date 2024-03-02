@@ -1,26 +1,23 @@
-import  { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectNftCollection } from '../../redux/slices/MetakulCollection/NftSlice';
 import { AppDispatch } from '../../redux/store';
 import { LoadNftSlice } from '../../redux/slices/MetakulCollection/NftApiSlice';
 import { CollectionInfo } from '../../interfaces/interface';
 import { Button } from '@radix-ui/themes';
-
+import { BalanceItem } from '../../interfaces/interface';
 
 const MetakulCollection = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
-  const balance=useSelector(selectNftCollection).nfts
-  
-
+  const balance = useSelector(selectNftCollection).nfts
 
   const svgStyle = {
     fill: '#5893f9', // Set your desired fill color here
     height: '1em',
   };
-  const handleLoadNft=()=>{
-    const collectionInfo: CollectionInfo={
-      collectionAddress:"0x710E9161e8A768c0605335AB632361839f761374"
+  const handleLoadNft = () => {
+    const collectionInfo: CollectionInfo = {
+      collectionAddress: "0x710E9161e8A768c0605335AB632361839f761374"
     };
     (dispatch as AppDispatch)(LoadNftSlice(collectionInfo));
 
@@ -107,7 +104,7 @@ const MetakulCollection = () => {
                 </div>
                 <div className="text-2xs font-medium tracking-tight dark:text-jacarta-400">Floor Price</div>
               </div>
-              <div  className="w-1/2 rounded-r-xl border-jacarta-100 py-4 hover:shadow-md sm:w-32" 
+              <div className="w-1/2 rounded-r-xl border-jacarta-100 py-4 hover:shadow-md sm:w-32"
               >
                 <div
                   className="mb-1 flex items-center justify-center text-base font-medium  dark:text-white"
@@ -142,18 +139,18 @@ const MetakulCollection = () => {
 
             <div className="mt-6 flex items-center justify-center space-x-2.5">
               <a href="https://discord.gg/wMcv6HW6VJ" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-              <div
-                className="rounded-xl border border-jacarta-100 bg-jacarta-800 hover:bg-jacarta-100 dark:border-jacarta-600 dark:bg-jacarta-700 dark:hover:bg-jacarta-600"
-              >
-                <div className="js-likes relative inline-flex h-10 w-10 cursor-pointer items-center justify-center text-sm">
+                <div
+                  className="rounded-xl border border-jacarta-100 bg-jacarta-800 hover:bg-jacarta-100 dark:border-jacarta-600 dark:bg-jacarta-700 dark:hover:bg-jacarta-600"
+                >
+                  <div className="js-likes relative inline-flex h-10 w-10 cursor-pointer items-center justify-center text-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style={svgStyle}>
                       <path fill="none" d="M0 0H24V24H0z" />
                       <path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z" />
                     </svg>
-                </div>
+                  </div>
 
-              </div>
-                  </a>
+                </div>
+              </a>
               <a href="https://www.instagram.com/metakul.nft" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <div
                   className="rounded-xl border border-jacarta-100 bg-jacarta-800 hover:bg-jacarta-100 dark:border-jacarta-600 dark:bg-jacarta-700 dark:hover:bg-jacarta-600"
@@ -181,7 +178,7 @@ const MetakulCollection = () => {
       </section>
 
       <section className="relative py-12">
-    
+
         <div className="container">
           <ul
             className="nav nav-tabs mb-6 flex items-center justify-center border-b border-jacarta-100 dark:border-jacarta-600"
@@ -226,7 +223,7 @@ const MetakulCollection = () => {
                       id="blockchainFilter"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
-                      
+
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +248,7 @@ const MetakulCollection = () => {
                       id="categoriesFilter"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
-                      
+
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -275,7 +272,7 @@ const MetakulCollection = () => {
                       id="saleTypeFilter"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
-                      
+
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -300,7 +297,7 @@ const MetakulCollection = () => {
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="outside"
                       aria-expanded="false"
-                      
+
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -325,8 +322,8 @@ const MetakulCollection = () => {
               </div>
 
               <div className="grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
-                {balance && balance?.length > 0 ? (
-                  balance?.map((item, index) => (
+                {(balance as BalanceItem[]) && (balance as BalanceItem[])?.length > 0 ? (
+                  (balance as BalanceItem[])?.map((item: BalanceItem, index: number) => (
                     <article key={index}>
                       <div className="block rounded-2.5xl border border-jacarta-100 p-[1.1875rem] transition-shadow hover:shadow-lg dark:border-jacarta-700 dark:bg-jacarta-700" >
                         <figure className="relative">
@@ -433,7 +430,7 @@ const MetakulCollection = () => {
                               <h3> Not Minted Yet</h3>
                             )}
                           </button>
-                          <a href={item.historyLink} className="group flex items-center">
+                          <a href={item?.historyLink} className="group flex items-center">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 24 24"
@@ -467,8 +464,8 @@ const MetakulCollection = () => {
                   </div>
                 )}
               </div>
-              <Button onClick={handleLoadNft}>
-                  Load More...
+              <Button className='bg-blue-500' onClick={handleLoadNft}>
+                Load More...
               </Button>
             </div>
 

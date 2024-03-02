@@ -1,16 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { NFTCollectionState } from '../../../interfaces/interface';
 import { nftData } from './initialData';
+import { NFTCollectionState } from '../../../interfaces/interface';
 
 const initialState: NFTCollectionState = {
   nfts: nftData,
 };
-
 const nftCollectionSlice = createSlice({
   name: 'nftCollection',
   initialState,
   reducers: {
-    setLoadedNfts: (state, action: PayloadAction<{ nfts: object }>) => {
+    setLoadedNfts: (state, action: PayloadAction<{ nfts: unknown[] }>) => {
       state.nfts = action.payload.nfts;
     },
   },
