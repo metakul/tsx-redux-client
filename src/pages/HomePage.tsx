@@ -3,17 +3,20 @@ import { HomePageProps } from '../interfaces/interface';
 import MobileTabNavigation from '../Components/Tabs/mobileVIew';
 import { Text } from '@radix-ui/themes';
 import Blogs from '../Components/Blogs';
-import BtcHalving from '../Components/Nicehash/btcHalfing';
 import { Tabs } from '../DataTypes/enums';
 import LoginForm from '../Components/Forms/LoginForm';
 import CustomDialog from '../Components/Dailog/Dailog';
+import { CubeIcon, DownloadIcon, HomeIcon, SunIcon } from '@radix-ui/react-icons';
+import MetakulCollection from '../Components/Collection/MetakulCollection';
+
+
 
 const HomePage: React.FC<HomePageProps> = (props) => {
   const tabs = [
-    { value: Tabs.tabTitle1, content: <Blogs />, label: Tabs.tabTitle1 },
-    { value: Tabs.tabTitle2, content: <BtcHalving />, label:  Tabs.tabTitle2 },
-    { value: Tabs.tabTitle3, content: <Text size="6">$ETH: 0.7</Text>, label:  Tabs.tabTitle3 },
-    { value: Tabs.tabTitle4, content: <Text size="6">Profile</Text>, label:  Tabs.tabTitle4 },
+    { value: <HomeIcon/>, content: <Blogs />, label: Tabs.tabTitle1 },
+    { value: <SunIcon/>, content: <MetakulCollection />, label:  Tabs.tabTitle2 },
+    { value: <DownloadIcon/>, content: <Text size="6">$ETH: 0.7</Text>, label:  Tabs.tabTitle3 },
+    { value: <CubeIcon/>, content: <Text size="6">Profile</Text>, label:  Tabs.tabTitle4 },
   ];
 
   const containerStyle: React.CSSProperties = {

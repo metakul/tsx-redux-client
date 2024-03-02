@@ -21,6 +21,10 @@ export interface LoginData {
   password: string;
 }
 
+export interface CollectionInfo {
+  collectionAddress:string
+}
+
 //logged in state
 export interface AuthState {
   isAuthenticated: boolean;
@@ -53,4 +57,12 @@ export interface ApiError {
 //custom error
 export interface CustomError {
   error: string;
+}
+
+
+
+///Nft Page
+
+export interface NFTCollectionState {
+  nfts:object
 }
