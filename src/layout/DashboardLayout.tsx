@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Topbar from "../Components/Global/Topbar";
 import navConfig from "./navConfig";
 import Nav from "../Components/Global/Nav";
+import { Text } from "@radix-ui/themes";
 
 // const APP_BAR_MOBILE = 64;
 // const APP_BAR_DESKTOP = 92;
@@ -45,6 +46,7 @@ export default function DashboardLayout() {
         <div>
           <Outlet />
         </div>
+        <Text>Footer</Text>
       </div>
     </>
   );

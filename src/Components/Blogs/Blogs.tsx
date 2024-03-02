@@ -6,7 +6,7 @@ const Blogs = () => {
   
   return (
 
-    <div className="w-full overflow-hidden p-4">
+    <div className="w-5/6 sm:w-full overflow-hidden mx-auto">
       {blogData.map((post,index) => (
         <section  key={index} className="relative py-4 md:py-6">
           <Card>
@@ -47,8 +47,6 @@ const Blogs = () => {
                   >
                     <Link to={`/singleBlog/${post.id}`}>{post.title}</Link>
                   </h2>
-                  <p className="mb-8 dark:text-jacarta-200">{post.content}</p>
-
                   <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
                     <span>
                       <time dateTime={post.date}>{post.date}</time>

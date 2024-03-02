@@ -6,11 +6,13 @@ import Marquee from '../MarqueCrypto';
 
 const Tab1 = () => {
   return (
-    <Box >
-        <Marquee/>
-        <Blogs />
-    </Box>
-        
+    <>
+      <Marquee />
+      <Box className='md:container md:mx-auto' >
+          <Blogs />
+      </Box>
+    </>
+
   );
 };
 
