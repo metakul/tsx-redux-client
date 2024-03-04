@@ -6,8 +6,9 @@ import { logout } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
 import { selectUserType } from './../../redux/slices/authSlice';
 import Userpage from '../../Components/Three.js/index.tsx';
+
 const ProtectedPage: React.FC<ProtectedPageProps> = (
-  // props
+  props
   ) => {
   const userType = useSelector(selectUserType);
   const dispatch = useDispatch();
@@ -26,17 +27,15 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (
     switch (userType) {
       case 'admin':
         return <AdminPage />;
-      case 'STAFF' || 'DOCTOR' || 'PATIENT':
-        return <Userpage />;
       default:
-        return <DefaultPage />;
+        return <Userpage />;
     }
   };
 
   return (
     <div>
-      {/* <h2>{props.pageTitle}</h2> */}
-      {/* <h2>{props.pageDescription}</h2> */}
+      <h2>{props.pageTitle}</h2>
+      <h2>{props.pageDescription}</h2>
       {renderPageBasedOnUserType()}
       <button onClick={handleLogout}>Logout</button>
     </div>
@@ -45,10 +44,6 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (
 
 const AdminPage: React.FC = () => {
   return <div>Content for Admin</div>;
-};
-
-const DefaultPage: React.FC = () => {
-  return <div>Default Content</div>;
 };
 
 export default ProtectedPage

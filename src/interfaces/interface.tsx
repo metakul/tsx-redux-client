@@ -66,6 +66,9 @@ export interface CustomError {
 export interface NFTCollectionState {
   nfts: unknown[];
 }
+export interface BlogsState {
+  blogs: unknown[];
+}
 
 export interface BalanceItem {
   metadata?: {
@@ -74,4 +77,20 @@ export interface BalanceItem {
     image: string;
   };
   historyLink?: string;
+}
+
+
+//interfaces for post
+export interface Ipost  {
+  id?: string;
+  title: string;
+  description: string;
+  image:string;
+  author:string;
+  categories?: string[];
+  date?: string;
+}
+
+export interface FetchFlogData{
+  userType:string
 }

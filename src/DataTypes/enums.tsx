@@ -28,6 +28,8 @@ export enum ProtectedPageInfo{
 }
 
 // define endpoints here
-export const ApiEndpoint: Record<string, RequestOptions> = {
-  LOGIN: { url: '/login', method: 'POST', headers: { 'Content-Type': 'application/json'}},
-};
+  export const ApiEndpoint: Record<string, RequestOptions> = {
+    LOGIN: { url: '/api/login', method: 'POST', headers: { 'Content-Type': 'application/json'}},
+    GETBLOG: { url: '/api/post', method: 'GET'},
+  };
+  

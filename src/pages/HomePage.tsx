@@ -10,7 +10,6 @@ import { CubeIcon, DownloadIcon, HomeIcon, SunIcon } from '@radix-ui/react-icons
 import MetakulCollection from '../Components/Collection/MetakulCollection';
 
 
-
 const HomePage: React.FC<HomePageProps> = (props) => {
   const tabs = [
     { value: <HomeIcon/>, content: <Blogs />, label: Tabs.tabTitle1 },
@@ -22,6 +21,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   const containerStyle: React.CSSProperties = {
    marginBottom:"40px"
   };
+  
   return (
     <div style={containerStyle}>
       {props.pageTitle}

@@ -1,31 +1,20 @@
-import axios, {  AxiosResponse } from 'axios';
+import axios from 'axios';
 import { RequestOptions } from '../../interfaces/interface';
-const apiEndpoint = 'http://localhost:8001';
 
 const request = async (options: RequestOptions) => {
   try {
-    // Serialize data before sending
-    if (options.data && typeof options.data !== 'string') {
-      options.data = JSON.stringify(options.data);
-      options.headers = {
-        ...options.headers,
-        'Content-Type': 'application/json',
-      };
-    }
-
     // Construct the full request URL, prepending the API endpoint if necessary
-    const fullUrl = options.url.startsWith('https://') || options.url.startsWith('http://')
-      ? options.url
-      : `${apiEndpoint}${options.url}`;
+    const fullUrl = `${options.url}`;
 
     // Make the HTTP request using axios
-    const response: AxiosResponse = await axios({
-      ...options,
+    const response = await axios({
+      method: options.method,
       url: fullUrl,
+      data: JSON.stringify(options?.data),
     });
 
     // Return the parsed response data
-    console.log(response)
+    console.log(response.data); // Accessing response data
     return response;
   } catch (error) {
     // Handle errors gracefully, providing more informative messages if possible
