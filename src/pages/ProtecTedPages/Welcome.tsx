@@ -7,6 +7,8 @@ import { AppDispatch } from '../../redux/store'
 import { selectUser, selectUserType } from '../../redux/slices/authSlice';
 import { Button, Container } from '@radix-ui/themes'
 import CustomHeading from '../../Components/Typogrpahy/Text/Heading'
+import { Link } from 'react-router-dom'
+import { Pages } from '../../DataTypes/enums'
 
 const ProtectedPage: React.FC<ProtectedPageProps> = (props) => {
   const selectedUser = useSelector(selectUser)
@@ -30,6 +32,7 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (props) => {
       <CustomHeading style={{ fontSize: '24px' }}>
         Hi {selectedUserType} this is dashboard
       </CustomHeading>
+      <Link to={Pages.PROFILE}>Profile</Link>
       <Button onClick={handleLogout}>
         Logout
       </Button>

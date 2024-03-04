@@ -3,6 +3,7 @@ import { useRoutes, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import HomePage from "./pages/HomePage";
 import ProtectedPage from "./pages/ProtecTedPages/Welcome";
+import ProfilePage from "./pages/ProtecTedPages/Profile/Profile";
 import { Pages } from "./DataTypes/enums";
 import { selectToken } from "./redux/slices/authSlice";
 import DashboardOutlet from "./layout/DashboardLayout";
@@ -22,6 +23,10 @@ const Router: React.FC = () => {
         {
           path: Pages.DASHBOARD,
           element: token ? <ProtectedPage pageTitle="DASHBOARD" pageDescription="This is Protected page" /> : <Navigate to={Pages.HOME} />,
+        },
+        {
+          path: Pages.PROFILE,
+          element: token ? <ProfilePage pageTitle="PROFILE" pageDescription="This is Profile Page" /> : <Navigate to={Pages.HOME} />,
         },
       ],
     },

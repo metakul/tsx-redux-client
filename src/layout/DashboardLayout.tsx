@@ -14,7 +14,7 @@ const DashboardOutlet: React.FC<Layoutprops> = memo(() => {
 
   return token ? (
     <StyledRoot>
-      <Main style={{ paddingTop: 50 }}>
+      <Main>
         <Outlet />
       </Main>
     </StyledRoot>

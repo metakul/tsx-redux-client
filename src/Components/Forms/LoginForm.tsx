@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser, loginVerifyUser } from '../../redux/slices/authApiSlice';
+import { loginUser, loginVerifyUser, resendOtpLogin } from '../../redux/slices/authApiSlice';
 import { LoginData } from '../../interfaces/interface';
 import { AppDispatch } from '../../redux/store';
 import CustomHeading from '../Typogrpahy/Text/Heading';
@@ -21,7 +21,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
 
     try {
       const loginData: LoginData = {
-        email: user,
+        id: user,
         password: password,
         userType: props.userType,
       };
@@ -37,7 +37,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
 
     try {
       const verifyLoginData = {
-        adminId: user, // Change this to the correct user identifier
+        id: user, // Change this to the correct user identifier
         otp: otp,
         userType: props.userType,
       };
@@ -49,8 +49,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
     }
   };
   const handleResendOtp = async () => {
-    // Implement the logic to resend OTP
-    console.log('Resending OTP...');
+    (dispatch as AppDispatch)(resendOtpLogin({id: user,userType:props.userType}));
   };
   return (
     <div>

@@ -21,15 +21,20 @@ export interface LoginFormProps {
 
 //login form state
 export interface LoginData {
-  email: string;
+  id: string;
   password: string;
   userType:UserType;
 }
 
 //verify login data
 export interface VerifyLoginData{
-  adminId:string,
+  id:string,
   otp:string,
+  userType:UserType
+}
+//resend login OTP
+export interface ResendOtpData{
+  id:string,
   userType:UserType
 }
 

@@ -35,3 +35,21 @@ export interface CustomLinkProps {
   rel?: string;
   style?: React.CSSProperties;
 }
+
+export interface CustomTabProps {
+  value: string;
+  children: ReactNode;
+}
+
+export interface OverViewProps {
+  value?: string;
+  children?: ReactNode;
+}
+export interface UserActivityProps {
+  value?: string;
+  children?: ReactNode;
+}
+export interface UserProfileProps {
+  value?: string;
+  children?: ReactNode;
+}
