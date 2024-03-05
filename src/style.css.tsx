@@ -9,7 +9,7 @@ export const Main = styled("div", {
     flexGrow: 1,
     overflow: "auto",
     minHeight: "100%",
-    backgroundColor: "green",
+    backgroundColor: "#37dfdf",
     minWidth: screenWidth + "px",
 })
    

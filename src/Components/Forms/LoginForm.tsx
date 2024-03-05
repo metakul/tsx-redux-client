@@ -7,6 +7,8 @@ import CustomHeading from '../Typogrpahy/Text/Heading';
 import CustomTextField from '../Typogrpahy/Text/TextFeild';
 import { LoginFormProps } from '../../interfaces/interface';
 import { LoginButtonText } from '../../DataTypes/constText';
+import DependentSignUpForm from './SignUp/Applicants/Dependent';
+import { UserType } from '../../DataTypes/enums';
 
 const LoginForm: React.FC<LoginFormProps> = (props) => {
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
   const [password, setPassword] = useState<string>('');
   const [otp, setOtp] = useState<string>('');
   const [showOtpField, setShowOtpField] = useState<boolean>(false);
+  const [showSignUpForm,setShowSignUpForm]=useState<boolean>(false)
 
   const handleLoginSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -25,19 +28,20 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
         password: password,
         userType: props.userType,
       };
-      console.log(loginData);
+
       (dispatch as AppDispatch)(loginUser(loginData));
       setShowOtpField(true);
     } catch (error) {
       console.error('Login failed In LoginPage:', error);
     }
   };
+
   const handleVerifyOtpSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     try {
       const verifyLoginData = {
-        id: user, // Change this to the correct user identifier
+        id: user,
         otp: otp,
         userType: props.userType,
       };
@@ -48,9 +52,24 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
       console.error('OTP verification failed:', error);
     }
   };
+
   const handleResendOtp = async () => {
-    (dispatch as AppDispatch)(resendOtpLogin({id: user,userType:props.userType}));
+    (dispatch as AppDispatch)(resendOtpLogin({ id: user, userType: props.userType }));
   };
+
+  const handleSignUpForm = async () => {
+    setShowSignUpForm(!showSignUpForm)
+  }
+
+  const renderSignUpFormBasedOnUserType = () => {
+    switch (props.userType as UserType) {
+      case props.userType:
+        return <DependentSignUpForm userType={props.userType} />
+      default:
+        return <DependentSignUpForm userType={UserType.RANDOM}/>
+    }
+  }
+
   return (
     <div>
       <form onSubmit={showOtpField ? handleVerifyOtpSubmit : handleLoginSubmit}>
@@ -75,7 +94,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
           value={password}
           onChange={(value) => setPassword(value)}
         />
-          {showOtpField && (
+        {showOtpField && (
           <CustomTextField
             label="OTP"
             placeholder="Enter OTP"
@@ -84,7 +103,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
             onChange={(value) => setOtp(value)}
           />
         )}
-       <div>
+        <div>
           <button type="submit">
             {showOtpField ? LoginButtonText.VERIFY_OTP : LoginButtonText.SEND_OTP}
           </button>
@@ -96,6 +115,15 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
           )}
         </div>
       </form>
+
+      <button type="button" onClick={handleSignUpForm}>
+        SIGNUP
+      </button>
+      {showSignUpForm &&
+      <div>
+        {renderSignUpFormBasedOnUserType()}
+      </div>
+      }
     </div>
   );
 };

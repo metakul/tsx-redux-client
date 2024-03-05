@@ -9,7 +9,7 @@ import { UserType } from '../DataTypes/enums';
 
 const HomePage: React.FC<HomePageProps> = (props) => {
 
-  const generateButtonDataTop = () => {
+  const generateLoginButton = () => {
     const userTypeKeys = Object.keys(UserType) as Array<keyof typeof UserType>;
     return userTypeKeys.map(key => ({
       endpoint: UserType[key],
@@ -17,7 +17,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
     }));
   };
 
-  const buttonDataTop = generateButtonDataTop();
+  const buttonDataTop = generateLoginButton();
 
   return (
     <Container>

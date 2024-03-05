@@ -15,7 +15,7 @@ const ProfilePage: React.FC<ProtectedPageProps> = () => {
   const selectedUserType = useSelector(selectUserType)
 
   const tabs = [
-    { value: ProfileTab.tabTitle1, content: <OverView />, label: ProfileTab.tabTitle1 },
+    { value: ProfileTab.tabTitle1, content: <OverView/>, label: ProfileTab.tabTitle1 },
     { value: ProfileTab.tabTitle2, content: <UserProfile />, label: ProfileTab.tabTitle2 },
     { value: ProfileTab.tabTitle3, content: <UserActivity />, label: ProfileTab.tabTitle3 },
   ];

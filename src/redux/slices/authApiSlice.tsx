@@ -6,15 +6,16 @@ import { ApiEndpoint } from '../../DataTypes/enums';
 import request from '../../Backend/axiosCall/apiCall';
 import { ApiSuccess } from '../../interfaces/interface';
 import { ErrorType } from '../../DataTypes/errors';
+
 export const loginUser = createAsyncThunk(
   'auth/login',
   async ({ id, password, userType }: LoginData, { rejectWithValue }) => {
     try {
       const response = await request({
-        url: `${userType}/${ApiEndpoint.LOGIN.url}`,
+        url: `${ApiEndpoint.LOGIN.url}`,
         method: ApiEndpoint.LOGIN.method,
         // TODO: change adminId to {userId} for custom userType Login
-        data: { adminId:id, password },
+        data: { id, password, userType },
         headers: ApiEndpoint.LOGIN.headers
       })
       if (response.data.status === 200) {
@@ -41,12 +42,12 @@ export const loginUser = createAsyncThunk(
 // * @param otp
 export const loginVerifyUser = createAsyncThunk(
   'auth/login/verifyOtp',
-  async ({ id:adminId, otp, userType }: VerifyLoginData, { rejectWithValue, dispatch }) => {
+  async ({ id, otp, userType }: VerifyLoginData, { rejectWithValue, dispatch }) => {
     try {
       const response = await request({
-        url: `${userType}/${ApiEndpoint.LOGINVERIFY.url}`,
+        url: `${ApiEndpoint.LOGINVERIFY.url}?id=${id}`,
         method: ApiEndpoint.LOGINVERIFY.method,
-        data: { adminId:adminId, otp },
+        data: { otp },
         headers: ApiEndpoint.LOGINVERIFY.headers
       })
       //  TODO: check status in either response.status or response.data.status
@@ -85,9 +86,8 @@ export const resendOtpLogin = createAsyncThunk(
   async ({ id,userType }: ResendOtpData, { rejectWithValue }) => {
     try {
       const response = await request({
-        url: `${userType}${ApiEndpoint.RESENDLOGINOTP.url}`,
+        url: `${ApiEndpoint.RESENDLOGINOTP.url}?userType=${userType}?id=${id}`,
         method: ApiEndpoint.RESENDLOGINOTP.method,
-        data: { adminId:id },
         headers: ApiEndpoint.RESENDLOGINOTP.headers
       })
       if (response.status === 200) {
