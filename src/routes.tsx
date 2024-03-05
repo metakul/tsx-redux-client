@@ -11,7 +11,10 @@ import DashboardOutlet from "./layout/DashboardLayout";
 const Router: React.FC = () => {
   const token = useSelector(selectToken);
 
+  
   const routes = useRoutes([
+
+    
     {
       path: Pages.HOME,
       element: token ? <Navigate to={`${Pages.DASHBOARD}`} /> : <HomePage pageTitle="HomePage" pageDescription="This is Home Page"/>,

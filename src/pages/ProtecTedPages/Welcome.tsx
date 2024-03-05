@@ -33,6 +33,12 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (props) => {
         Hi {selectedUserType} this is dashboard
       </CustomHeading>
       <Link to={Pages.PROFILE}>Profile</Link>
+
+
+      
+
+
+
       <Button onClick={handleLogout}>
         Logout
       </Button>

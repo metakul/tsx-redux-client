@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, loginVerifyUser, resendOtpLogin } from '../../redux/slices/authApiSlice';
 import { LoginData } from '../../interfaces/interface';
 import { AppDispatch } from '../../redux/store';
@@ -8,16 +8,19 @@ import CustomTextField from '../Typogrpahy/Text/TextFeild';
 import { LoginFormProps } from '../../interfaces/interface';
 import { LoginButtonText } from '../../DataTypes/constText';
 import DependentSignUpForm from './SignUp/Applicants/Dependent';
-import { UserType } from '../../DataTypes/enums';
+import { Pages, UserType } from '../../DataTypes/enums';
+import { selectUser } from '../../redux/slices/authSlice';
+import { Link } from 'react-router-dom';
 
 const LoginForm: React.FC<LoginFormProps> = (props) => {
   const dispatch = useDispatch();
-
+  const selectedUser = useSelector(selectUser)
+  
   const [user, setuser] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [otp, setOtp] = useState<string>('');
   const [showOtpField, setShowOtpField] = useState<boolean>(false);
-  const [showSignUpForm,setShowSignUpForm]=useState<boolean>(false)
+  const [showSignUpForm, setShowSignUpForm] = useState<boolean>(false)
 
   const handleLoginSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -66,65 +69,81 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
       case props.userType:
         return <DependentSignUpForm userType={props.userType} />
       default:
-        return <DependentSignUpForm userType={UserType.RANDOM}/>
+        return <DependentSignUpForm userType={UserType.RANDOM} />
     }
   }
 
   return (
     <div>
-      <form onSubmit={showOtpField ? handleVerifyOtpSubmit : handleLoginSubmit}>
-        {/* Use CustomHeading */}
-        <CustomHeading placeholder="Login Form" style={{ fontSize: '24px' }}>
-          {props.loginTitle}
-        </CustomHeading>
+      {!selectedUser ? (
+        <>
+          <form onSubmit={showOtpField ? handleVerifyOtpSubmit : handleLoginSubmit}>
+            <CustomHeading placeholder="Login Form" style={{ fontSize: '24px' }}>
+              {props.loginTitle}
+            </CustomHeading>
 
-        {/* Use CustomTextField */}
-        <CustomTextField
-          label="Username"
-          placeholder="Enter your username"
-          value={user}
-          onChange={(value) => setuser(value)}
-        />
+            <CustomTextField
+              label="Username"
+              placeholder="Enter your username"
+              value={user}
+              onChange={(value) => setuser(value)}
+            />
 
-        {/* Use CustomTextField for password */}
-        <CustomTextField
-          label="Password"
-          placeholder="Enter your password"
-          type="password"
-          value={password}
-          onChange={(value) => setPassword(value)}
-        />
-        {showOtpField && (
-          <CustomTextField
-            label="OTP"
-            placeholder="Enter OTP"
-            type="text"
-            value={otp}
-            onChange={(value) => setOtp(value)}
-          />
-        )}
-        <div>
-          <button type="submit">
-            {showOtpField ? LoginButtonText.VERIFY_OTP : LoginButtonText.SEND_OTP}
+            <CustomTextField
+              label="Password"
+              placeholder="Enter your password"
+              type="password"
+              value={password}
+              onChange={(value) => setPassword(value)}
+            />
+
+            {showOtpField && (
+              <CustomTextField
+                label="OTP"
+                placeholder="Enter OTP"
+                type="text"
+                value={otp}
+                onChange={(value) => setOtp(value)}
+              />
+            )}
+
+            <div>
+              <button type="submit">
+                {showOtpField ? LoginButtonText.VERIFY_OTP : LoginButtonText.SEND_OTP}
+              </button>
+
+              {showOtpField && (
+                <button type="button" onClick={handleResendOtp}>
+                  {LoginButtonText.RESEND_OTP}
+                </button>
+              )}
+            </div>
+          </form>
+
+          <button type="button" onClick={handleSignUpForm}>
+            SIGNUP
           </button>
 
-          {showOtpField && (
-            <button type="button" onClick={handleResendOtp}>
-              {LoginButtonText.RESEND_OTP}
-            </button>
+          {showSignUpForm && (
+            <div>
+              {renderSignUpFormBasedOnUserType()}
+            </div>
           )}
-        </div>
-      </form>
-
-      <button type="button" onClick={handleSignUpForm}>
-        SIGNUP
-      </button>
-      {showSignUpForm &&
-      <div>
-        {renderSignUpFormBasedOnUserType()}
-      </div>
-      }
+        </>
+      ) : (
+        <>
+        <CustomHeading style={{
+          fontSize:"18px"
+        }}>
+          Already Logged In. Visit the
+        </CustomHeading>
+        <Link to={Pages.DASHBOARD}>
+           DASHBOARD
+        </Link>
+          </>
+      )}
     </div>
+
   );
 };
 

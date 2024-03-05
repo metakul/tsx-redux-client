@@ -14,7 +14,6 @@ export const loginUser = createAsyncThunk(
       const response = await request({
         url: `${ApiEndpoint.LOGIN.url}`,
         method: ApiEndpoint.LOGIN.method,
-        // TODO: change adminId to {userId} for custom userType Login
         data: { id, password, userType },
         headers: ApiEndpoint.LOGIN.headers
       })

@@ -9,10 +9,9 @@ export const Main = styled("div", {
     flexGrow: 1,
     overflow: "auto",
     minHeight: "100%",
-    backgroundColor: "#37dfdf",
     minWidth: screenWidth + "px",
 })
-   
+
 
 export const StyledRoot = styled('div', {
     display: "flex",
@@ -20,4 +19,5 @@ export const StyledRoot = styled('div', {
     overflow: "hidden",
     marginLeft:"auto",
     marginRight:"auto",
+    backgroundColor: "#37dfdf",
 });

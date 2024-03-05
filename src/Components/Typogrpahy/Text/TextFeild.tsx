@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { TextField } from '@radix-ui/themes';
 import { CustomTextFieldProps } from '../../../interfaces/CompInterfaces';
 
@@ -15,10 +15,10 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
       <TextField.Root>
         {label && <label>{label}</label>}
         <TextField.Input
-        type={type}
+          type={type}
           placeholder={placeholder}
           value={value}
-          onInput={(e:any) => onChange && onChange((e.target as HTMLInputElement).value)}
+          onInput={(e) => onChange && onChange((e.target as HTMLInputElement).value)}
         />
       </TextField.Root>
       {children}

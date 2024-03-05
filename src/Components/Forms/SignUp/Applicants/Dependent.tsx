@@ -12,9 +12,16 @@ const DependentSignUpForm: React.FC<SignUpFormProps> = (props) => {
     event.preventDefault();
     console.log('Form submitted! UserType:', props.userType);
   };
-
+  const dialogStyle: React.CSSProperties = {
+    width: '100%', 
+    height: '100%', 
+    margin: 0, 
+    padding: 20, 
+    boxSizing: 'border-box', 
+  };
   return (
-    <AnimatedDialog onSubmit={handleSubmit} isOpen={true}>
+    <div style={dialogStyle}>
+    <AnimatedDialog onSubmit={handleSubmit} isOpen={true} >
       SignUp For: {props.userType}
       <br/>
       <label>
@@ -27,6 +34,7 @@ const DependentSignUpForm: React.FC<SignUpFormProps> = (props) => {
       </label>
       {/* Add other form fields as needed */}
     </AnimatedDialog>
+    </div>
   );
 };
 
