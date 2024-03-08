@@ -1,44 +1,72 @@
-
-import { HomeIcon, ImageIcon, PaperPlaneIcon, PieChartIcon, StopIcon } from "@radix-ui/react-icons";
+import {
+  HomeOutlined,
+  ShoppingCartOutlined,
+  ReceiptLongOutlined,
+  PublicOutlined,
+  TodayOutlined,
+  CalendarMonthOutlined,
+  AdminPanelSettingsOutlined,
+  PieChartOutlined,
+} from "@mui/icons-material";
 
 export const navConfig = [
-    {
-      text: "Dashboard",
-      icon: <HomeIcon />,
-      to: "",
-    },
-    {
-      text: "Into the Metaverse",
-      icon: null,
-      to: "",
-    },
-    {
-      text: "My Wallet",
-      icon: < StopIcon/>,
-      to: "wallet",
-    },
-    {
-      text: "Claim NFT",
-      icon: <ImageIcon />,
-      to: "NFT",
-    },
-    {
-      text: "Earn With Nft",
-      icon: <PieChartIcon />,
-      to: "Staking",
-    },
-    {
-      text: "Extras",
-      icon:null,
-      to: "",
-    },
-    {
-      text: "Profile",
-      icon: <PaperPlaneIcon />,
-      to: "Profile",
-    },
+  {
+    text: "Dashboard",
+    icon: <HomeOutlined />,
+    to: "",
+  },
+  {
+    text: "Into the Metaverse",
+    icon: null,
+    to: "",
+  },
+  {
+    text: "Mint NFT",
+    icon: <TodayOutlined />,
+    to: "mint",
+  },
+  {
+    text: "Explore",
+    icon: <ShoppingCartOutlined />,
+    to: "metakul",
+  },
+  {
+    text: "Earn With Nft",
+    icon: <PieChartOutlined />,
+    to: "wallet",
+  },
+  // {
+  //   text: "Metaverse",
+  //   icon: null,
+  //   to: "",
+  // },
+  {
+    text: "Learn Web3",
+    icon: <ReceiptLongOutlined />,
+    to: "blogs",
+  },
 
-    
-  ];
+  {
+    text: "Extras",
+    icon:null,
+    to: "",
+  },
+  {
+    text: "Profile",
+    icon: <AdminPanelSettingsOutlined />,
+    to: "Profile",
+  },
+  {
+    text: "KYC",
+    icon: <PublicOutlined />,
+    to: "kyc",
+  },
+  {
+    text: "Career",
+    icon: <CalendarMonthOutlined />,
+    to: "Career",
+  },
+  
+];
 
-  export default navConfig;
+export default navConfig;

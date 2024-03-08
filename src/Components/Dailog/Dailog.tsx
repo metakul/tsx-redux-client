@@ -1,30 +1,45 @@
-import React from 'react';
-import { Dialog, Button, Inset } from '@radix-ui/themes';
-import "./Dailog.css"
+import React, { ReactNode } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
+
 interface CustomDialogProps {
-  triggerButtonText: React.ReactNode | "";
-  title: React.ReactNode;
-  description?: React.ReactNode;
-  open?:boolean | undefined
-  setOpen?:((open: boolean) => void) | undefined;
-  children: React.ReactNode;
+  open: boolean;
+  onClose: () => void;
+  triggerButtonText: string;
+  title: string;
+  description: string;
+  children: ReactNode;
 }
 
-const CustomDialog: React.FC<CustomDialogProps> = (props) => {
+const CustomDialog: React.FC<CustomDialogProps> = ({
+  open,
+  onClose,
+  triggerButtonText,
+  title,
+  description,
+  children,
+}) => {
   return (
-    <Dialog.Root open={props.open} onOpenChange={props.setOpen}>
-      <Dialog.Trigger>
-      <Button>{props.triggerButtonText}</Button>
-      </Dialog.Trigger>
-
-      <Dialog.Content className='custom-dailog'>
-        <Dialog.Title>{props.title}</Dialog.Title>
-        {props.description && <Dialog.Description>{props.description}</Dialog.Description>}
-        <Inset side="x" my="5">
-        {props.children}
-        </Inset>
-      </Dialog.Content>
-    </Dialog.Root>
+    <>
+      <Button variant="outlined" onClick={() => onClose()}>
+        {triggerButtonText}
+      </Button>
+      <Dialog onClose={onClose} open={open}>
+        <DialogTitle>{title}</DialogTitle>
+        <DialogContent>
+          <p>{description}</p>
+          {children}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => onClose()} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 };
 

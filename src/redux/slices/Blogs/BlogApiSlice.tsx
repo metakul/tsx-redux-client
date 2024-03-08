@@ -5,12 +5,12 @@ import { ApiError } from '../../../interfaces/interface';
 import { ApiEndpoint } from '../../../DataTypes/enums';
 import request from '../../../Backend/axiosCall/apiCall';
 import { ApiSuccess } from '../../../interfaces/interface';
-import { FetchFlogData } from '../../../interfaces/interface';
+import { FetchBlogData } from '../../../interfaces/interface';
 import { Ipost } from '../../../interfaces/interface';
 export const fetchBlogApiSlice = createAsyncThunk(
   'blogCollection',
   // eslint-disable-next-line no-empty-pattern
-  async ({ userType}:FetchFlogData , { rejectWithValue, dispatch }) => {
+  async ({ userType}:FetchBlogData , { rejectWithValue, dispatch }) => {
     try {
       console.log("user",userType)
       const response = await request({

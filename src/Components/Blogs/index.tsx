@@ -1,6 +1,6 @@
 // Tab1.jsx
 
-import { Box } from '@radix-ui/themes';
+import { Box } from '@mui/material';
 import Blogs from './Blogs';
 import Marquee from '../MarqueCrypto';
 const Tab1 = () => {

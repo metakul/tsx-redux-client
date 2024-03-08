@@ -1,6 +1,6 @@
 // LoginButton.tsx
 import React, { ButtonHTMLAttributes } from 'react';
-import { Button } from '@radix-ui/themes'
+import { Button } from '@mui/material';
 
 interface LoginButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;

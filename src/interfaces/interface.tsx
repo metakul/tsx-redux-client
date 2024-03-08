@@ -87,10 +87,10 @@ export interface Ipost  {
   description: string;
   image:string;
   author:string;
-  categories?: string[];
+  categories: string[];
   date?: string;
 }
 
-export interface FetchFlogData{
+export interface FetchBlogData{
   userType:string
 }

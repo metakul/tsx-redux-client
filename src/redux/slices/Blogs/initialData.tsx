@@ -12,7 +12,7 @@ export const blogData: Ipost[] = [
   },
   {
     id: "5",
-    title: "Dive into the future of nft",
+    title: "your ",
     description:
       "Since we launched Tezos at the end of 2021, many awesome creators..Since we launched Tezos at the end of 2021, the end of 2021, the end of 2021, many awesome creators...",
     image: "logo.svg",

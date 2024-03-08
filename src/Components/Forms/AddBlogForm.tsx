@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { addBlog } from '../../redux/slices/authApiSlice';
 // import { AppDispatch } from '../../redux/store';
 import { Ipost } from '../../interfaces/interface';
-import { TextField, Text, Flex, Button } from '@radix-ui/themes';
+import { TextField, Typography, Button, Box } from '@mui/material';
 // import { type } from './../../redux/types';"
 import CustomDialog from '../Dailog/Dailog';
+
 interface AddBlogProps {
-    onFormSubmit: unknown
+    onFormSubmit: (blogData: Ipost) => void;
 }
 const AddBlogForm: React.FC<AddBlogProps> = () => {
     //   const dispatch = useDispatch(); 
+    const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
 
     const handleFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -37,46 +39,49 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
 
         // #TODO add Custom drawer
         <CustomDialog
+            open={isDialogOpen}
+            onClose={() => setDialogOpen(!isDialogOpen)}
             triggerButtonText={"Add Blog"}
             title={"New Blog"}
             description={"This is adding for New Blog Page"}
         >
-            <Flex direction="column" gap="3" style={{
-                background:"blue"
+            <Box style={{
+                background: "blue"
             }}>
                 <label>
-                    <Text as="div" size="2" mb="1" weight="bold">
+                    <Typography variant="h3">
                         Title
-                    </Text>
-                    <TextField.Input
-                        defaultValue="Freja Johnsen"
+                    </Typography>
+                    <TextField
+
+                        value="Freja Johnsen"
                         placeholder="Enter your full name"
                     />
                 </label>
                 <label>
-                    <Text as="div" size="2" mb="1" weight="bold">
+                    <Typography variant="h3">
                         Description
-                    </Text>
-                    <TextField.Input
-                        defaultValue="freja@example.com"
+                    </Typography>
+                    <TextField
+                        value="freja@example.com"
                         placeholder="Enter your email"
                     />
                 </label>
                 <label>
-                    <Text as="div" size="2" mb="1" weight="bold">
+                    <Typography variant="h3">
                         Author
-                    </Text>
-                    <TextField.Input
-                        defaultValue="freja@example.com"
+                    </Typography>
+                    <TextField
+                        value="freja@example.com"
                         placeholder="Enter your email"
                     />
                 </label>
-            </Flex>
-            <Flex gap="3" mt="4" justify="end"  style={{
-                backgroundColor:"blue"
+            </Box>
+            <Box style={{
+                backgroundColor: "blue"
             }}>
                 <Button onClick={handleFormSubmit}>Save</Button>
-            </Flex>
+            </Box>
         </CustomDialog>
 
     );

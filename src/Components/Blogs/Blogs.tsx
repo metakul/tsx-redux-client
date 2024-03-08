@@ -1,20 +1,23 @@
 import { Link } from 'react-router-dom';
-import { Button, Card, Inset } from '@radix-ui/themes';
+import {Button, Box} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedBlogs } from '../../redux/slices/Blogs/BlogSlice';
 import { AppDispatch } from '../../redux/store';
 import { fetchBlogApiSlice } from '../../redux/slices/Blogs/BlogApiSlice';
 import { Ipost } from '../../interfaces/interface';
-import { FetchFlogData } from '../../interfaces/interface';
+import { FetchBlogData } from '../../interfaces/interface';
+import {  Grid } from '@mui/material';
+import LikeButton from '../Buttons/LikeButton';
 
 const Blogs = () => {
+  // const theme = useTheme()
   const dispatch = useDispatch()
   const blogsData = useSelector(selectedBlogs).blogs
 
   const handleLoadBlogs = () => {
 
-    const userType: FetchFlogData = {
-      userType: "0x710E9161e8A768c0605335AB632361839f761374"
+    const userType: FetchBlogData = {
+      userType: "user"
     };
     (dispatch as AppDispatch)(fetchBlogApiSlice(userType));
 
@@ -26,36 +29,40 @@ const Blogs = () => {
 
         (blogsData as Ipost[])?.map((post: Ipost, index: number) => (
           <section key={index} className="relative py-4 ">
-            <Card>
-              <Inset clip="padding-box" side="top" pb="current">
-                <div className="flex flex-col rounded-2.5xl transition-shadow shadow-lg md:flex-row">
-                  <figure className="group  md:w-1/2 p-4">
-                    <Link to={`/singleBlog/${post.id}`}>
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-1/2 object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105"
-                      />
-                    </Link>
-                  </figure>
+                <Box className="flex flex-col rounded-2.5xl transition-shadow shadow-lg justify-center">
 
                   <div
-                    className="rounded-b-[1.25rem] p-4 md:w-1/2 md:rounded-none md:rounded-r-[1.25rem]"
+                    className="rounded-b-[1.25rem] p-4 md:rounded-none md:rounded-r-[1.25rem] flex-row flex-row justify-center"
                   >
-                    <div className="mb-3 flex flex-wrap items-center space-x-1 text-xs">
+                    <div className='mb-3 flex flex-wrap items-center space-x-1 text-xs flex-row justify-center'>
+
+                      <Link to={`/singleBlog/${post.id}`}>
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className=" object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105"
+                          height="300px"
+                          width="300px"
+                        />
+                      </Link>
+                    </div>
+                    <Grid container>
+                      <Grid item xs={8} md= {8} lg={8}>
+                        
+                    <div className="mb-3 flex flex-wrap items-center space-x-1 ">
                       <a
                         href="#"
-                        className="font-display text-jacarta-700 hover:text-accent dark:text-jacarta-200"
+                        className="font-display hover:text-accent"
                       >
                         {post.author}
                       </a>
-                      <span className="dark:text-jacarta-400">in</span>
+                      <span >in</span>
                       <span className="inline-flex flex-wrap items-center space-x-1 text-accent">
-                        {/* {post.categories.map((category, index) => (
+                        {post.categories.map((category, index) => (
                           <a key={index} href="#">
                             {category}
                           </a>
-                        ))} */}
+                        ))}
                       </span>
                     </div>
 
@@ -71,10 +78,17 @@ const Blogs = () => {
                       <span>•</span>
                       <span>3 min read</span>
                     </div>
+                      </Grid>
+                      <Grid item xs={4} md= {4} lg={4} sx={{
+                        // backgroundColor:theme.palette.colors.colors.primary[600],
+                      }} >
+                      <LikeButton/>
+                      </Grid>
+
+                    </Grid>
+
                   </div>
-                </div>
-              </Inset>
-            </Card>
+                </Box>
           </section>
         ))
       ) : (
@@ -84,7 +98,7 @@ const Blogs = () => {
 
           >
 
-            <span>Loading NFT's from METAKUL Collection.... </span>
+            <span>Loading Blogs's from METAKUL Collection.... </span>
           </button>
 
         </div>

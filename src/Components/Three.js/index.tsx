@@ -86,11 +86,11 @@ const Userpage: React.FC<UserpageProps> = () => {
       </a>
   
       <CustomDialog
-        triggerButtonText={""}
-        title={"Login Now"}
-        description={"This is description for Login"}
+        triggerButtonText={"Blog"}
+        title={"Add a new Blog"}
+        description={""}
         open={bg}
-        setOpen={() => setBg(!bg)}
+        onClose={() => setBg(!bg)}
       >
         <AddBlogForm onFormSubmit={handleAddBlog}/>
       </CustomDialog>
