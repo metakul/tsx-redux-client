@@ -6,7 +6,7 @@ import { ApiEndpoint } from '../../../DataTypes/enums';
 import request from '../../../Backend/axiosCall/apiCall';
 import { ApiSuccess } from '../../../interfaces/interface';
 import { FetchFlogData } from '../../../interfaces/interface';
-
+import { Ipost } from '../../../interfaces/interface';
 export const fetchBlogApiSlice = createAsyncThunk(
   'blogCollection',
   // eslint-disable-next-line no-empty-pattern
@@ -19,8 +19,8 @@ export const fetchBlogApiSlice = createAsyncThunk(
         headers: ApiEndpoint.GETBLOG.headers
       })
       console.log(response)
-      const blogs = response.data;
-      
+      const blogs:Ipost[] = response.data;
+
       dispatch(setLoadedBlogs({blogData:blogs} ));
 
       const apiSuccess: ApiSuccess = {

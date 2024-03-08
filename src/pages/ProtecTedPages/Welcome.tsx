@@ -6,6 +6,7 @@ import { logout } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
 import { selectUserType } from './../../redux/slices/authSlice';
 import Userpage from '../../Components/Three.js/index.tsx';
+import AddBlogForm from '../../Components/Forms/AddBlogForm.tsx';
 
 const ProtectedPage: React.FC<ProtectedPageProps> = (
   props
@@ -25,13 +26,15 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (
 
   const renderPageBasedOnUserType = () => {
     switch (userType) {
-      case 'admin':
+      // TODO create /root admin
+      case 'SYSTEM_ADMIN':
         return <AdminPage />;
       default:
         return <Userpage />;
     }
   };
 
+  
   return (
     <div>
       <h2>{props.pageTitle}</h2>
@@ -43,7 +46,15 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (
 };
 
 const AdminPage: React.FC = () => {
-  return <div>Content for Admin</div>;
+  const handleAddBlog = (data: unknown) => {
+    console.log(data)
+  };
+
+  return <div>
+        <AddBlogForm onFormSubmit={handleAddBlog} />
+    <Userpage/>
+  </div>;
+
 };
 
 export default ProtectedPage

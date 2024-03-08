@@ -41,7 +41,9 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
             title={"New Blog"}
             description={"This is adding for New Blog Page"}
         >
-            <Flex direction="column" gap="3">
+            <Flex direction="column" gap="3" style={{
+                background:"blue"
+            }}>
                 <label>
                     <Text as="div" size="2" mb="1" weight="bold">
                         Title
@@ -70,7 +72,9 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                     />
                 </label>
             </Flex>
-            <Flex gap="3" mt="4" justify="end">
+            <Flex gap="3" mt="4" justify="end"  style={{
+                backgroundColor:"blue"
+            }}>
                 <Button onClick={handleFormSubmit}>Save</Button>
             </Flex>
         </CustomDialog>

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { blogData } from './initialData';
-import { BlogsState } from '../../../interfaces/interface';
+import { BlogsState, Ipost } from '../../../interfaces/interface';
 
 const initialState: BlogsState = {
   blogs: blogData,
@@ -9,9 +9,9 @@ const blogCollectionSlice = createSlice({
   name: 'blogsCollection/fetch',
   initialState,
   reducers: {
-    setLoadedBlogs: (state, action: PayloadAction<{ blogData: unknown[] }>) => {
-      console.log(action.payload)
-      state.blogs = action.payload.blogData;
+    setLoadedBlogs: (state, action: PayloadAction<{ blogData: Ipost[] }>) => {
+      const newBlogs = action.payload.blogData;
+      state.blogs = [...state.blogs, ...newBlogs];
     },
   },
 });

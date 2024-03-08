@@ -67,7 +67,7 @@ export interface NFTCollectionState {
   nfts: unknown[];
 }
 export interface BlogsState {
-  blogs: unknown[];
+  blogs: Ipost[];
 }
 
 export interface BalanceItem {

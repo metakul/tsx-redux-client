@@ -23,7 +23,7 @@ const MetakulCollection = () => {
 
   }
   return (
-    <main className="pt-[3.5rem] lg:pt-8">
+    <main className="pt-[3.5rem] lg:pt-16">
       {/* <div className="relative">
         <img src="img/collections/collection_banner.jpg" alt="banner" className="h-[18.75rem] object-cover" />
       </div> */}
@@ -31,15 +31,18 @@ const MetakulCollection = () => {
       <section className="relative pb-12 pt-28 " >
         <div className="absolute left-1/2 top-0 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
           <figure className="relative">
-            <img
-              src="img/collections/collection_avatar.jpg"
+          <img
+              src="img/logo.png"
               alt="collection avatar"
               className="rounded-xl border-[5px] border-white "
+              width="200"
+              height="200"
             />
             <div
               className="absolute -right-3 bottom-0 flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-green "
               data-tippy-content="Verified Collection"
             >
+              
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -57,7 +60,7 @@ const MetakulCollection = () => {
         <div className="container">
           <div className="text-center">
             <h2 className="mb-2 font-display text-4xl font-medium  ">Metakul NFT Collection</h2>
-            <div className="mb-8">
+            <div className="mb-2">
               <span className="text-sm font-bold text-jacarta-400">Created by </span>
               <a href="https://www.linkedin.com/in/shubham-kunwar-90ba441ba/" target="_balnk" className="text-sm font-bold text-accent">Kunwar.eth</a>
             </div>
@@ -137,7 +140,7 @@ const MetakulCollection = () => {
               Join Discord to know about the free claiming of Metakul NFT
             </p>
 
-            <div className="mt-6 flex items-center justify-center space-x-2.5">
+            <div className="mt-2 flex items-center justify-center space-x-2.5">
               <a href="https://discord.gg/wMcv6HW6VJ" target="_blank" rel="noopener noreferrer" aria-label="Discord">
                 <div
                   className="rounded-xl border border-jacarta-100     "
@@ -177,11 +180,10 @@ const MetakulCollection = () => {
         </div>
       </section>
 
-      <section className="relative py-6">
 
         <div className="container">
           <ul
-            className="nav nav-tabs mb-6 flex items-center justify-center border-b border-jacarta-100 "
+            className="nav nav-tabs mb-2 flex items-center justify-center border-b border-jacarta-100 "
             role="tablist"
           >
 
@@ -471,7 +473,6 @@ const MetakulCollection = () => {
 
           </div>
         </div>
-      </section>
     </main>
   );
 };

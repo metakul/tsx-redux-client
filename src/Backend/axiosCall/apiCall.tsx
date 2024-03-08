@@ -10,11 +10,11 @@ const request = async (options: RequestOptions) => {
     const response = await axios({
       method: options.method,
       url: fullUrl,
-      data: JSON.stringify(options?.data),
+      data:options?.data,
     });
 
     // Return the parsed response data
-    console.log(response.data); // Accessing response data
+    console.log(response); // Accessing response data
     return response;
   } catch (error) {
     // Handle errors gracefully, providing more informative messages if possible
