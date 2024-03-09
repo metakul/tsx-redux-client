@@ -10,8 +10,7 @@ interface MobileTabNavigationProps {
 const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs }) => {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    console.log(event)
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
@@ -29,7 +28,7 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs }) => {
         onChange={handleChange}
         aria-label="mobile tabs example"
         variant="fullWidth"
-        className='bottom-tabs fixed bottom-0 w-full flex flex-row bg-blue z-10'
+        className='bottom-tabs fixed bottom-0 w-full flex flex-row bg-blue z-20'
       >
         {tabs.map(({ value }, index) => (
           <Tab key={index} icon={React.createElement('div', null, value)} {...a11yProps(index)} />
@@ -56,6 +55,7 @@ const CustomTabPanel: React.FC<CustomTabPanelProps> = ({ children, value, index 
     hidden={value !== index}
     id={`simple-tabpanel-${index}`}
     aria-labelledby={`simple-tab-${index}`}
+    className='ml-12 mb-24 pb-12'
   >
     {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
   </div>

@@ -36,7 +36,7 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (
 
   
   return (
-    <div>
+    <div  className='ml-20'>
       <h2>{props.pageTitle}</h2>
       <h2>{props.pageDescription}</h2>
       {renderPageBasedOnUserType()}

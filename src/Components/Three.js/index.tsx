@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useMemo } from 'react';
 import * as THREE from 'three';
 import CustomDialog from '../Dailog/Dailog';
@@ -8,7 +9,7 @@ const Userpage: React.FC<UserpageProps> = () => {
 
   // Sizes
   const sizes = {
-    width: 800,
+    width: 400,
     height: 600,
   };
 

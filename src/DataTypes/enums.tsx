@@ -29,7 +29,7 @@ export enum ProtectedPageInfo{
 
 // define endpoints here
   export const ApiEndpoint: Record<string, RequestOptions> = {
-    LOGIN: { url: 'http://localhost:8003/auth/systemAdmin/login', method: 'POST', headers: { 'Content-Type': 'application/json'}},
+    LOGIN: { url: 'https://smart-wallet-us83.onrender.com/auth/user/login', method: 'POST', headers: { 'Content-Type': 'application/json'}},
     GETBLOG: { url: '/api/post', method: 'GET', headers: { 'Content-Type': 'application/json'}},
   };
   

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { HomePageProps } from '../interfaces/interface';
-import MobileTabNavigation from '../Components/Tabs/mobileVIew';
-import Blogs from '../Components/Blogs';
+import MobileTabNavigation from '../Components/MobileTabNav/mobileVIew';
+import Blogs from '../Components/Tab1';
 import { Tabs } from '../DataTypes/enums';
 import LoginForm from '../Components/Forms/LoginForm';
 import CustomDialog from '../Components/Dailog/Dailog';
-import MetakulCollection from '../Components/Collection/MetakulCollection';
+import MetakulCollection from '../Components/Tab2/MetakulCollection';
 import Tab3 from '../Components/Tab3';
 
 // icons
@@ -36,17 +36,8 @@ const HomePage: React.FC<HomePageProps> = () => {
     },
   ];
 
-  const containerStyle: React.CSSProperties = {
-    marginBottom: "40px"
-  };
-
   return (
-    <div style={containerStyle}>
-
       <MobileTabNavigation tabs={tabs} />
-
-
-    </div>
   );
 };
 

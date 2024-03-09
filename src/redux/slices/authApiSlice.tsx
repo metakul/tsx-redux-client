@@ -26,7 +26,7 @@ export const loginUser = createAsyncThunk(
         headers: ApiEndpoint.LOGIN.headers
       })
       // Assuming the response contains user information and a token
-      const {  access } = response.data.data.token;
+      const {  access } = response.data.token;
       const user:JwtPayload=jwtDecode(access)
 
       // $TODO save access and refresh in cookies and apply the refresh logic

@@ -1,7 +1,6 @@
 import { MouseEventHandler, useContext ,useState} from "react";
 
 // @mui
-import { styled } from "@mui/material/styles";
 import {
   Box,
   Stack,
@@ -15,28 +14,9 @@ import {
 // import app
 import { ColorModeContext } from "../Theme/themes";
 import { motion } from "framer-motion";
-const NAV_WIDTH = 280;
+// const NAV_WIDTH = 280;
 
-const HEADER_MOBILE = 64;
 
-const HEADER_DESKTOP = 92;
-const StyledRoot = styled(AppBar)(({ theme }) => ({
-  boxShadow: "none",
-  [theme.breakpoints.up("lg")]: {
-    width: `calc(100% - ${NAV_WIDTH + 1}px)`,
-  },
-  borderBottom: "1px solid ",
-  borderBottomLeftRadius:"25px",
-  borderBottomRightRadius:"25px",
-}));
-
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  minHeight: HEADER_MOBILE,
-  [theme.breakpoints.up("lg")]: {
-    minHeight: HEADER_DESKTOP,
-    padding: theme.spacing(0, 5),
-  },
-}));
 
 export default function Header(props: { onOpenNav: MouseEventHandler<HTMLButtonElement> | undefined; } ) {
   const colorMode = useContext(ColorModeContext);
@@ -51,8 +31,8 @@ export default function Header(props: { onOpenNav: MouseEventHandler<HTMLButtonE
   } 
 
   return (
-    <StyledRoot >
-      <StyledToolbar>
+    <AppBar >
+      <Toolbar>
         <IconButton
           onClick={props.onOpenNav}
           sx={{
@@ -82,8 +62,8 @@ export default function Header(props: { onOpenNav: MouseEventHandler<HTMLButtonE
           </div>
           
         </Stack>
-      </StyledToolbar>
-    </StyledRoot>
+      </Toolbar>
+    </AppBar>
   );
 }
 const spring = {

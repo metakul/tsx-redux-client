@@ -24,12 +24,11 @@ const MetakulCollection = () => {
 
   }
   return (
-    <main className="pt-[3.5rem] lg:pt-16">
+    <main className="pt-[1.5rem] lg:pt-6">
       {/* <div className="relative">
         <img src="img/collections/collection_banner.jpg" alt="banner" className="h-[18.75rem] object-cover" />
       </div> */}
 
-      <section className="relative pb-4 pt-2 " >
 
 
         <div className="container flex justify-center">
@@ -37,7 +36,7 @@ const MetakulCollection = () => {
             <figure className="mb-4">
 
               <div
-                className="bottom-0 flex items-center justify-center rounded-full border-2 pl-4 border-white  "
+                className="bottom-0 flex items-center justify-center rounded-full border-2  p-4 pl-12 border-white  "
                 data-tippy-content="Verified Collection"
               >
                 <img
@@ -185,7 +184,6 @@ const MetakulCollection = () => {
             }} />
           </div>
         </div>
-      </section>
 
 
       <div className="container">
