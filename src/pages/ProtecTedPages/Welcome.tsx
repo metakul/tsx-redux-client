@@ -5,12 +5,13 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
 import { selectUserType } from './../../redux/slices/authSlice';
-import Userpage from '../../Components/Three.js/index.tsx';
-import AddBlogForm from '../../Components/Forms/AddBlogForm.tsx';
-
+import Userpage from '../../Components/LoginPagesComp/Three.js/index.tsx';
+import MobileTabNavigation from '../../Components/MobileTabNav/mobileVIew.tsx';
+import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
+import { LogoutRounded } from '@mui/icons-material';
 const ProtectedPage: React.FC<ProtectedPageProps> = (
   props
-  ) => {
+) => {
   const userType = useSelector(selectUserType);
   const dispatch = useDispatch();
 
@@ -25,36 +26,37 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (
   };
 
   const renderPageBasedOnUserType = () => {
+    console.log(userType)
     switch (userType) {
       // TODO create /root admin
-      case 'SYSTEM_ADMIN':
-        return <AdminPage />;
+      case 'METAKUL_USER':
+        return <Userpage />;
       default:
         return <Userpage />;
     }
   };
 
-  
+  const tabs = [
+    { value: <OtherHousesOutlinedIcon />, content: renderPageBasedOnUserType(), label: "Add Blog" },
+    {
+      value: <LogoutRounded />, content: <div >
+        <h2>{props.pageTitle}</h2>
+        <h2>{props.pageDescription}</h2>
+        <button onClick={handleLogout}>Logout</button>
+      </div>, label: "Add Blog"
+    },
+
+  ];
+
   return (
-    <div  className='ml-20'>
-      <h2>{props.pageTitle}</h2>
-      <h2>{props.pageDescription}</h2>
-      {renderPageBasedOnUserType()}
-      <button onClick={handleLogout}>Logout</button>
+    <div >
+      <MobileTabNavigation tabs={tabs} />
     </div>
   );
 };
 
-const AdminPage: React.FC = () => {
-  const handleAddBlog = (data: unknown) => {
-    console.log(data)
-  };
 
-  return <div>
-        <AddBlogForm onFormSubmit={handleAddBlog} />
-    <Userpage/>
-  </div>;
 
-};
+
 
 export default ProtectedPage

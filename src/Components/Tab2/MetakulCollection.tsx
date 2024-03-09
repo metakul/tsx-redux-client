@@ -375,7 +375,6 @@ const MetakulCollection = () => {
                         <div className="dropup rounded-full  ">
                           <a
                             className="dropdown-toggle inline-flex h-8 w-8 items-center justify-center text-sm"
-                            role="button"
                             id="itemActions2"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
@@ -503,15 +502,10 @@ const MetakulCollection = () => {
 
                     <div className="mt-8 flex items-center justify-between">
 
-                      <button
-                        className="t"
-                        data-bs-toggle="modal"
-                        data-bs-target="#buyNowModal"
-                      >
-                        <Button className=' font-display text-sm font-semibold text-accent' onClick={handleLoadNft}>
+                    
+                        <Button  className="font-display text-sm font-semibold text-accent" onClick={handleLoadNft}>
                           Load More...
                         </Button>
-                      </button>
 
                     </div>
                   </div>
@@ -520,11 +514,9 @@ const MetakulCollection = () => {
                 <div className="mt-8 flex items-center justify-between">
 
                   <button
-                    className="font-display text-sm font-semibold text-accent"
                     data-bs-toggle="modal"
                     data-bs-target="#buyNowModal"
                   >
-
                   </button>
 
                 </div>

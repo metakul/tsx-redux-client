@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // import { addBlog } from '../../redux/slices/authApiSlice';
 // import { AppDispatch } from '../../redux/store';
 import { Ipost } from '../../interfaces/interface';
-import { TextField, Typography, Button, Box } from '@mui/material';
+import { TextField, Typography, Button, Box, Grid } from '@mui/material';
 // import { type } from './../../redux/types';"
 import CustomDialog from '../Dailog/Dailog';
 
@@ -45,40 +45,46 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
             title={"New Blog"}
             description={"This is adding for New Blog Page"}
         >
-            <Box style={{
-                background: "blue"
-            }}>
-                <label>
+            <Grid container sx={{
+                minWidth: "100%"
+            }} >
+                <Grid xs={12}  >
                     <Typography variant="h3">
                         Title
                     </Typography>
                     <TextField
-
+                        fullWidth
                         value="Freja Johnsen"
                         placeholder="Enter your full name"
                     />
-                </label>
-                <label>
+                </Grid>
+
+                <Grid xs={12}>
                     <Typography variant="h3">
                         Description
                     </Typography>
+
                     <TextField
+                        fullWidth
                         value="freja@example.com"
                         placeholder="Enter your email"
                     />
-                </label>
-                <label>
+                </Grid>
+                <Grid xs={12}>
                     <Typography variant="h3">
                         Author
                     </Typography>
                     <TextField
+                        fullWidth
                         value="freja@example.com"
                         placeholder="Enter your email"
                     />
-                </label>
-            </Box>
+                </Grid>
+
+
+
+            </Grid>
             <Box style={{
-                backgroundColor: "blue"
             }}>
                 <Button onClick={handleFormSubmit}>Save</Button>
             </Box>

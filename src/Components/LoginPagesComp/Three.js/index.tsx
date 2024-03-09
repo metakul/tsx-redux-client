@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useMemo } from 'react';
 import * as THREE from 'three';
-import CustomDialog from '../Dailog/Dailog';
-import AddBlogForm from '../Forms/AddBlogForm';
+import AddBlogForm from '../../Forms/AddBlogForm';
 interface UserpageProps {}
 const Userpage: React.FC<UserpageProps> = () => {
   const scene = new THREE.Scene();
@@ -36,7 +35,7 @@ const Userpage: React.FC<UserpageProps> = () => {
   }, [scene]);
 
   // State for dialog open/close
-  const [bg, setBg] = React.useState(false);
+  // const [bg, setBg] = React.useState(false);
 
   // Mouse movement variables
   const mouseX = useRef(0);
@@ -82,19 +81,10 @@ const Userpage: React.FC<UserpageProps> = () => {
   };
   return (
     <div>
-      <a href="#" onClick={() => setBg(!bg)}>
+      {/* <a href="#" onClick={() => setBg(!bg)}>
         <div ref={mount}></div>
-      </a>
-  
-      <CustomDialog
-        triggerButtonText={"Blog"}
-        title={"Add a new Blog"}
-        description={""}
-        open={bg}
-        onClose={() => setBg(!bg)}
-      >
-        <AddBlogForm onFormSubmit={handleAddBlog}/>
-      </CustomDialog>
+      </a> */}
+        <AddBlogForm onFormSubmit={handleAddBlog} />
     </div>
   );
 };
