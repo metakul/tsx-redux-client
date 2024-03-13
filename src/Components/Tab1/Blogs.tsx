@@ -8,6 +8,7 @@ import { Ipost } from '../../interfaces/interface';
 import { FetchBlogData } from '../../interfaces/interface';
 import {  Grid } from '@mui/material';
 import LikeButton from '../Buttons/LikeButton';
+import BlogDetails from './BlogInfoTabs';
 
 const Blogs = () => {
   // const theme = useTheme()
@@ -71,18 +72,22 @@ const Blogs = () => {
                     >
                       <Link target='_blank' to={`/singleBlog/${post.id}`}>{post.title}</Link>
                     </h2>
-                    <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
+                  
+                      </Grid>
+                      <Grid item xs={4} md= {4} lg={4} sx={{
+                        // backgroundColor:theme.palette.colors.colors.primary[600],
+                      }} >
+                      <LikeButton/>
+                      </Grid>
+                      <Grid>
+                        <BlogDetails />
+                        <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
                       <span>
                         <time dateTime={post.date}>{post.date}</time>
                       </span>
                       <span>•</span>
                       <span>3 min read</span>
                     </div>
-                      </Grid>
-                      <Grid item xs={4} md= {4} lg={4} sx={{
-                        // backgroundColor:theme.palette.colors.colors.primary[600],
-                      }} >
-                      <LikeButton/>
                       </Grid>
 
                     </Grid>
@@ -95,9 +100,7 @@ const Blogs = () => {
         <div className=" flex flex-row">
           <button
             className="dropdown-toggle m-4 p-4 group group flex  items-center rounded-lg border border-jacarta-100  font-display text-lg font-semibold  transition-colors hover:border-transparent      "
-
           >
-
             <span>Loading Blogs's from METAKUL Collection.... </span>
           </button>
 

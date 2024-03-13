@@ -55,7 +55,10 @@ const CustomTabPanel: React.FC<CustomTabPanelProps> = ({ children, value, index 
     hidden={value !== index}
     id={`simple-tabpanel-${index}`}
     aria-labelledby={`simple-tab-${index}`}
-    className='ml-12 mb-24 pb-12'
+    style={{
+      paddingBottom:"50px",
+      marginBottom:"50px",
+    }}
   >
     {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
   </div>
