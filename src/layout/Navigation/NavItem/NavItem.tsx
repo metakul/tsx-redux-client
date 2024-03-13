@@ -9,6 +9,7 @@ interface NavItemProps {
         to: string;
     };
     isSidebarOpen: boolean;
+    isNonMobile:boolean;
 }
 
 const NavItem: React.FC<NavItemProps> = ({ item, isSidebarOpen }) => {

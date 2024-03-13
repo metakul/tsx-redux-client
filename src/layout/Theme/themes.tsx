@@ -3,6 +3,16 @@ import { createContext, useState, useMemo } from "react";
 import { createTheme, Theme } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 
+interface ExtendedTheme extends Theme {
+    colors: {
+        grey: Record<number, string>;
+        primary: Record<number, string>;
+        secondary: Record<number, string>;
+        greenAccent: Record<number, string>;
+        redAccent: Record<number, string>;
+        blueAccent: Record<number, string>;
+    };
+}
 
 // color design tokens export
 export const tokens = (mode: string) => ({
@@ -152,90 +162,88 @@ export const tokens = (mode: string) => ({
 
 
 // mui theme settings
-export const themeSettings = (mode: PaletteMode) => {
+export const themeSettings = (mode: PaletteMode): ExtendedTheme => {
     const colors = tokens(mode);
     return {
-        palette: {
-            mode: mode,
-            ...(mode === "dark"
-                ? {
-                    // palette values for dark mode
-                    primary: {
-                        main: colors.primary[500],
-                        dark: colors.primary[800],
-                        light: colors.primary[100],
-                    },
-                    secondary: {
-                        main: colors.secondary[500],
-                        dark: colors.secondary[800],
-                        light: colors.secondary[100],
-                    },
-                    neutral: {
-                        dark: colors.grey[900],
-                        main: colors.grey[500],
-                        light: colors.grey[100],
-                    },
-                    background: {
-                        default: colors.primary[900],
-                    },
-                    colors: {
-                        colors: colors,
-                    },
-                }
-                : {
-                    // palette values for light mode
-                    primary: {
-                        main: colors.primary[500],
-                        dark: colors.primary[900],
-                        light: colors.primary[100],
-                    },
-                    secondary: {
-                        main: colors.secondary[500],
-                        dark: colors.secondary[900],
-                        light: colors.secondary[100],
-                    },
-                    neutral: {
-                        dark: colors.grey[900],
-                        main: colors.grey[500],
-                        light: colors.grey[100],
-                    },
-                    background: {
-                        default: "rgba(98, 202, 196, 0.71)",
-                    },
-                    colors: {
-                        colors: colors,
-                    },
-                }),
-        } ,
-        typography: {
-            fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-            fontSize: 12,
-            h1: {
-                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-                fontSize: 40,
+        ...createTheme({
+            palette: {
+                mode: mode,
+                ...(mode === "dark"
+                    ? {
+                        // palette values for dark mode
+                        primary: {
+                            main: colors.primary[500],
+                            dark: colors.primary[800],
+                            light: colors.primary[100],
+                        },
+                        secondary: {
+                            main: colors.secondary[500],
+                            dark: colors.secondary[800],
+                            light: colors.secondary[100],
+                        },
+                        neutral: {
+                            dark: colors.grey[900],
+                            main: colors.grey[500],
+                            light: colors.grey[100],
+                        },
+                        background: {
+                            default: colors.primary[900],
+                        },
+                    }
+                    : {
+                        // palette values for light mode
+                        primary: {
+                            main: colors.primary[500],
+                            dark: colors.primary[900],
+                            light: colors.primary[100],
+                        },
+                        secondary: {
+                            main: colors.secondary[500],
+                            dark: colors.secondary[900],
+                            light: colors.secondary[100],
+                        },
+                        neutral: {
+                            dark: colors.grey[900],
+                            main: colors.grey[500],
+                            light: colors.grey[100],
+                        },
+                        background: {
+                            default: "rgba(98, 202, 196, 0.71)",
+                        },
+                    }),
             },
-            h2: {
+            typography: {
                 fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-                fontSize: 32,
-            },
-            h3: {
-                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-                fontSize: 24,
-            },
-            h4: {
-                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-                fontSize: 20,
-            },
-            h5: {
-                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-                fontSize: 16,
-            },
-            h6: {
-                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-                fontSize: 14,
-            },
+                fontSize: 12,
+                h1: {
+                    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                    fontSize: 40,
+                },
+                h2: {
+                    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                    fontSize: 32,
+                },
+                h3: {
+                    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                    fontSize: 24,
+                },
+                h4: {
+                    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                    fontSize: 20,
+                },
+                h5: {
+                    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                    fontSize: 16,
+                },
+                h6: {
+                    fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                    fontSize: 14,
+                },
+            }
+        }),
+        colors: {
+            ...colors,
         },
-        colors
     };
 };
 // context for color mode

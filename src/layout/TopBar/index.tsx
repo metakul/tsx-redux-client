@@ -1,4 +1,4 @@
-import { MouseEventHandler, useContext ,useState} from "react";
+import {  useContext, useState } from "react";
 
 // @mui
 import {
@@ -7,6 +7,7 @@ import {
   AppBar,
   Toolbar,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
@@ -15,30 +16,33 @@ import {
 import { ColorModeContext } from "../Theme/themes";
 import { motion } from "framer-motion";
 // const NAV_WIDTH = 280;
+import "./style.css"
 
+interface HeaderProps{
+  setIsSidebarOpen: () => void;
 
+}
 
-export default function Header(props: { onOpenNav: MouseEventHandler<HTMLButtonElement> | undefined; } ) {
+ const Header : React.FC<HeaderProps>=({setIsSidebarOpen})=>{
   const colorMode = useContext(ColorModeContext);
+  const theme = useTheme()
   const [isOn, setIsOn] = useState(false);
   if (!colorMode) {
     // Handle the case where colorMode is undefined (e.g., context not yet initialized)
     return null; // or render a loading state or default content
   }
-  const toggleSwitch = () =>{
-    setIsOn(!isOn);
+  const toggleSwitch = () => {
     colorMode.toggleColorMode()
-  } 
+    setIsOn(!isOn);
+  }
 
   return (
     <AppBar >
       <Toolbar>
         <IconButton
-          onClick={props.onOpenNav}
+          onClick={() => setIsSidebarOpen()}
           sx={{
-            mr: 1,
             color: "text.primary",
-            display: { lg: "none" },
           }}
         >
           <MenuIcon />
@@ -53,14 +57,15 @@ export default function Header(props: { onOpenNav: MouseEventHandler<HTMLButtonE
           }}
         >
           <div className="switch" data-ison={isOn} onClick={toggleSwitch} style={{
-            border:"2px solid",
+            background: theme.palette.grey[900],
+            border: "2px solid",
+            borderColor: theme.palette.grey[100],
           }}>
             <motion.div className="handle" layout transition={spring} style={{
-              height:"50px",
-              width:"50px",
-          }} />
+              background: theme.palette.grey[100],
+            }} />
           </div>
-          
+
         </Stack>
       </Toolbar>
     </AppBar>
@@ -71,3 +76,5 @@ const spring = {
   stiffness: 700,
   damping: 30
 };
+
+export default Header;

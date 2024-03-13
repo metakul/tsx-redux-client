@@ -10,6 +10,7 @@ export const openedMixin = (theme: Theme): CSSObject => ({
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
     }),
+    backgroundColor:theme.palette.background.default,
     overflowX: 'hidden',
 });
 
@@ -19,6 +20,8 @@ export const closedMixin = (theme: Theme): CSSObject => ({
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor:theme.palette.background.default,
+
     zIndex:"4",
     overflowX: 'hidden',
     width: `calc(${theme.spacing(7)} + 1px)`,
@@ -57,7 +60,7 @@ export const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+export const CustomDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
         width: drawerWidth,
         flexShrink: 0,
