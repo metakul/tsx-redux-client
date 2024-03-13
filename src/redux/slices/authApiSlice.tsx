@@ -17,6 +17,7 @@ export const loginUser = createAsyncThunk(
         data: { id, password, userType },
         headers: ApiEndpoint.LOGIN.headers
       })
+      console.log(response.data)
       if (response.data.status === 200) {
         
         const apiSuccess: ApiSuccess = {
@@ -49,8 +50,7 @@ export const loginVerifyUser = createAsyncThunk(
         data: { otp },
         headers: ApiEndpoint.LOGINVERIFY.headers
       })
-      //  TODO: check status in either response.status or response.data.status
-      if (response.status === 200) {
+      if (response.data.status === 200) {
 
         // * Assuming the response contains user information and a token
         const { accessToken:token,refreshToken:user } = response.data;
@@ -89,7 +89,7 @@ export const resendOtpLogin = createAsyncThunk(
         method: ApiEndpoint.RESENDLOGINOTP.method,
         headers: ApiEndpoint.RESENDLOGINOTP.headers
       })
-      if (response.status === 200) {
+      if (response.data.status === 200) {
         const apiSuccess: ApiSuccess = {
           statusCode: response.status,
           message: 'Login Request successful',
