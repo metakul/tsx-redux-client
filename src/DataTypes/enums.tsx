@@ -2,6 +2,7 @@ import { RequestOptions } from "../interfaces/interface";
 // enums.ts
 export enum UserType {
   ADMIN = 'ROOT_ADMIN',
+  Org_Admin = 'ORG_ADMIN',
   PATIENT = 'Patient',
   DOCTOR = 'Doctor',
   STAFF = 'STAFF',
@@ -24,5 +25,5 @@ export enum ProfileTab {
 export const ApiEndpoint: Record<string, RequestOptions> = {
   LOGIN: { url: '/auth/user/login', method: 'POST', headers: { 'Content-Type': 'application/json'}},
   LOGINVERIFY: { url: '/auth/user/login/verify', method: 'POST', headers: { 'Content-Type': 'application/json'}},
-  RESENDLOGINOTP: { url: '/login/otp/resend', method: 'POST', headers: { 'Content-Type': 'application/json'}},
+  RESENDLOGINOTP: { url: 'login/otp/resend', method: 'POST', headers: { 'Content-Type': 'application/json'}},
 };

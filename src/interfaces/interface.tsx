@@ -14,6 +14,11 @@ export interface ProtectedPageProps {
   pageDescription:string
 }
 
+export interface VerificationProps {
+  pageTitle: string | undefined;
+  userType:string
+}
+
 export interface LoginFormProps {
   loginTitle: string;
   userType: UserType;

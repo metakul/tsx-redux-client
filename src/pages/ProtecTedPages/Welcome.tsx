@@ -9,7 +9,7 @@ import { Button, Container } from '@radix-ui/themes'
 import CustomHeading from '../../Components/Typogrpahy/Text/Heading'
 import { Link } from 'react-router-dom'
 import { Pages } from '../../DataTypes/enums'
-
+import VerificationData from '../../Screen/UserVerification'
 const ProtectedPage: React.FC<ProtectedPageProps> = (props) => {
   const selectedUser = useSelector(selectUser)
   const selectedUserType = useSelector(selectUserType)
@@ -35,9 +35,11 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (props) => {
       <Link to={Pages.PROFILE}>Profile</Link>
 
 
-      
-
-
+      {selectedUserType === "ROOT_ADMIN" && (
+        <div>
+          <VerificationData pageTitle={`Verification by ${selectedUserType}`} userType={selectedUserType}/>
+        </div>
+      )}
 
       <Button onClick={handleLogout}>
         Logout
