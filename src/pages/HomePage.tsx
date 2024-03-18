@@ -20,7 +20,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   const buttonDataTop = generateLoginButton();
 
   return (
-    <Container>
+    <Container className='testPptr'>
       <CustomLink
         href="/"
       >
@@ -34,6 +34,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
           title={"Login Now"}
           description={"Login for"}
           userType={data.endpoint}
+          className={`testPptr${index}`} 
         >
           <LoginForm loginTitle='Login' userType={data.endpoint} />
         </CustomDialog>

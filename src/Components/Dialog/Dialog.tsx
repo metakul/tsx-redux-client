@@ -3,11 +3,11 @@ import { Dialog, Button, Inset } from '@radix-ui/themes';
 import "./Dailog.css"
 import { CustomDialogProps } from '../../interfaces/CompInterfaces';
 
-const CustomDialog: React.FC<CustomDialogProps> = ({ triggerButtonText, title, description,userType, children }) => {
+const CustomDialog: React.FC<CustomDialogProps> = ({ className,triggerButtonText, title, description,userType, children }) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-      <Button>{userType} {triggerButtonText}</Button>
+      <Button className={className}>{userType} {triggerButtonText}</Button>
       </Dialog.Trigger>
 
       <Dialog.Content className='custom-dailog'>

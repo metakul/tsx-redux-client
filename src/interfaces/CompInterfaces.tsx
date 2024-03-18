@@ -6,6 +6,7 @@ export interface CustomDialogProps {
   description?: React.ReactNode;
   userType?: React.ReactNode;
   children: React.ReactNode;
+  className:string | undefined;
 }
 
 export interface HomeButtonProps {
@@ -17,6 +18,7 @@ export interface CustomTextFieldProps {
   label?: string;
   placeholder?: string;
   value?: string;
+  className?: string;
   type?: string;
   onChange?: (value: string) => void;
   children?: ReactNode;

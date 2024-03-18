@@ -83,6 +83,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
             </CustomHeading>
 
             <CustomTextField
+              className="usernameLogin"
               label="Username"
               placeholder="Enter your username"
               value={user}
@@ -90,6 +91,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
             />
 
             <CustomTextField
+              className="loginPassword"
               label="Password"
               placeholder="Enter your password"
               type="password"
@@ -99,6 +101,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
 
             {showOtpField && (
               <CustomTextField
+                className="loginOtp"
                 label="OTP"
                 placeholder="Enter OTP"
                 type="text"
@@ -108,7 +111,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
             )}
 
             <div>
-              <button type="submit">
+              <button type="submit" className={`${showOtpField ? "verifyOtp" : "sendOtp"}`}>
                 {showOtpField ? LoginButtonText.VERIFY_OTP : LoginButtonText.SEND_OTP}
               </button>
 
