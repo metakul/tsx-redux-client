@@ -21,21 +21,6 @@ function generateRandomServiceNo() {
 }
 
 (async () => {
-
-  let brahmaId;
-  // eslint-disable-next-line no-undef
-  process.argv.forEach((arg) => {
-    if (arg.startsWith('brahmaId:')) {
-      brahmaId = arg.split(':')[1];
-    }
-  });
-
-  if (!brahmaId) {
-    console.error('Brahma ID not provided.');
-    // eslint-disable-next-line no-undef
-    process.exit(1);
-  }
-  console.log(brahmaId)
   // Launch the browser
   const browser = await puppeteer.launch({
     headless: false,
@@ -58,11 +43,9 @@ function generateRandomServiceNo() {
   await page.click('.servingLabel');
 
   // input file:
-  const dropZone = await page.waitForFunction('document.querySelector(".dropzone")');
+  await page.waitForFunction('document.querySelector(".dropzone")');
 
-  console.log(dropZone)
-  // Generate a random file path
-  const filePath = 'src/Test/signUp/Screen.jpg'; // Replace this with the path to your random image file
+  const filePath = 'src/Test/signUp/Screen.jpg'; 
 
   // Find the input element for file upload
   const inputUploadHandle = await page.$('input[type=file]');
@@ -122,13 +105,8 @@ function generateRandomServiceNo() {
   await page.type('input[name="orgName"]', 'org1');
 
   // Click on the Submit button
-  await page.click('button[type="submit"]');
+  await page.click('.submitservingForm');
 
 
-  //Start Dependent Signup
-  await page.waitForSelector('.servingLabel');
-
-  //open serving signUpForm
-  await page.click('.dependentLabel');
 
 })();

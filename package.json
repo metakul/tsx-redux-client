@@ -8,13 +8,14 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test":"node src/Test/main.js"
+    "test": "node src/Test/main.js"
   },
   "dependencies": {
     "@radix-ui/themes": "^2.0.3",
     "@reduxjs/toolkit": "^2.1.0",
     "@stitches/react": "^1.2.8",
     "axios": "^1.6.7",
+    "puppeteer": "^22.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
@@ -24,6 +25,7 @@
     "three": "^0.161.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/node": "^20.11.17",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",

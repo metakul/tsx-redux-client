@@ -10,7 +10,7 @@ const RootAdmin = {
   // Launch the browser
   const browser = await puppeteer.launch({
     headless: false,
-    slowMo: 10,
+    slowMo: 12,
     // devtools:true
     defaultViewport: null,
 
@@ -22,7 +22,7 @@ const RootAdmin = {
   await page.goto('http://localhost:3000/');
 
   const title = await page.title();
-  console.log(title);
+  console.log("title",title);
 
   // Click on the element
   const element = await page.waitForSelector('.ROOT_ADMIN');
@@ -45,6 +45,13 @@ const RootAdmin = {
 
  // Click on the verify OTP button
  await page.click('.verifyOtpButton');
+  // Wait for navigation to complete to the dashboard
+  await page.waitForNavigation();
 
+  // You can further interact with the dashboard page here
+  await page.waitForSelector('.updateOrgAdminButton');
+  await page.click('.updateOrgAdminButton');
+  // Click on the "Approve" menu item
+  await page.click('MenuItem:nth-child(2)'); 
 
 })();

@@ -1,47 +1,48 @@
+/* eslint-disable no-undef */
 import { execSync } from 'child_process';
-
 // Get command line arguments
-// eslint-disable-next-line no-undef
-const args= process.argv.slice(2);
-
+const args = process.argv.slice(2);
 // Check if any arguments are provided
 if (args.length === 0) {
   console.log('Please provide arguments to specify which scripts to run.');
-  // eslint-disable-next-line no-undef
   process.exit(1);
 }
-
 // Function to run a script
-function runScript(scriptName, arg1) {
+function runScript(scriptName, folder, arg) {
   let command;
-  console.log(scriptName)
-  if (arg1) {
-    command = `node src/Test/signUp/${scriptName}.js ${arg1}`;
+  if (arg) {
+    console.log(arg)
+    command = `node src/Test/${folder}/${scriptName}.js ${arg}`;
   } else {
-    command = `node src/Test/Login/${scriptName}.js`;
+    command = `node src/Test/${folder}/${scriptName}.js`;
   }
 
   try {
-    const output= execSync(command);
+    const output = execSync(command);
     console.log(output.toString());
   } catch (error) {
     console.error(`Error executing ${scriptName}: ${error.message}`);
   }
 }
-
 // Check provided arguments and run scripts accordingly
-const scriptArgs = args.slice(1);
 switch (args[0]) {
-  case 'signup':
-    if (scriptArgs.length < 1) {
+  case 'signUp':
+    if (args.length < 1) {
       console.log('Please provide a Brahma ID for signup.js.');
       // eslint-disable-next-line no-undef
       process.exit(1);
     }
-    runScript('signup', scriptArgs[0]);
+    runScript(args[1], args[0], args[2]);
     break;
-  case 'login':
-    runScript('login');
+  case 'Login':
+  case 'updateStatus':
+  case 'createHospital':
+  case 'createPrescription':
+    if (args.length < 2) {
+      console.log('Please provide a script name and folder.');
+      process.exit(1);
+    }
+    runScript(args[1], args[0]);
     break;
   default:
     console.log(`Unknown argument: ${args[0]}`);
