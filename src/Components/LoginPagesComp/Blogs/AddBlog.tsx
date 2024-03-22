@@ -57,7 +57,7 @@ const AddBlogComp = () => {
             <Paper sx={{ mb: 2, overflow: "hidden", borderRadius: 4, padding: 2 }}>
                 <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                 <AddBlogForm  />
-                <CustomDataGrid getRowId={(row) => row._id || ''} columns={columns} rows={filteredRows} />
+                <CustomDataGrid  getRowId={(row: { _id?: string }) => row._id || ''} columns={columns} rows={filteredRows} />
                 <UserOptionsMenu
                     openMenu={openMenu}
                     setOpenMenu={setOpenMenu}

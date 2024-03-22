@@ -12,6 +12,7 @@
   "dependencies": {
     "@mui/icons-material": "^5.15.12",
     "@mui/material": "^5.15.12",
+    "@mui/x-data-grid": "^6.19.8",
     "@reduxjs/toolkit": "^2.1.0",
     "@thirdweb-dev/react": "^4.4.11",
     "@thirdweb-dev/sdk": "^4.0.38",
