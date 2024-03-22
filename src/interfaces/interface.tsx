@@ -82,7 +82,7 @@ export interface BalanceItem {
 
 //interfaces for post
 export interface Ipost  {
-  id?: string;
+  _id?: string;
   title: string;
   description: string;
   image:string;

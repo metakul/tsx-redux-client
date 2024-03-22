@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { addBlog } from '../../redux/slices/authApiSlice';
-// import { AppDispatch } from '../../redux/store';
+import { useDispatch } from 'react-redux';
+import { addBlogApiSlice } from '../../redux/slices/Blogs/BlogApiSlice';
+import { AppDispatch } from '../../redux/store';
 import { Ipost } from '../../interfaces/interface';
 import { TextField, Typography, Button, Box, Grid } from '@mui/material';
-// import { type } from './../../redux/types';"
 import CustomDialog from '../Dailog/Dailog';
 
 interface AddBlogProps {
-    onFormSubmit: (blogData: Ipost) => void;
+    // onFormSubmit: (blogData: Ipost) => void;
 }
 const AddBlogForm: React.FC<AddBlogProps> = () => {
-    //   const dispatch = useDispatch(); 
+      const dispatch = useDispatch(); 
     const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
 
     const handleFormSubmit = async (event: React.FormEvent) => {
@@ -19,16 +18,15 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
 
         try {
             const blogData: Ipost = {
-                title: "",
-                description: "",
-                image: "",
-                author: "",
-                categories: []
+                title: "Adding new Blog",
+                description: "Desc for Blog",
+                image: "/logo.svg",
+                author: "Deothemes",
+                categories: [`NFT's`]
             };
-            console.log(blogData)
 
             // Dispatch the login action with correct action type
-            //   (dispatch as AppDispatch)(loginUser(loginData));
+            (dispatch as AppDispatch)(addBlogApiSlice({newBlogData:blogData,setDialogOpen}));
 
         } catch (error) {
             console.error('Login failed In LoginPage:', error);
@@ -36,7 +34,6 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
     };
 
     return (
-
         // #TODO add Custom drawer
         <CustomDialog
             open={isDialogOpen}
@@ -48,7 +45,7 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
             <Grid container sx={{
                 minWidth: "100%"
             }} >
-                <Grid xs={12}  >
+                <Grid item xs={12}  >
                     <Typography variant="h3">
                         Title
                     </Typography>
@@ -59,7 +56,7 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                     />
                 </Grid>
 
-                <Grid xs={12}>
+                <Grid item xs={12}>
                     <Typography variant="h3">
                         Description
                     </Typography>
@@ -70,7 +67,7 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                         placeholder="Enter your email"
                     />
                 </Grid>
-                <Grid xs={12}>
+                <Grid item xs={12}>
                     <Typography variant="h3">
                         Author
                     </Typography>
@@ -80,9 +77,6 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                         placeholder="Enter your email"
                     />
                 </Grid>
-
-
-
             </Grid>
             <Box style={{
             }}>

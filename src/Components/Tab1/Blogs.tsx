@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import {Button, Box} from '@mui/material';
+import { Button, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedBlogs } from '../../redux/slices/Blogs/BlogSlice';
 import { AppDispatch } from '../../redux/store';
 import { fetchBlogApiSlice } from '../../redux/slices/Blogs/BlogApiSlice';
 import { Ipost } from '../../interfaces/interface';
 import { FetchBlogData } from '../../interfaces/interface';
-import {  Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import LikeButton from '../Buttons/LikeButton';
 import BlogDetails from './BlogInfoTabs';
 
@@ -30,34 +30,34 @@ const Blogs = () => {
 
         (blogsData as Ipost[])?.map((post: Ipost, index: number) => (
           <section key={index} className="relative py-4 ">
-                <Box className="flex flex-col rounded-2.5xl transition-shadow shadow-lg justify-center">
+            <Box className="flex flex-col rounded-2.5xl transition-shadow shadow-lg justify-center">
 
-                  <div
-                    className="rounded-b-[1.25rem] p-4 md:rounded-none md:rounded-r-[1.25rem] flex-row flex-row justify-center"
-                  >
-                    <div className='mb-3 flex flex-wrap items-center space-x-1 text-xs flex-row justify-center'>
+              <div
+                className="rounded-b-[1.25rem] p-4 md:rounded-none md:rounded-r-[1.25rem] flex-row flex-row justify-center"
+              >
+                <div className='mb-3 flex flex-wrap items-center space-x-1 text-xs flex-row justify-center'>
 
-                      <Link to={`/singleBlog/${post.id}`}>
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className=" object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105"
-                          height="300px"
-                          width="300px"
-                        />
-                      </Link>
-                    </div>
-                    <Grid container>
-                      <Grid item xs={8} md= {8} lg={8}>
-                        
+                  <Link to={`/singleBlog/${post._id}`}>
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className=" object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105"
+                      height="300px"
+                      width="300px"
+                    />
+                  </Link>
+                </div>
+                <Grid container>
+                  <Grid item xs={8} md={8} lg={8}>
+
                     <div className="mb-3 flex flex-wrap items-center space-x-1 ">
-                      <a
+                      {/* <a
                         href="#"
                         className="font-display hover:text-accent"
                       >
                         {post.author}
-                      </a>
-                      <span >in</span>
+                      </a> */}
+                      {/* <span >in</span> */}
                       <span className="inline-flex flex-wrap items-center space-x-1 text-accent">
                         {post.categories.map((category, index) => (
                           <a key={index} href="#">
@@ -70,30 +70,36 @@ const Blogs = () => {
                     <h2
                       className="mb-4 font-display text-md sm:text-2xl"
                     >
-                      <Link target='_blank' to={`/singleBlog/${post.id}`}>{post.title}</Link>
+                      {post.title
+                        .split(' ')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ')}
+                      {/* <Link target='_blank' to={`/singleBlog/${post.id}`}>{post.title}</Link> */}
                     </h2>
-                  
-                      </Grid>
-                      <Grid item xs={4} md= {4} lg={4} sx={{
-                        // backgroundColor:theme.palette.colors.colors.primary[600],
-                      }} >
-                      <LikeButton/>
-                      </Grid>
-                      <Grid>
-                        <BlogDetails />
-                        <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
+
+                  </Grid>
+                  <Grid item xs={4} md={4} lg={4} sx={{
+                    // backgroundColor:theme.palette.colors.colors.primary[600],
+                  }} >
+                    <LikeButton />
+                  </Grid>
+                  <Grid>
+
+                    <BlogDetails />
+                
+                    <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
                       <span>
                         <time dateTime={post.date}>{post.date}</time>
                       </span>
                       <span>•</span>
                       <span>3 min read</span>
                     </div>
-                      </Grid>
+                  </Grid>
 
-                    </Grid>
+                </Grid>
 
-                  </div>
-                </Box>
+              </div>
+            </Box>
           </section>
         ))
       ) : (

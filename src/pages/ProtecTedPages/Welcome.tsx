@@ -5,10 +5,11 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
 import { selectUserType } from './../../redux/slices/authSlice';
-import Userpage from '../../Components/LoginPagesComp/Three.js/index.tsx';
+// import Userpage from '../../Components/LoginPagesComp/Three.js/index.tsx';
 import MobileTabNavigation from '../../Components/MobileTabNav/mobileVIew.tsx';
 import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
 import { LogoutRounded } from '@mui/icons-material';
+import AddBlogComp from '../../Components/LoginPagesComp/Blogs/AddBlog.tsx';
 const ProtectedPage: React.FC<ProtectedPageProps> = (
   props
 ) => {
@@ -30,9 +31,9 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (
     switch (userType) {
       // TODO create /root admin
       case 'METAKUL_USER':
-        return <Userpage />;
+        return <AddBlogComp />;
       default:
-        return <Userpage />;
+        return <AddBlogComp />;
     }
   };
 
