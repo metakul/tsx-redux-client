@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import  { FC } from 'react';
 import { TextField, Typography, Box } from "@mui/material";
 
 interface SearchBarProps {

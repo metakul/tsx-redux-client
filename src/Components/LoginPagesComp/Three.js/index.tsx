@@ -76,15 +76,15 @@ const Userpage: React.FC<UserpageProps> = () => {
       mount.current?.removeChild(renderer.domElement);
     };
   }, [renderer, scene, camera, mesh, sizes.width, sizes.height]);
-  const handleAddBlog = (data: unknown) => {
-    console.log(data)
-  };
+  // const handleAddBlog = (data: unknown) => {
+  //   console.log(data)
+  // };
   return (
     <div>
       {/* <a href="#" onClick={() => setBg(!bg)}>
         <div ref={mount}></div>
       </a> */}
-        <AddBlogForm onFormSubmit={handleAddBlog} />
+        <AddBlogForm  />
     </div>
   );
 };

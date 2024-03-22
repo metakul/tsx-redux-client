@@ -2,7 +2,7 @@ import { Ipost } from "../../../interfaces/interface";
 
 export const blogData: Ipost[] = [
   {
-    id: "4",
+    _id: "4",
     title: "your collection for secondary sales",
     description: "Since we launched Tezos at the end of 2021, many awesome creators...",
     image: "/logo.svg",
@@ -11,7 +11,7 @@ export const blogData: Ipost[] = [
     date: "2022-02-05",
   },
   {
-    id: "5",
+    _id: "5",
     title: "Dive into the future of nft",
     description:
       "Since we launched Tezos at the end of 2021, many awesome creators..Since we launched Tezos at the end of 2021, the end of 2021, the end of 2021, many awesome creators...",
@@ -21,7 +21,7 @@ export const blogData: Ipost[] = [
     date: "2022-02-05",
   },
   {
-    id: "6",
+    _id: "6",
     title: "Dive into the future of nft",
     description:
       "Since we launched Tezos at the end of 2021, many awesome creators..Since we launched Tezos at the end of 2021, the end of 2021, the end of 2021, many awesome creators...",
