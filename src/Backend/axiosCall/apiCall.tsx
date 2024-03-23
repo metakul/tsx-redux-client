@@ -11,6 +11,7 @@ const request = async (options: RequestOptions) => {
       method: options.method,
       url: fullUrl,
       data:options?.data,
+      headers:options?.headers
     });
 
     // Return the parsed response data

@@ -9,6 +9,7 @@ import { FetchBlogData } from '../../interfaces/interface';
 import { Grid } from '@mui/material';
 import LikeButton from '../Buttons/LikeButton';
 import BlogDetails from './BlogInfoTabs';
+import { useEffect } from 'react';
 
 const Blogs = () => {
   // const theme = useTheme()
@@ -21,8 +22,13 @@ const Blogs = () => {
       userType: "user"
     };
     (dispatch as AppDispatch)(fetchBlogApiSlice(userType));
-
   }
+
+    useEffect(() => {
+      // Load blogs when the component mounts
+      handleLoadBlogs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
   return (
 
     <div className=" sm:w-full overflow-hidden mx-auto">
@@ -30,10 +36,10 @@ const Blogs = () => {
 
         (blogsData as Ipost[])?.map((post: Ipost, index: number) => (
           <section key={index} className="relative py-4 ">
-            <Box className="flex flex-col rounded-2.5xl transition-shadow shadow-lg justify-center">
+            <Box className="flex flex-col rounded-2.5xl border border-jacarta-300 transition-shadow shadow-lg justify-center">
 
               <div
-                className="rounded-b-[1.25rem] p-4 md:rounded-none md:rounded-r-[1.25rem] flex-row flex-row justify-center"
+                className="rounded-[1.25rem] p-4 rounded-[1.25rem] flex-row flex-row justify-center"
               >
                 <div className='mb-3 flex flex-wrap items-center space-x-1 text-xs flex-row justify-center'>
 
@@ -41,13 +47,12 @@ const Blogs = () => {
                     <img
                       src={post.image}
                       alt={post.title}
-                      className=" object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105"
-                      height="300px"
-                      width="300px"
+                      className="h-56   w-25 object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105"
                     />
                   </Link>
                 </div>
                 <Grid container>
+
                   <Grid item xs={8} md={8} lg={8}>
 
                     <div className="mb-3 flex flex-wrap items-center space-x-1 ">
@@ -78,14 +83,12 @@ const Blogs = () => {
                     </h2>
 
                   </Grid>
-                  <Grid item xs={4} md={4} lg={4} sx={{
-                    // backgroundColor:theme.palette.colors.colors.primary[600],
-                  }} >
-                    <LikeButton />
-                  </Grid>
-                  <Grid>
+              
+                  <Grid item xs={4} md={4} lg={4} className='mx-auto'>
+                  <LikeButton />
 
-                    <BlogDetails />
+                  </Grid>
+                    <BlogDetails _blogId={post._id || ''}/>
                 
                     <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
                       <span>
@@ -94,11 +97,12 @@ const Blogs = () => {
                       <span>•</span>
                       <span>3 min read</span>
                     </div>
-                  </Grid>
 
+                  
                 </Grid>
-
+              
               </div>
+              
             </Box>
           </section>
         ))

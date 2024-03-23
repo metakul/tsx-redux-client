@@ -2,8 +2,8 @@
 import { cryptoData } from "./mockData";
 const MarqueeCryptoNew = () => {
     return (
-        <section className="overflow-hidden ml-2">
-            <div className="container">
+        <section className="overflow-hidden ">
+            <div className="">
                 <div className="mx-auto max-w-xl text-center">
                     <h2 className="mb-1 text-center font-display text-3xl font-medium ">
                         METAKUL

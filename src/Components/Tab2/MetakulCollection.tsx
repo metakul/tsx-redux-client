@@ -186,7 +186,7 @@ const MetakulCollection = () => {
         </div>
 
 
-      <div className="container">
+      <div className="">
         <ul
           className="nav nav-tabs mb-2 flex items-center justify-center border-b border-jacarta-100 "
           role="tablist"

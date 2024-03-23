@@ -91,6 +91,17 @@ export interface Ipost  {
   date?: string;
 }
 
+//crypto 
+
+export interface CryptoInfoProps{
+  cryptoSymbol:string;
+}
+
+export interface BlogDetailsProps{
+  _id:string
+}
+
 export interface FetchBlogData{
   userType:string
 }
+

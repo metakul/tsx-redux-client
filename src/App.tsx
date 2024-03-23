@@ -46,7 +46,6 @@ function App() {
             ),
           ]}
         >
-
           <Provider store={store}>
             <BrowserRouter>
               <Router />
@@ -54,7 +53,6 @@ function App() {
           </Provider>
         </ThirdwebProvider>
       </ThemeProvider>
-
     </ColorModeContext.Provider>
 
   );

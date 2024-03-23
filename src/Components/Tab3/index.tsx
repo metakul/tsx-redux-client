@@ -5,9 +5,7 @@ import { ConnectWallet } from '@thirdweb-dev/react';
 const Tab3 = () => {
 
   return (
-    <Box className="md:container md:mx-auto">
-
-
+    <Box className="">
    <ConnectWallet/>
     </Box>
   );
