@@ -16,7 +16,6 @@ import {
 import { CssBaseline, ThemeProvider } from "@mui/material";
 //theme
 import { ColorModeContext, useMode } from './layout/Theme/themes';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
  
 const smartWalletOptions = {
@@ -56,7 +55,6 @@ function App() {
           </Provider>
         </ThirdwebProvider>
       </ThemeProvider>
-      <SpeedInsights />
       <Analytics />
     </ColorModeContext.Provider>
 
