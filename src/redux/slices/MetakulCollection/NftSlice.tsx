@@ -11,6 +11,8 @@ const nftCollectionSlice = createSlice({
   reducers: {
     setLoadedNfts: (state, action: PayloadAction<{ nfts: unknown[] }>) => {
       state.nfts = action.payload.nfts;
+      const loadedNfts = action.payload.nfts;
+      state.nfts = [...loadedNfts];
     },
   },
 });

@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
-import { DataGrid, GridRowIdGetter } from "@mui/x-data-grid";
+import { DataGrid, GridRowIdGetter, GridValidRowModel } from "@mui/x-data-grid";
 import { CustomNoRowsOverlay } from "./NoRowsOverlay";
-import { Ipost } from '../../interfaces/interface';
 
 interface Column {
   field: string;
@@ -11,8 +10,8 @@ interface Column {
 
 interface DatagridProps {
   columns: Column[];
-  rows: Ipost[];
-  getRowId: GridRowIdGetter<Partial<Ipost>>; // Make _id property optional
+  rows: GridValidRowModel[];
+  getRowId: GridRowIdGetter<GridValidRowModel>;
 }
 
 const CustomDataGrid: FC<DatagridProps> = ({getRowId, columns, rows }) => {

@@ -30,9 +30,9 @@ export enum ProtectedPageInfo{
 // define endpoints here
   export const ApiEndpoint: Record<string, RequestOptions> = {
     LOGIN: { url: 'https://smart-wallet-us83.onrender.com/auth/user/login', method: 'POST', headers: { 'Content-Type': 'application/json'}},
-    GETBLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'GET', headers: { 'Content-Type': 'application/json'}},
-    ADD_BLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'POST', headers: { 'Content-Type': 'application/json'}},
-    FetchCryptoInfo: { url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD", method: 'GET', headers: { "X-CoinAPI-Key":"5F5DED77-3B78-41A1-9955-68E59D6EEAE1"}},
+    GETBLOG: { url: 'http://localhost:8000/post', method: 'GET', headers: { 'Content-Type': 'application/json'}},
+    ADD_BLOG: { url: 'http://localhost:8000/post', method: 'POST', headers: { 'Content-Type': 'application/json'}},
+    FetchCryptoInfo: { url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD", method: 'GET', headers: { "X-CoinAPI-Key":"21F0E4E9-1955-4555-A4DA-51524A1E8ED3"}},
   };
   
 

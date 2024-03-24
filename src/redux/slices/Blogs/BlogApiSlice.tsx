@@ -1,7 +1,7 @@
 // authActions.tsx
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setLoadedBlogs,addBlog } from './BlogSlice';
-import { ApiError } from '../../../interfaces/interface';
+import { setLoadedBlogs,addBlog, fetchCryptoInfo } from './BlogSlice';
+import { ApiError, CryptoData, CryptoInfoProps } from '../../../interfaces/interface';
 import { ApiEndpoint } from '../../../DataTypes/enums';
 import request from '../../../Backend/axiosCall/apiCall';
 import { ApiSuccess } from '../../../interfaces/interface';
@@ -13,7 +13,7 @@ export const fetchBlogApiSlice = createAsyncThunk(
   // eslint-disable-next-line no-empty-pattern
   async ({ userType}:FetchBlogData , { rejectWithValue, dispatch }) => {
     try {
-      console.log("user",userType)
+      console.log("userType",userType)
       const response = await request({
         url: ApiEndpoint.GETBLOG.url,
         method: ApiEndpoint.GETBLOG.method,
@@ -51,7 +51,7 @@ export const addBlogApiSlice = createAsyncThunk(
         data: newBlogData,
       });
 
-      dispatch(addBlog(newBlogData)); // Dispatch addBlog action with new blog data
+      dispatch(addBlog(response.data.newPost)); // Dispatch addBlog action with new blog data
 
       const apiSuccess: ApiSuccess = {
         statusCode: response.status,
@@ -66,6 +66,45 @@ export const addBlogApiSlice = createAsyncThunk(
     } catch (error) {
       const castedError = error as ApiError;
       console.error('Error Adding Blog:', error);
+      return rejectWithValue(castedError?.error === "string" ? castedError?.error : 'Unknown Error');
+    }
+  }
+);
+
+//fetch Blogs CryptoData
+
+export const fetchCryptoDispatcher = createAsyncThunk(
+  'FetchCryptoInfo',
+  async ({ cryptoSymbol,_id }: CryptoInfoProps, { rejectWithValue,dispatch }) => {
+    try {
+      const response = await request({
+        url: ApiEndpoint.FetchCryptoInfo.url,
+        method: ApiEndpoint.FetchCryptoInfo.method,
+        data: { cryptoSymbol },
+        headers: ApiEndpoint.FetchCryptoInfo.headers
+      })
+
+      //todo add propoer data for cryptoInfo
+      const cryptoData: CryptoData = {
+        cryptoSymbol: response.data.asset_id_base,
+        currency: response.data.asset_id_quote,
+        price: response.data.rate,
+        marketCap: response.data.time
+      };
+      dispatch(fetchCryptoInfo({_id:_id,cryptoData:cryptoData }));
+
+      const apiSuccess: ApiSuccess = {
+        statusCode: response.status,
+        message: 'Crypto Info Fetched SuccessFully',
+        data: response.data,
+      };
+  
+      console.log(apiSuccess);
+      return apiSuccess;
+
+    } catch (error) {
+      const castedError =error as ApiError
+      console.error('Failed To Load:', error);
       return rejectWithValue(castedError?.error === "string" ? castedError?.error : 'Unknown Error');
     }
   }

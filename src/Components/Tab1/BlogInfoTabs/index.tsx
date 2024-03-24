@@ -9,17 +9,17 @@ import BlogInfoTab from './BlogInfoComp';
 import CryptoInfoPage from '../../CryptoInfo';
 import SingleBlogDetails from '../../BlogDetails.tsx';
 
-
 export interface SingleBlogInfoProps{
     // $todo change interface to have all details of blogs and send the deatils from blogpage
-    cryptoId?:string
+    cryptoSymbol?:string
     _blogId:string
   }
-const BlogDetails: React.FC<SingleBlogInfoProps> = ({_blogId}) => {
+
+const BlogDetails: React.FC<SingleBlogInfoProps> = ({_blogId,cryptoSymbol}) => {
 
   const tabs = [
     { value: <OtherHousesOutlinedIcon />, content: <SingleBlogDetails _id={_blogId}/>, label: "Read More" },
-    { value: <StoreOutlinedIcon />, content: <CryptoInfoPage cryptoSymbol='BTC'/>, label: "Information" },
+    { value: <StoreOutlinedIcon />, content: <CryptoInfoPage _id={_blogId} cryptoSymbol={cryptoSymbol}/>, label: "Information" },
     { value: <CategoryOutlinedIcon />, content:<Typography>Socials</Typography>, label: "Socials" },
   ];
 

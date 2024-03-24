@@ -88,7 +88,7 @@ const Blogs = () => {
                   <LikeButton />
 
                   </Grid>
-                    <BlogDetails _blogId={post._id || ''}/>
+                    <BlogDetails cryptoSymbol={post.cryptoSymbol} _blogId={post._id || ''}/>
                 
                     <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
                       <span>
@@ -107,7 +107,7 @@ const Blogs = () => {
           </section>
         ))
       ) : (
-        <div className=" flex flex-row">
+        <div className=" flex flex-row justify-center">
           <button
             className="dropdown-toggle m-4 p-4 group group flex  items-center rounded-lg border border-jacarta-100  font-display text-lg font-semibold  transition-colors hover:border-transparent      "
           >
@@ -116,7 +116,7 @@ const Blogs = () => {
 
         </div>
       )}
-      <Button onClick={handleLoadBlogs}>
+      <Button  onClick={handleLoadBlogs} className='mx-auto flex flex-row justify-center'>
         Load More
       </Button>
     </div>

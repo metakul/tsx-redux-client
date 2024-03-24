@@ -89,18 +89,28 @@ export interface Ipost  {
   author:string;
   categories: string[];
   date?: string;
+  cryptoSymbol:string;
+  cryptoData?: CryptoData;
 }
 
-//crypto 
-
-export interface CryptoInfoProps{
+export interface CryptoData {
   cryptoSymbol:string;
+  currency: string;
+  price: number;
+  marketCap: number;
+}
+
+//crypto comp
+export interface CryptoInfoProps{
+  _id: string;
+  cryptoSymbol?:string;
 }
 
 export interface BlogDetailsProps{
   _id:string
 }
 
+// todo later fetch based on userType
 export interface FetchBlogData{
   userType:string
 }

@@ -18,11 +18,12 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
 
         try {
             const blogData: Ipost = {
-                title: "Adding new Blog",
+                title: "Welcome to Seo of Blog Data",
                 description: "Desc for Blog",
                 image: "/logo.svg",
-                author: "Deothemes",
-                categories: [`NFT's`]
+                author: "Rabbit",
+                categories: [`NFT's`],
+                cryptoSymbol:'BTC'
             };
 
             // Dispatch the login action with correct action type
