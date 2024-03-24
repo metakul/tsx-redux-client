@@ -16,6 +16,9 @@ import {
 import { CssBaseline, ThemeProvider } from "@mui/material";
 //theme
 import { ColorModeContext, useMode } from './layout/Theme/themes';
+import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
+ 
 const smartWalletOptions = {
   factoryAddress: "0x2ace847964fe70d38ea6dad726e3a230dca244bd",
   gasless: true,
@@ -53,6 +56,8 @@ function App() {
           </Provider>
         </ThirdwebProvider>
       </ThemeProvider>
+      <SpeedInsights />
+      <Analytics />
     </ColorModeContext.Provider>
 
   );
