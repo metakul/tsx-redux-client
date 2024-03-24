@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { BlogsState, CryptoData, Ipost } from '../../../interfaces/interface';
 
 const initialState: BlogsState = {
-  blogs: [],
+  blogs: []as Ipost[],
 };
 interface CryptoInfo {
   _id: string;

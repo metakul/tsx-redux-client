@@ -84,7 +84,7 @@ export interface BalanceItem {
 export interface Ipost  {
   _id?: string;
   title: string;
-  description: string;
+  description?: string;
   image:string;
   author:string;
   categories: string[];

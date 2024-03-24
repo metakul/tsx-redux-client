@@ -8,7 +8,7 @@ import { Ipost } from '../../interfaces/interface';
 import { FetchBlogData } from '../../interfaces/interface';
 import { Grid } from '@mui/material';
 import LikeButton from '../Buttons/LikeButton';
-import BlogDetails from './BlogInfoTabs';
+import BlogDetails from '../BlogInfoTabs';
 import { useEffect } from 'react';
 
 const Blogs = () => {

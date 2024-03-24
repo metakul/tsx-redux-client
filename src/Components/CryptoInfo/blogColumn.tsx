@@ -2,12 +2,12 @@
   const BlogColumn = (
 ) => [
     { field: "cryptoSymbol", headerName: "Cryoto Name", width: 120, editable: false },
-    {
-      field: "cryptoSymbol",
-      headerName: "Symbol",
-      width: 120,
-      editable: false,
-    },
+    // {
+    //   field: "cryptoSymbol",
+    //   headerName: "Symbol",
+    //   width: 120,
+    //   editable: false,
+    // },
     {
       field: "currency",
       headerName: "currency",

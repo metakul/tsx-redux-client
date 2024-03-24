@@ -6,6 +6,8 @@ import { Ipost } from '../../interfaces/interface';
 import { Typography, Button, Grid } from '@mui/material';
 import CustomDialog from '../Dailog/Dailog';
 import CustomTextField from '../TextFeild';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 interface AddBlogProps { }
 
@@ -15,7 +17,6 @@ interface ErrorMessages {
 
 const newErrors: ErrorMessages = {
     title: '',
-    description: '',
     image: '',
     author: '',
     categories: '',
@@ -27,15 +28,19 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
     const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
     const [formData, setFormData] = useState<Ipost>({
         title: '',
-        description: '',
         image: '',
         author: '',
         categories: [],
         cryptoSymbol: '',
     });
+    const [description, setDescription] = useState('');
+    const [isError, setIsError] = useState<boolean>(false);
+
+
     const [errors, setErrors] = useState<ErrorMessages>(newErrors);
 
     const handleFormSubmit = async (event: React.FormEvent) => {
+        setIsError(false);
         event.preventDefault();
         // Validate form fields
 
@@ -44,10 +49,12 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
             if (typeof formValue === 'string') {
                 if (formValue.trim() === '' && key !== 'description') {
                     newErrors[key] = `${key.charAt(0).toUpperCase() + key.slice(1)} is required`;
+                    setIsError(true)
                 }
             } else if (Array.isArray(formValue)) {
                 if (formValue.length === 0 && key !== 'description') {
                     newErrors[key] = `${key.charAt(0).toUpperCase() + key.slice(1)} is required`;
+                    setIsError(true)
                 }
             }
         });
@@ -55,8 +62,10 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
 
         // If there are no errors, dispatch action to add blog
         if (Object.values(newErrors).every(error => !error)) {
-                // Dispatch action to add blog
-                (dispatch as AppDispatch)(addBlogApiSlice({ newBlogData: formData, setDialogOpen }));
+            setIsError(false);
+
+            // Dispatch action to add blog
+            (dispatch as AppDispatch)(addBlogApiSlice({ newBlogData: { ...formData, description }, setDialogOpen }));
         }
     };
 
@@ -90,18 +99,15 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                             onChange={(e) => handleChange(e, 'title')}
                             placeholder="Enter title"
                             error={errors.title}
+                            isError={isError}
                         />
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="h3">Description</Typography>
-                        <CustomTextField
-                            id="description"
-                            type="text"
-                            label="Description"
-                            value={formData.description}
-                            onChange={(e) => handleChange(e, 'description')}
-                            placeholder="Enter description"
-                            error={errors.description}
+                        <ReactQuill
+                            theme="snow"
+                            value={description}
+                            onChange={(value) => setDescription(value)}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -114,6 +120,8 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                             onChange={(e) => handleChange(e, 'image')}
                             placeholder="Enter image URL"
                             error={errors.image}
+                            isError={isError}
+
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -126,6 +134,8 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                             onChange={(e) => handleChange(e, 'author')}
                             placeholder="Enter author"
                             error={errors.author}
+                            isError={isError}
+
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -138,6 +148,8 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                             onChange={(e) => handleChange(e, 'categories')}
                             placeholder="Enter categories"
                             error={errors.categories}
+                            isError={isError}
+
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -150,6 +162,8 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                             onChange={(e) => handleChange(e, 'cryptoSymbol')}
                             placeholder="Enter crypto symbol"
                             error={errors.cryptoSymbol}
+                            isError={isError}
+
                         />
                     </Grid>
                 </Grid>

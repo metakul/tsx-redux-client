@@ -1,5 +1,5 @@
 import React from 'react';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { BlogDetailsProps } from '../../interfaces/interface';
 import { selectedBlogs } from '../../redux/slices/Blogs/BlogSlice';
 
@@ -8,11 +8,11 @@ const BlogDescription: React.FC<BlogDetailsProps> = ({ _id }) => {
 
   const selectedBlog = blogsData.find(blog => blog._id === _id);
 
-  console.log(selectedBlog); 
-  
   return (
     <div>
-      {selectedBlog?.description}
+      {selectedBlog && (
+        <div dangerouslySetInnerHTML={{ __html: selectedBlog.description || '' }} />
+      )}
     </div>
   );
 };

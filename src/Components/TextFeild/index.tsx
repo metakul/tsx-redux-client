@@ -11,6 +11,7 @@ interface CustomTextFieldProps extends InputBaseComponentProps {
   label?: string;
   placeholder?: string;
   error: string;
+  isError:boolean;
   showPassword?: boolean;
   handleClickShowPassword?: () => void;
   handleMouseDownPassword?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -24,12 +25,13 @@ const CustomTextField : React.FC<CustomTextFieldProps> =({
   onChange,
   placeholder,
   error,
+  isError,
   showPassword,
   handleClickShowPassword,
   handleMouseDownPassword,
 }) => {
   return (
-    <FormControl fullWidth error={typeof error === 'string' && error !== ''}>
+    <FormControl fullWidth error={isError}>
       <InputLabel htmlFor={id}>{label}</InputLabel>
       <OutlinedInput
         id={id}

@@ -9,7 +9,7 @@ interface BlogInfoTabProps {
 }
 
 const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs }) => {
-  const [value, setValue] = React.useState<number | null>(null); // Initially null
+  const [value, setValue] = React.useState<number | unknown>(null)
   const theme = useTheme();
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {

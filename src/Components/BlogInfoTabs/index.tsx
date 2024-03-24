@@ -6,8 +6,8 @@ import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 import { Typography } from '@mui/material';
 import BlogInfoTab from './BlogInfoComp';
-import CryptoInfoPage from '../../CryptoInfo';
-import BlogDescription from '../BlogDescription';
+import CryptoInfoPage from '../CryptoInfo';
+import BlogDescription from '../Tab1/BlogDescription';
 
 export interface SingleBlogInfoProps{
     // $todo change interface to have all details of blogs and send the deatils from blogpage
