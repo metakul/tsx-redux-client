@@ -104,6 +104,7 @@ export interface CryptoData {
 export interface CryptoInfoProps{
   _id: string;
   cryptoSymbol?:string;
+  currency?:string
 }
 
 export interface BlogDetailsProps{

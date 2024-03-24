@@ -19,8 +19,8 @@ const AddBlogComp = () => {
     const options = [
         { label: "Approve", value: "approve", icon: PersonIcon },
         { label: "Reject", value: "reject", icon: PersonIcon },
-        { label: "Suspend", value: "suspend", icon: DeleteIcon },
-        { label: "Revoke User", value: "suspend/revoke", icon: DeleteIcon }
+        { label: "Edit", value: "suspend", icon: DeleteIcon },
+        { label: "Revoke Post", value: "suspend/revoke", icon: DeleteIcon }
     ];
 
     const [searchQuery, setSearchQuery] = useState("");

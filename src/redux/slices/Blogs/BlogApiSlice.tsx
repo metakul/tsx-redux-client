@@ -75,10 +75,10 @@ export const addBlogApiSlice = createAsyncThunk(
 
 export const fetchCryptoDispatcher = createAsyncThunk(
   'FetchCryptoInfo',
-  async ({ cryptoSymbol,_id }: CryptoInfoProps, { rejectWithValue,dispatch }) => {
+  async ({ cryptoSymbol,_id,currency }: CryptoInfoProps, { rejectWithValue,dispatch }) => {
     try {
       const response = await request({
-        url: ApiEndpoint.FetchCryptoInfo.url,
+        url: `${ApiEndpoint.FetchCryptoInfo.url}/${cryptoSymbol}/${currency}`,
         method: ApiEndpoint.FetchCryptoInfo.method,
         data: { cryptoSymbol },
         headers: ApiEndpoint.FetchCryptoInfo.headers

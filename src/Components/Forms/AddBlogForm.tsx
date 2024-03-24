@@ -1,90 +1,161 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBlogApiSlice } from '../../redux/slices/Blogs/BlogApiSlice';
 import { AppDispatch } from '../../redux/store';
 import { Ipost } from '../../interfaces/interface';
-import { TextField, Typography, Button, Box, Grid } from '@mui/material';
+import { Typography, Button, Grid } from '@mui/material';
 import CustomDialog from '../Dailog/Dailog';
+import CustomTextField from '../TextFeild';
 
-interface AddBlogProps {
-    // onFormSubmit: (blogData: Ipost) => void;
+interface AddBlogProps { }
+
+interface ErrorMessages {
+    [key: string]: string;
 }
+
+const newErrors: ErrorMessages = {
+    title: '',
+    description: '',
+    image: '',
+    author: '',
+    categories: '',
+    cryptoSymbol: '',
+};
+
 const AddBlogForm: React.FC<AddBlogProps> = () => {
-      const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
     const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
+    const [formData, setFormData] = useState<Ipost>({
+        title: '',
+        description: '',
+        image: '',
+        author: '',
+        categories: [],
+        cryptoSymbol: '',
+    });
+    const [errors, setErrors] = useState<ErrorMessages>(newErrors);
 
     const handleFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        // Validate form fields
 
-        try {
-            const blogData: Ipost = {
-                title: "Welcome to Seo of Blog Data",
-                description: "Desc for Blog",
-                image: "/logo.svg",
-                author: "Rabbit",
-                categories: [`NFT's`],
-                cryptoSymbol:'BTC'
-            };
+        Object.keys(formData).forEach((key) => {
+            const formValue = formData[key as keyof Ipost];
+            if (typeof formValue === 'string') {
+                if (formValue.trim() === '' && key !== 'description') {
+                    newErrors[key] = `${key.charAt(0).toUpperCase() + key.slice(1)} is required`;
+                }
+            } else if (Array.isArray(formValue)) {
+                if (formValue.length === 0 && key !== 'description') {
+                    newErrors[key] = `${key.charAt(0).toUpperCase() + key.slice(1)} is required`;
+                }
+            }
+        });
+        setErrors(newErrors as typeof errors);
 
-            // Dispatch the login action with correct action type
-            (dispatch as AppDispatch)(addBlogApiSlice({newBlogData:blogData,setDialogOpen}));
+        // If there are no errors, dispatch action to add blog
+        if (Object.values(newErrors).every(error => !error)) {
+                // Dispatch action to add blog
+                (dispatch as AppDispatch)(addBlogApiSlice({ newBlogData: formData, setDialogOpen }));
+        }
+    };
 
-        } catch (error) {
-            console.error('Login failed In LoginPage:', error);
+    const handleChange = (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>, field: keyof Ipost) => {
+        if (field === 'categories') {
+            // Split the input value by comma and trim each category
+            const categoriesArray = e.currentTarget.value.split(',').map(category => category.trim());
+            setFormData({ ...formData, [field]: categoriesArray });
+        } else {
+            setFormData({ ...formData, [field]: e.currentTarget.value });
         }
     };
 
     return (
-        // #TODO add Custom drawer
         <CustomDialog
             open={isDialogOpen}
             onClose={() => setDialogOpen(!isDialogOpen)}
-            triggerButtonText={"Add Blog"}
-            title={"New Blog"}
-            description={"This is adding for New Blog Page"}
+            triggerButtonText={'Add Blog'}
+            title={'New Blog'}
+            description={'This is adding for New Blog Page'}
         >
-            <Grid container sx={{
-                minWidth: "100%"
-            }} >
-                <Grid item xs={12}  >
-                    <Typography variant="h3">
-                        Title
-                    </Typography>
-                    <TextField
-                        fullWidth
-                        value="Freja Johnsen"
-                        placeholder="Enter your full name"
-                    />
+            <form onSubmit={handleFormSubmit}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Typography variant="h3">Title</Typography>
+                        <CustomTextField
+                            id="title"
+                            type="text"
+                            label="Title"
+                            value={formData.title}
+                            onChange={(e) => handleChange(e, 'title')}
+                            placeholder="Enter title"
+                            error={errors.title}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h3">Description</Typography>
+                        <CustomTextField
+                            id="description"
+                            type="text"
+                            label="Description"
+                            value={formData.description}
+                            onChange={(e) => handleChange(e, 'description')}
+                            placeholder="Enter description"
+                            error={errors.description}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h3">Image</Typography>
+                        <CustomTextField
+                            id="image"
+                            type="text"
+                            label="Image URL"
+                            value={formData.image}
+                            onChange={(e) => handleChange(e, 'image')}
+                            placeholder="Enter image URL"
+                            error={errors.image}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h3">Author</Typography>
+                        <CustomTextField
+                            id="author"
+                            type="text"
+                            label="Author"
+                            value={formData.author}
+                            onChange={(e) => handleChange(e, 'author')}
+                            placeholder="Enter author"
+                            error={errors.author}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h3">Categories</Typography>
+                        <CustomTextField
+                            id="categories"
+                            type="text"
+                            label="Categories (comma separated)"
+                            value={formData.categories.join(',')}
+                            onChange={(e) => handleChange(e, 'categories')}
+                            placeholder="Enter categories"
+                            error={errors.categories}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h3">Crypto Symbol</Typography>
+                        <CustomTextField
+                            id="cryptoSymbol"
+                            type="text"
+                            label="Crypto Symbol"
+                            value={formData.cryptoSymbol}
+                            onChange={(e) => handleChange(e, 'cryptoSymbol')}
+                            placeholder="Enter crypto symbol"
+                            error={errors.cryptoSymbol}
+                        />
+                    </Grid>
                 </Grid>
-
-                <Grid item xs={12}>
-                    <Typography variant="h3">
-                        Description
-                    </Typography>
-
-                    <TextField
-                        fullWidth
-                        value="freja@example.com"
-                        placeholder="Enter your email"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography variant="h3">
-                        Author
-                    </Typography>
-                    <TextField
-                        fullWidth
-                        value="freja@example.com"
-                        placeholder="Enter your email"
-                    />
-                </Grid>
-            </Grid>
-            <Box style={{
-            }}>
-                <Button onClick={handleFormSubmit}>Save</Button>
-            </Box>
+                <Button type="submit">Save</Button>
+            </form>
         </CustomDialog>
-
     );
 };
 
