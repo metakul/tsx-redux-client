@@ -1,4 +1,4 @@
-// authActions.tsx
+// blogAction.tsx
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setLoadedBlogs,addBlog, fetchCryptoInfo } from './BlogSlice';
 import { ApiError, CryptoData, CryptoInfoProps } from '../../../interfaces/interface';
@@ -11,11 +11,11 @@ import { Ipost } from '../../../interfaces/interface';
 export const fetchBlogApiSlice = createAsyncThunk(
   'blogCollection/setLoadedBlogs',
   // eslint-disable-next-line no-empty-pattern
-  async ({ userType}:FetchBlogData , { rejectWithValue, dispatch }) => {
+  async ({ fetchBlogData, pageSize, blogPage, setBlogPage }: { fetchBlogData: FetchBlogData, pageSize: number, blogPage: number, setBlogPage: (page: number) => void }, { rejectWithValue, dispatch }) => {
     try {
-      console.log("userType",userType)
+      console.log("userType",fetchBlogData.userType)
       const response = await request({
-        url: ApiEndpoint.GETBLOG.url,
+        url:`${ApiEndpoint.GETBLOG.url}?pagesize=${pageSize}&page=${blogPage}`,
         method: ApiEndpoint.GETBLOG.method,
         headers: ApiEndpoint.GETBLOG.headers
       })
@@ -29,6 +29,7 @@ export const fetchBlogApiSlice = createAsyncThunk(
         message: 'Blogs Fetched SuccessFully',
         data: response.data,
       };
+      setBlogPage(blogPage+1)
   
       return apiSuccess;
 

@@ -9,26 +9,33 @@ import { FetchBlogData } from '../../interfaces/interface';
 import { Grid } from '@mui/material';
 import LikeButton from '../Buttons/LikeButton';
 import BlogDetails from '../BlogInfoTabs';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Blogs = () => {
   // const theme = useTheme()
   const dispatch = useDispatch()
   const blogsData = useSelector(selectedBlogs).blogs
+  const [blogPage, setBlogPage] = useState(1);
+  const [pageSize, ] = useState(2);
 
   const handleLoadBlogs = () => {
 
     const userType: FetchBlogData = {
-      userType: "user"
+      userType: "user",
     };
-    (dispatch as AppDispatch)(fetchBlogApiSlice(userType));
+    (dispatch as AppDispatch)(fetchBlogApiSlice({
+      fetchBlogData: userType,
+      pageSize,
+      blogPage,
+      setBlogPage,
+    }));
   }
 
-    useEffect(() => {
-      // Load blogs when the component mounts
-      handleLoadBlogs();
+  useEffect(() => {
+    // Load blogs when the component mounts
+    handleLoadBlogs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  }, []);
   return (
 
     <div className=" sm:w-full overflow-hidden mx-auto">
@@ -47,11 +54,11 @@ const Blogs = () => {
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="h-56   w-25 object-cover transition-transform duration-[1600ms] will-change-transform group-hover:scale-105"
+                      className=" w-80 sm:h-3/4 object-cover transition-transform duration-[100ms] will-change-transform group-hover:scale-105"
                     />
                   </Link>
                 </div>
-                <Grid container>
+                <Grid container className='mt-8'>
 
                   <Grid item xs={8} md={8} lg={8}>
 
@@ -73,7 +80,7 @@ const Blogs = () => {
                     </div>
 
                     <h2
-                      className="mb-4 font-display text-md sm:text-2xl"
+                      className="mb-4 font-display text-md sm:text-xl"
                     >
                       {post.title
                         .split(' ')
@@ -81,28 +88,22 @@ const Blogs = () => {
                         .join(' ')}
                       {/* <Link target='_blank' to={`/singleBlog/${post.id}`}>{post.title}</Link> */}
                     </h2>
-
                   </Grid>
-              
                   <Grid item xs={4} md={4} lg={4} className='mx-auto'>
-                  <LikeButton />
+                    <LikeButton />
 
                   </Grid>
-                    <BlogDetails cryptoSymbol={post.cryptoSymbol} _blogId={post._id || ''}/>
-                
-                    <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
-                      <span>
-                        <time dateTime={post.date}>{post.date}</time>
-                      </span>
-                      <span>•</span>
-                      <span>3 min read</span>
-                    </div>
-
-                  
+                  <BlogDetails cryptoSymbol={post.cryptoSymbol} _blogId={post._id || ''} />
+                  <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
+                    <span>
+                      <time dateTime={post.date}>{post.date}</time>
+                    </span>
+                    <span>•</span>
+                    <span>3 min read</span>
+                  </div>
                 </Grid>
-              
               </div>
-              
+
             </Box>
           </section>
         ))
@@ -116,7 +117,7 @@ const Blogs = () => {
 
         </div>
       )}
-      <Button  onClick={handleLoadBlogs} className='mx-auto flex flex-row justify-center'>
+      <Button onClick={handleLoadBlogs} className='mx-auto flex flex-row justify-center'>
         Load More
       </Button>
     </div>

@@ -15,7 +15,11 @@ const blogCollectionSlice = createSlice({
   reducers: {
     setLoadedBlogs: (state, action: PayloadAction<{ blogData: Ipost[] }>) => {
       const loadedBlogs = action.payload.blogData;
-      state.blogs = [...loadedBlogs];
+      loadedBlogs.forEach(blog => {
+        if (!state.blogs.some(existingBlog => existingBlog._id === blog._id)) {
+          state.blogs.push(blog);
+        }
+      })
     },
     addBlog: (state, action: PayloadAction<Ipost>) => {
       state.blogs.push(action.payload);

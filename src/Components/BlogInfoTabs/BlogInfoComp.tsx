@@ -9,7 +9,7 @@ interface BlogInfoTabProps {
 }
 
 const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs }) => {
-  const [value, setValue] = React.useState<number | unknown>(null)
+  const [value, setValue] = React.useState<number | null>(null); // Corrected useState type
   const theme = useTheme();
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -42,11 +42,18 @@ const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs }) => {
                 backgroundColor: theme.palette.action.hover,
               },
             }}
+            className='max-h-2'
           />
         ))}
       </Tabs>
       {tabs.map(({ content }, index) => (
-        <div key={index} role="tabpanel" hidden={value !== index} id={`blog-tabpanel-${index}`}>
+        <div
+          key={index}
+          role="tabpanel"
+          hidden={value !== index}
+          id={`blog-tabpanel-${index}`}
+          className='max-h-60 overflow-auto'
+        >
           {value === index && <Box sx={{ pt: 1 }}>{content}</Box>}
         </div>
       ))}

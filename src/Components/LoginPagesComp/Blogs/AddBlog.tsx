@@ -34,7 +34,7 @@ const AddBlogComp = () => {
 
     useEffect(() => {
             const userType: FetchBlogData = {
-                userType: "user"
+                userType: "user",
             };
             (dispatch as AppDispatch)(fetchBlogApiSlice(userType));
     }, [dispatch]);

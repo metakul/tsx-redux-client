@@ -111,6 +111,16 @@ export interface BlogDetailsProps{
   _id:string
 }
 
+export interface SocialProfileProps{
+  cryptoSymbol?:string;
+  discordLink?:string
+  facebookLink?:string
+  twitterLink?:string
+  linkedinLink?:string
+  instagramLink?:string
+  redditLink?:string
+}
+
 // todo later fetch based on userType
 export interface FetchBlogData{
   userType:string
