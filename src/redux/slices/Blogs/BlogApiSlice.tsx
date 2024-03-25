@@ -11,7 +11,7 @@ import { Ipost } from '../../../interfaces/interface';
 export const fetchBlogApiSlice = createAsyncThunk(
   'blogCollection/setLoadedBlogs',
   // eslint-disable-next-line no-empty-pattern
-  async ({ fetchBlogData, pageSize, blogPage, setBlogPage }: { fetchBlogData: FetchBlogData, pageSize: number, blogPage: number, setBlogPage: (page: number) => void }, { rejectWithValue, dispatch }) => {
+  async ({ fetchBlogData, pageSize, blogPage, setBlogPage }: { fetchBlogData: FetchBlogData, pageSize?: number, blogPage?: number, setBlogPage?: (page: number) => void }, { rejectWithValue, dispatch }) => {
     try {
       console.log("userType",fetchBlogData.userType)
       const response = await request({
@@ -29,7 +29,9 @@ export const fetchBlogApiSlice = createAsyncThunk(
         message: 'Blogs Fetched SuccessFully',
         data: response.data,
       };
-      setBlogPage(blogPage+1)
+      if(blogPage && setBlogPage){
+        setBlogPage(blogPage+1)
+      }
   
       return apiSuccess;
 

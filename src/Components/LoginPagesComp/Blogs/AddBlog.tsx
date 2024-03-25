@@ -36,7 +36,7 @@ const AddBlogComp = () => {
             const userType: FetchBlogData = {
                 userType: "user",
             };
-            (dispatch as AppDispatch)(fetchBlogApiSlice(userType));
+            (dispatch as AppDispatch)(fetchBlogApiSlice({ fetchBlogData: userType }));
     }, [dispatch]);
 
     console.log(blogsData)
