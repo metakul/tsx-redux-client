@@ -17,9 +17,9 @@ export const fetchBlogApiSlice = createAsyncThunk(
       const response = await request({
         url:`${ApiEndpoint.GETBLOG.url}?pagesize=${pageSize}&page=${blogPage}`,
         method: ApiEndpoint.GETBLOG.method,
-        headers: ApiEndpoint.GETBLOG.headers
+        headers: ApiEndpoint.GETBLOG.headers,
+        loadingMessage:ApiEndpoint.GETBLOG.loadingMessage
       })
-      console.log(response)
       const blogs:Ipost[] = response.data;
 
       dispatch(setLoadedBlogs({blogData:blogs} ));
@@ -52,6 +52,7 @@ export const addBlogApiSlice = createAsyncThunk(
         method: ApiEndpoint.ADD_BLOG.method,
         headers: ApiEndpoint.ADD_BLOG.headers,
         data: newBlogData,
+        loadingMessage:ApiEndpoint.ADD_BLOG.loadingMessage
       });
 
       dispatch(addBlog(response.data.newPost)); // Dispatch addBlog action with new blog data
@@ -84,7 +85,8 @@ export const fetchCryptoDispatcher = createAsyncThunk(
         url: `${ApiEndpoint.FetchCryptoInfo.url}/${cryptoSymbol}/${currency}`,
         method: ApiEndpoint.FetchCryptoInfo.method,
         data: { cryptoSymbol },
-        headers: ApiEndpoint.FetchCryptoInfo.headers
+        headers: ApiEndpoint.FetchCryptoInfo.headers,
+        loadingMessage:ApiEndpoint.FetchCryptoInfo.loadingMessage
       })
 
       //todo add propoer data for cryptoInfo

@@ -18,6 +18,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from './layout/Theme/themes';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Toaster } from "react-hot-toast";
 
 const smartWalletOptions = {
   factoryAddress: "0x2ace847964fe70d38ea6dad726e3a230dca244bd",
@@ -51,6 +52,7 @@ function App() {
         >
           <Provider store={store}>
             <BrowserRouter>
+            <Toaster position="top-center" reverseOrder={false} />
               <Router />
             </BrowserRouter>
           </Provider>

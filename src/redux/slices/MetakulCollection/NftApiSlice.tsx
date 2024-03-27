@@ -3,6 +3,7 @@ import { setLoadedNfts } from './NftSlice';
 import { ApiError, CollectionInfo } from '../../../interfaces/interface';
 import { ApiSuccess } from '../../../interfaces/interface';
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import toast from 'react-hot-toast';
 
 // $TODO : set Sdk based on user choice from wallet
 
@@ -15,6 +16,8 @@ export const LoadNftSlice = createAsyncThunk(
   'NftCollection/load',
   async ({ collectionAddress }: CollectionInfo, { rejectWithValue, dispatch }) => {
     try {
+
+      const toastId= toast.loading("Loading Metakul Collection")
       const contract = await sdk.getContract(collectionAddress);
       const nfts = await contract.erc721.getAll();
 
@@ -26,13 +29,15 @@ export const LoadNftSlice = createAsyncThunk(
         message: 'Fetch Nft Request successful',
         data: nfts,
       };
-
+      toast.success("Nft Loaded Successfuly.",{id:toastId})
       console.log(apiSuccess);
       return apiSuccess;
 
     } catch (error) {
       const castedError = error as ApiError;
       console.error('Fetch NFT Fails failed:', error);
+      toast.success("Fetch NFT Fails failed")
+
       return rejectWithValue(castedError?.error === "string" ? castedError?.error : 'Unknown Error');
     }
   }

@@ -19,11 +19,11 @@ export const loginUser = createAsyncThunk(
   async ({ email, password }: LoginData, { rejectWithValue, dispatch }) => {
     try {
       const response = await request({
-
         url: ApiEndpoint.LOGIN.url,
         method: ApiEndpoint.LOGIN.method,
         data: { email, password },
-        headers: ApiEndpoint.LOGIN.headers
+        headers: ApiEndpoint.LOGIN.headers,
+        loadingMessage:ApiEndpoint.LOGIN.loadingMessage,
       })
       // Assuming the response contains user information and a token
       const {  access } = response.data.token;
