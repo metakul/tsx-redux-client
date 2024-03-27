@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Button, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedBlogs } from '../../redux/slices/Blogs/BlogSlice';
@@ -10,7 +9,7 @@ import { Grid } from '@mui/material';
 import LikeButton from '../Buttons/LikeButton';
 import BlogDetails from '../BlogInfoTabs';
 import { useEffect, useState } from 'react';
-
+import { Helmet } from 'react-helmet';
 const Blogs = () => {
   // const theme = useTheme()
   const dispatch = useDispatch()
@@ -43,6 +42,11 @@ const Blogs = () => {
 
         (blogsData as Ipost[])?.map((post: Ipost, index: number) => (
           <section key={index} className="relative py-4 ">
+              <Helmet>
+              <title>{post.title}</title>
+              <meta name="description" content={post.description} />
+              {/* Add more meta tags as needed */}
+            </Helmet>
             <Box className="flex flex-col rounded-2.5xl border border-jacarta-300 transition-shadow shadow-lg justify-center">
 
               <div
@@ -50,13 +54,11 @@ const Blogs = () => {
               >
                 <div className='mb-3 flex flex-wrap items-center space-x-1 text-xs flex-row justify-center'>
 
-                  <Link to={`/singleBlog/${post._id}`}>
                     <img
                       src={post.image}
                       alt={post.title}
                       className=" w-80 sm:h-3/4 object-cover transition-transform duration-[100ms] will-change-transform group-hover:scale-105"
                     />
-                  </Link>
                 </div>
                 <Grid container className='mt-8'>
 
@@ -72,9 +74,9 @@ const Blogs = () => {
                       {/* <span >in</span> */}
                       <span className="inline-flex flex-wrap items-center space-x-1 text-accent">
                         {post.categories.map((category, index) => (
-                          <a key={index} href="#">
+                          <h5 key={index} >
                             {category}
-                          </a>
+                          </h5>
                         ))}
                       </span>
                     </div>

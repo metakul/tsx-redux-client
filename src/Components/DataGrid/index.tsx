@@ -12,22 +12,22 @@ interface DatagridProps {
   columns: Column[];
   rows: GridValidRowModel[];
   getRowId: GridRowIdGetter<GridValidRowModel>;
+  hideFooter?: boolean;
 }
 
-const CustomDataGrid: FC<DatagridProps> = ({getRowId, columns, rows }) => {
+const CustomDataGrid: FC<DatagridProps> = ({getRowId, hideFooter, columns, rows }) => {
   const [overlayHeight] = useState('300px');
 
   return (
     <DataGrid
-      autoHeight
       columns={columns}
       rows={rows}
       getRowId={getRowId || ''}
+      hideFooter={hideFooter}
       slots={{ noRowsOverlay: CustomNoRowsOverlay }}
       sx={{ 
         '--DataGrid-overlayHeight': overlayHeight,
       }}
-      hideFooter={true}
     />
   );
 };

@@ -1,7 +1,7 @@
 
   const BlogColumn = (
 ) => [
-    { field: "cryptoSymbol", headerName: "Cryoto Name", width: 120, editable: false },
+    { field: "cryptoSymbol", headerName: "Cryoto Name", width: 80, editable: false },
     // {
     //   field: "cryptoSymbol",
     //   headerName: "Symbol",
@@ -11,13 +11,13 @@
     {
       field: "currency",
       headerName: "currency",
-      width: 120,
+      width: 80,
       editable: false,
     },
     {
       field: "price",
       headerName: "Price",
-      width: 120,
+      width: 80,
       editable: false,
     },
   ];
