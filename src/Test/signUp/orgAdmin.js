@@ -36,12 +36,12 @@ function generateRandomServiceNo() {
     // Click on the ORGANISATION radio button
     await page.click(orgAdminRadioSelector);
 
-    await page.type('input[name="orgName"]', 'org2');
+    await page.type('input[name="orgName"]', 'org7');
     await page.type('input[name="userName"]', 'Shubham Kunwar');
     await page.type('input[name="mailId"]', generateRandomEmail());
     await page.type('input[name="serviceNo"]', generateRandomServiceNo());
     await page.type('input[name="mobileNo"]', generateRandomPhone());
-    await page.type('input[name="location"]', "Kanpur");
+    await page.type('input[name="location"]', "Kanpur3");
     await page.type('#password-signup', 'Anurag@123');
     await page.type('#confirmPassword', 'Anurag@123');
 

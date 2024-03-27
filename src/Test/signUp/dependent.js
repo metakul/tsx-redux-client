@@ -23,6 +23,8 @@ export function createRandomUser() {
     dependentBrahmaId: '', // Will be filled later
     mailId: generateRandomEmail(),
     mobileNo: generateRandomPhone(),
+    password:"Anurag@123",
+    confirmPassword:"Anurag@123"
   };
 }
 
@@ -84,6 +86,8 @@ export function createRandomUser() {
   await page.type('input[name="mobileNo"]', randomUser.mobileNo);
   await page.type('input[name="registeredHospital"]', randomUser.registeredHospital);
   await page.type('input[name="orgName"]', randomUser.orgName);
+  await page.type('#password-signup', randomUser.password);
+  await page.type('input[name="confirmPassword"]', randomUser.confirmPassword);
 
   // Click on the Submit button
   await page.click('.submitDependentForm');

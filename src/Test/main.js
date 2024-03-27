@@ -35,7 +35,7 @@ switch (args[0]) {
     runScript(args[1], args[0], args[2]);
     break;
   case 'Login':
-  case 'updateStatus':
+  case 'Dashboard':
   case 'createHospital':
   case 'createPrescription':
     if (args.length < 2) {

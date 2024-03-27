@@ -103,6 +103,8 @@ function generateRandomServiceNo() {
 
   // orgName
   await page.type('input[name="orgName"]', 'org1');
+  await page.type('#password-signup', "Anurag@123");
+  await page.type('input[name="confirmPassword"]',"Anurag@123");
 
   // Click on the Submit button
   await page.click('.submitservingForm');
