@@ -15,7 +15,8 @@ export enum Tabs {
 export enum Pages {
   HOME = '/',
   DASHBOARD = '/dashboard/app',
-  MINT = '/mint'
+  MINT = '/mint',
+  CAREER='/Career'
 }
 
 export enum HomePageInfo{
