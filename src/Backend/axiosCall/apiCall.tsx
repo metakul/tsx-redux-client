@@ -3,10 +3,10 @@ import { RequestOptions } from '../../interfaces/interface';
 import toast from 'react-hot-toast';
 
 const request = async (options: RequestOptions) => {
+  const toastId = toast.loading(options.loadingMessage as string, { duration: 8000 }); // Corrected this line
   try {
     // Construct the full request URL, prepending the API endpoint if necessary
     const fullUrl = `${options.url}`;
-    const toastId = toast.loading(options.loadingMessage as string, { duration: 8000 }); // Corrected this line
 
     // Make the HTTP request using axios
     const response = await axios({
@@ -22,7 +22,7 @@ const request = async (options: RequestOptions) => {
     console.log(response); // Accessing response data
     return response;
   } catch (error) {
-    toast.error("OHO. ERROR, RELOAAAD.");
+    toast.error("OHO. ERROR, RELOAAAD.", { id: toastId });
 
     // Handle errors gracefully, providing more informative messages if possible
     console.error(`API request error: ${error}`);

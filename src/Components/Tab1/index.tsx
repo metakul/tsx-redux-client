@@ -3,8 +3,6 @@
 import Blogs from './Blogs';
 import Marquee from '../MarqueCrypto';
 const Tab1 = () => {
-
-
   return (
     <>
       <Marquee />

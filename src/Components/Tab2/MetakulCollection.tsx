@@ -6,11 +6,12 @@ import { CollectionInfo } from '../../interfaces/interface';
 import { Button } from '@mui/material';
 import { BalanceItem } from '../../interfaces/interface';
 import { ConnectWallet } from '@thirdweb-dev/react';
+import NftCard from '../Card/NftCard';
 
 const MetakulCollection = () => {
   const dispatch = useDispatch()
 
-  const balance = useSelector(selectNftCollection).nfts
+  const balance = useSelector(selectNftCollection).nfts as BalanceItem[]
 
   const svgStyle = {
     fill: '#5893f9', // Set your desired fill color here
@@ -28,8 +29,6 @@ const MetakulCollection = () => {
       {/* <div className="relative">
         <img src="img/collections/collection_banner.jpg" alt="banner" className="h-[18.75rem] object-cover" />
       </div> */}
-
-
 
         <div className="container flex justify-center">
           <div className="text-center ">
@@ -122,7 +121,6 @@ const MetakulCollection = () => {
                       x="0"
                       y="0"
                       viewBox="0 0 1920 1920"
-
                       className="h-4 w-4"
                     >
                       <path fill="#8A92B2" d="M959.8 80.7L420.1 976.3 959.8 731z" />
@@ -329,146 +327,7 @@ const MetakulCollection = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
-
-              {(balance as BalanceItem[]) && (balance as BalanceItem[])?.length > 0 ? (
-                (balance as BalanceItem[])?.map((item: BalanceItem, index: number) => (
-                  <article key={index}>
-                    <div className="block rounded-2.5xl border border-jacarta-100 p-[1.1875rem] transition-shadow hover:shadow-lg  " >
-                      <figure className="relative">
-                        <a href={item?.metadata?.name}>
-                          <img
-                            src={item?.metadata?.image}
-                            alt={`item ${index + 1}`}
-                            className="w-full rounded-[0.625rem]"
-                            loading="lazy"
-                          />
-                        </a>
-                        <div
-                          className="absolute top-3 right-3 flex items-center space-x-1 rounded-md  p-2 "
-                        >
-                          <span
-                            className="js-likes relative cursor-pointer before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-0"
-                            data-tippy-content="Favorite"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              width="24"
-                              height="24"
-                              className="h-4 w-4 fill-jacarta-500 hover:fill-red  "
-                            >
-                              <path fill="none" d="M0 0H24V24H0z" />
-                              <path
-                                d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z"
-                              />
-                            </svg>
-                          </span>
-                          <span className="text-sm "></span>
-                        </div>
-                      </figure>
-                      <div className="mt-7 flex items-center justify-between">
-                        <a href={item?.metadata?.name}>
-                          <span className="font-display text-base hover:text-accent ">
-                            {item?.metadata?.name}
-                          </span>
-                        </a>
-                        <div className="dropup rounded-full  ">
-                          <a
-                            className="dropdown-toggle inline-flex h-8 w-8 items-center justify-center text-sm"
-                            id="itemActions2"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <svg
-                              width="16"
-                              height="4"
-                              viewBox="0 0 16 4"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="fill-jacarta-500 "
-                            >
-                              <circle cx="2" cy="2" r="2" />
-                              <circle cx="8" cy="2" r="2" />
-                              <circle cx="14" cy="2" r="2" />
-                            </svg>
-                          </a>
-                          <div
-                            className="dropdown-menu dropdown-menu-end z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl  py-4 px-2 text-left shadow-xl "
-                            aria-labelledby="itemActions2"
-                          >
-                            <button
-                              className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors   "
-                            >
-                              New bid
-                            </button>
-                            <hr className="my-2 mx-4 h-px border-0  " />
-                            <button
-                              className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors   "
-                            >
-                              Refresh Metadata
-                            </button>
-                            <button
-                              className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors   "
-                            >
-                              Share
-                            </button>
-                            <button
-                              className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors   "
-                            >
-                              Report
-                            </button>
-                          </div>
-                        </div>
-
-                      </div>
-                      <div className="mt-8 flex items-center justify-between">
-
-                        <button
-                          className="font-display text-sm font-semibold text-accent"
-                          data-bs-toggle="modal"
-                          data-bs-target="#buyNowModal"
-                        >
-                          {item && item?.metadata?.id ? (
-                            <a target="_blank" href={`https://opensea.io/assets/matic/0x710e9161e8a768c0605335ab632361839f761374/${item?.metadata.id}`}>
-
-                              Buy Now
-                            </a>) : (
-                            <h3> Not Minted Yet</h3>
-                          )}
-                        </button>
-                        {/* <a href={item?.historyLink} className="group flex items-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              width="24"
-                              height="24"
-                              className="mr-1 mb-[3px] h-4 w-4 fill-jacarta-500 group-hover:fill-accent "
-                            >
-                              <path fill="none" d="M0 0H24V24H0z" />
-                              <path
-                                d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12h2c0 4.418 3.582 8 8 8s8-3.582 8-8-3.582-8-8-8C9.25 4 6.824 5.387 5.385 7.5H8v2H2v-6h2V6c1.824-2.43 4.729-4 8-4zm1 5v4.585l3.243 3.243-1.415 1.415L11 12.413V7h2z"
-                              />
-                            </svg>
-                            <span className="font-display text-sm font-semibold group-hover:text-accent ">
-                              View History
-                            </span>
-                          </a> */}
-                      </div>
-                    </div>
-                  </article>
-                ))
-              ) : (
-                <div className=" flex flex-row">
-                  <button
-                    className="dropdown-toggle m-4 p-4 group group flex  items-center rounded-lg border border-jacarta-100  font-display text-lg font-semibold  transition-colors hover:border-transparent      "
-
-                  >
-
-                    <span>Loading NFT's from METAKUL Collection.... </span>
-                  </button>
-
-                </div>
-              )}
+              <NftCard balance={balance}/>
 
               <div className="block rounded-2.5xl border mt-4 border-jacarta-100 p-[1.1875rem] transition-shadow hover:shadow-lg  " >
                 <figure className="relative">

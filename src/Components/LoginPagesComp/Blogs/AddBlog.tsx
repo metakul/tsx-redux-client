@@ -18,7 +18,7 @@ const AddBlogComp = () => {
 
     const options = [
         { label: "Approve", value: "approve", icon: PersonIcon },
-        { label: "Reject", value: "reject", icon: PersonIcon },
+        { label: "Scheduled Post", value: "reject", icon: PersonIcon },
         { label: "Edit", value: "suspend", icon: DeleteIcon },
         { label: "Revoke Post", value: "suspend/revoke", icon: DeleteIcon }
     ];

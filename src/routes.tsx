@@ -7,6 +7,7 @@ import { Pages } from "./DataTypes/enums";
 import { selectToken } from "./redux/slices/authSlice";
 import DashboardOutlet from "./layout/DashboardLayout";
 import { ProtectedPageInfo, HomePageInfo } from "./DataTypes/enums";
+import MintPage from "./pages/Web3Pages/MintPage";
 const Router: React.FC = () => {
   const token = useSelector(selectToken);
 
@@ -18,6 +19,10 @@ const Router: React.FC = () => {
         {
           path: Pages.HOME,
           element: token ? <Navigate to={`${Pages.DASHBOARD}`} /> : <HomePage pageTitle={HomePageInfo.pageTitle} pageDescription={HomePageInfo.pageDescription} />,
+        },
+        {
+          path: Pages.MINT,
+          element: <MintPage/>,
         },
         {
           path: Pages.DASHBOARD,

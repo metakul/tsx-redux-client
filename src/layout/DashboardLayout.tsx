@@ -27,6 +27,8 @@ export default function DashboardLayout() {
       <Box component="main" sx={{
         flexGrow: 1,
         mt: APP_BAR_MOBILE,
+        ml:"auto",
+        mr:"auto",
       }}>
         <Outlet />
       </Box>

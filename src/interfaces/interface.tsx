@@ -1,5 +1,6 @@
 //pages interface
 import { AxiosRequestConfig } from "axios"
+import { AllowlistProofType } from "../redux/slices/Web3Profile/whitelist";
 export interface Layoutprops {
 }
 
@@ -7,6 +8,7 @@ export interface HomePageProps {
   pageTitle: string;
   pageDescription:string;
 }
+
 
 //tab title
 
@@ -60,9 +62,17 @@ export interface CustomError {
   error: string;
 }
 
-
-
 ///Nft Page
+export interface ClaimArguments {
+  args: [string, number, string, number, AllowlistProofType, unknown[]];
+}
+interface ClaimFunction {
+  (data: ClaimArguments): Promise<unknown>;
+}
+export interface ClaimNftInterface {
+  address?: string;
+  claim: ClaimFunction
+}
 
 export interface NFTCollectionState {
   nfts: unknown[];
@@ -79,7 +89,6 @@ export interface BalanceItem {
   };
   historyLink?: string;
 }
-
 
 //interfaces for post
 export interface Ipost  {

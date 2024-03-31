@@ -6,6 +6,7 @@ import { Ipost } from '../../interfaces/interface';
 import { Typography, Button, Grid } from '@mui/material';
 import CustomDialog from '../Dailog/Dailog';
 import CustomTextField from '../TextFeild';
+import ImageUploader from '../ImageUploader';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -111,18 +112,8 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="h3">Image</Typography>
-                        <CustomTextField
-                            id="image"
-                            type="text"
-                            label="Image URL"
-                            value={formData.image}
-                            onChange={(e) => handleChange(e, 'image')}
-                            placeholder="Enter image URL"
-                            error={errors.image}
-                            isError={isError}
-
-                        />
+                    <Typography variant="h3">Image</Typography>
+                        <ImageUploader/>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="h3">Author</Typography>
