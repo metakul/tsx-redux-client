@@ -24,7 +24,8 @@ export interface LoginData {
 }
 
 export interface CollectionInfo {
-  collectionAddress:string
+  collectionAddress:string;
+  ownerAddress?:string
 }
 
 //logged in state

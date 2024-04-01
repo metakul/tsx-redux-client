@@ -42,3 +42,32 @@ export const LoadNftSlice = createAsyncThunk(
     }
   }
 );
+export const FetchMyNftSlice = createAsyncThunk(
+  'MyNft/load',
+  async ({ collectionAddress }: CollectionInfo, { rejectWithValue, dispatch }) => {
+    try {
+      const toastId= toast.loading("Loading Metakul Collection")
+      const contract = await sdk.getContract(collectionAddress);
+      const nfts = await contract.erc721.getAll();
+      // const myNfts = await contract.call("myViewFunction", [arg1, arg2]);
+
+      // Dispatch the setLoadedNfts action to update the state with the new data
+ 
+      const apiSuccess: ApiSuccess = {
+        statusCode: 200,
+        message: 'Fetch Owner Nft Request successful',
+        data: nfts,
+      };
+      toast.success("Owner Nft Loaded Successfuly.",{id:toastId})
+      console.log(apiSuccess);
+      return apiSuccess;
+
+    } catch (error) {
+      const castedError = error as ApiError;
+      console.error('Fetch NFT Fails:', error);
+      toast.success("Fetch NFT Fails")
+
+      return rejectWithValue(castedError?.error === "string" ? castedError?.error : 'Unknown Error');
+    }
+  }
+);

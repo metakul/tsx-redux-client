@@ -1,12 +1,16 @@
 import React from 'react';
 
 import { BalanceItem } from '../../interfaces/interface';
+import { Button } from '@mui/material';
 
 interface Props {
   balance: BalanceItem[];
+  loadingMessage: string;
+  handleNftButtonText: string;
+  onHandleButtonClick: (id: string) => void;
 }
 
-const NftCard: React.FC<Props> = ({ balance }) => {
+const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText, onHandleButtonClick }) => {
   return (
     <>
       {balance && balance.length > 0 ? (
@@ -90,22 +94,16 @@ const NftCard: React.FC<Props> = ({ balance }) => {
                 </div>
               </div>
               <div className="mt-8 flex items-center justify-between">
-                <button
-                  className="font-display text-sm font-semibold text-accent"
-                  data-bs-toggle="modal"
-                  data-bs-target="#buyNowModal"
-                >
-                  {item && item?.metadata?.id ? (
-                    <a
-                      target="_blank"
-                      href={`https://opensea.io/assets/matic/0x710e9161e8a768c0605335ab632361839f761374/${item?.metadata.id}`}
-                    >
-                      Buy Now
-                    </a>
-                  ) : (
-                    <h3>Not Minted Yet</h3>
-                  )}
-                </button>
+
+                {item && item?.metadata?.id ? (
+                  <>
+                    <Button onClick={() => item && item.metadata && onHandleButtonClick(item.metadata.id)}>
+                      {handleNftButtonText}
+                    </Button>
+                  </>
+                ) : (
+                  <h3>Not Minted Yet</h3>
+                )}
               </div>
             </div>
           </article>
@@ -113,7 +111,7 @@ const NftCard: React.FC<Props> = ({ balance }) => {
       ) : (
         <div className="flex flex-row">
           <button className="dropdown-toggle m-4 p-4 group group flex items-center rounded-lg border border-jacarta-100 font-display text-lg font-semibold transition-colors hover:border-transparent">
-            <span>Loading NFT's from METAKUL Collection.... </span>
+            <span>{loadingMessage}</span>
           </button>
         </div>
       )}

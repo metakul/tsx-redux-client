@@ -33,7 +33,7 @@ export const navConfig = [
   {
     text: "Earn With Nft",
     icon: <PieChartOutlined />,
-    to: "wallet",
+    to: "earn",
   },
   // {
   //   text: "Metaverse",

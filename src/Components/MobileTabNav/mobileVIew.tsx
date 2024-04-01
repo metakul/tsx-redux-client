@@ -5,9 +5,10 @@ import Box from '@mui/material/Box';
 
 interface MobileTabNavigationProps {
   tabs: { value: ReactNode; content: ReactNode; label: string }[];
+  position?:string
 }
 
-const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs }) => {
+const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position }) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -28,7 +29,7 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs }) => {
         onChange={handleChange}
         aria-label="mobile tabs example"
         variant="fullWidth"
-        className='bottom-tabs fixed bottom-0 w-full flex flex-row bg-blue z-20'
+        className={` fixed ${position=="top" ? "top-16" : " bottom-0"} w-full flex flex-row bg-blue z-20`}
       >
         {tabs.map(({ value }, index) => (
           <Tab key={index} icon={React.createElement('div', null, value)} {...a11yProps(index)} />

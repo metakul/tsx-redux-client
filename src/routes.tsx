@@ -9,6 +9,7 @@ import DashboardOutlet from "./layout/DashboardLayout";
 import { ProtectedPageInfo, HomePageInfo } from "./DataTypes/enums";
 import MintPage from "./pages/Web3Pages/MintPage";
 import Career from "./pages/CareerPage";
+import EarnPage from "./pages/EarnPage";
 const Router: React.FC = () => {
   const token = useSelector(selectToken);
 
@@ -28,6 +29,10 @@ const Router: React.FC = () => {
         {
           path: Pages.CAREER,
           element: <Career/>,
+        },
+        {
+          path: Pages.EARN,
+          element: <EarnPage/>,
         },
         {
           path: Pages.DASHBOARD,

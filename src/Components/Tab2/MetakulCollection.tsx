@@ -22,8 +22,18 @@ const MetakulCollection = () => {
       collectionAddress: "0x710E9161e8A768c0605335AB632361839f761374"
     };
     (dispatch as AppDispatch)(LoadNftSlice(collectionInfo));
-
   }
+
+  const buyNft = (id: string | undefined) => {
+    if (id) {
+        const url = `https://opensea.io/assets/matic/0x710e9161e8a768c0605335ab632361839f761374/${id}`;
+        window.open(url, '_blank'); 
+        return true;
+    } else {
+        return false; 
+    }
+};
+
   return (
     <main className="pt-[1.5rem] lg:pt-6">
       {/* <div className="relative">
@@ -327,7 +337,7 @@ const MetakulCollection = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
-              <NftCard balance={balance}/>
+              <NftCard balance={balance} loadingMessage='Loading Nfts From Metakul Colelction' handleNftButtonText={"Buy Now"} onHandleButtonClick={buyNft}/>
 
               <div className="block rounded-2.5xl border mt-4 border-jacarta-100 p-[1.1875rem] transition-shadow hover:shadow-lg  " >
                 <figure className="relative">

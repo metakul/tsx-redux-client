@@ -16,7 +16,8 @@ export enum Pages {
   HOME = '/',
   DASHBOARD = '/dashboard/app',
   MINT = '/mint',
-  CAREER='/Career'
+  CAREER='/Career',
+  EARN='/EARN',
 }
 
 export enum HomePageInfo{
