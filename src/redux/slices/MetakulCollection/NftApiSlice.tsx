@@ -44,7 +44,9 @@ export const LoadNftSlice = createAsyncThunk(
 );
 export const FetchMyNftSlice = createAsyncThunk(
   'MyNft/load',
-  async ({ collectionAddress }: CollectionInfo, { rejectWithValue, dispatch }) => {
+  async ({ collectionAddress }: CollectionInfo, { rejectWithValue,
+    //  dispatch
+     }) => {
     try {
       const toastId= toast.loading("Loading Metakul Collection")
       const contract = await sdk.getContract(collectionAddress);

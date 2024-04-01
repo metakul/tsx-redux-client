@@ -1,7 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 
-function UnStaking(props) {
+function UnStaking() {
   return (
     <div>UnStaking</div>
   )
