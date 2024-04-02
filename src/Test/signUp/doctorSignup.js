@@ -1,20 +1,50 @@
+/* eslint-disable no-undef */
 import puppeteer from 'puppeteer';
 
-// Function to generate random phone number
-function generateRandomPhone() {
-    const randomNumber = Math.floor(Math.random() * 1000000000); // Generates a 9-digit random number
-    return `9${randomNumber.toString().padStart(9, '0')}`; // Ensures exactly 10 digits starting with '9'
-}
-
-function generateRandomEmail() {
-    const randomString = Math.random().toString(36).substring(7);
-    return `user${randomString}@gmail.com`;
-}
-
 (async () => {
+    let brahmaId;
+    let hospitalId;
+    let mobileNo;
+    let mailId
+
+    process.argv.forEach((arg) => {
+        if (arg.startsWith('brahmaId:')) {
+            brahmaId = arg.split(':')[1];
+        }
+        if (arg.startsWith('hospitalId:')) {
+            hospitalId = arg.split(':')[1];
+        }
+        if (arg.startsWith('mobileNo:')) {
+          mobileNo = arg.split(':')[1];
+        }
+        if (arg.startsWith('mailId:')) {
+          mailId = arg.split(':')[1];
+        }
+    });
+  
+    if (!brahmaId) {
+        console.error('Brahma ID not provided.');
+        process.exit(1);
+    }
+    if (!hospitalId) {
+        console.error('Hospital ID not provided.');
+        process.exit(1);
+    }
+    if (!mobileNo) {
+        console.error('Mobile No not provided.');
+        process.exit(1);
+    }
+    if (!mailId) {
+        console.error('Mail ID not provided.');
+        process.exit(1);
+    }
+
+    console.log("Brahma ID:", brahmaId);
+    console.log("Hospital ID:", hospitalId);
+
     const browser = await puppeteer.launch({
         headless: false,
-        slowMo: 2,
+        slowMo: 5,
         defaultViewport: null,
     });
 
@@ -24,15 +54,14 @@ function generateRandomEmail() {
 
     await page.click('.yes-button');
 
-    await page.type('#brahmaId', 'B00001');
-    await page.type('#mobileNo', generateRandomPhone());
-    await page.type('#mailId', generateRandomEmail());
+    await page.type('#brahmaId', brahmaId);
+    await page.type('#mobileNo', mobileNo);
+    await page.type('#mailId', mailId);
     await page.type('#department', "ENT");
     await page.type('#password-signup', 'Anurag@123');
 
     await page.type('#confirmPassword', 'Anurag@123');
-    await page.type('#orgName', 'org1');
-    await page.type('#hospitalId', 'H0001');
+    await page.type('#hospitalId', hospitalId);
     await page.type('#appointment', 'appointment');
 
     await page.click('.handleNext')

@@ -10,8 +10,8 @@ const OrgAdmin = {
   // Launch the browser
   const browser = await puppeteer.launch({
     headless: false,
-    slowMo: 20,
-    // devtools:true
+    slowMo: 5,
+    devtools:true,
     defaultViewport: null,
 
   });
@@ -47,7 +47,6 @@ const OrgAdmin = {
   await page.click('.verifyOtpButton');
   // Wait for navigation to complete to the dashboard
   await page.waitForNavigation();
-
  
   await addHospital(page);
 })();
@@ -68,8 +67,8 @@ async function addHospital(page) {
   await page.click(".hospitalLocation")
   await page.type('.hospitalLocation',hospitalName);
   
-  await page.click(".hospitalEmail")
-  await page.type('.hospitalEmail',`${hospitalName}_hospital@gmail.com`);
+  // await page.click(".hospitalEmail")
+  // await page.type('.hospitalEmail',`${hospitalName}_hospital@gmail.com`);
 
   await page.click(".handleAddHospital")
 }

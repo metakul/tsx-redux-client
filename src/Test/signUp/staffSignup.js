@@ -1,15 +1,11 @@
 import puppeteer from 'puppeteer';
 
 // Function to generate random phone number
-function generateRandomPhone() {
-    const randomNumber = Math.floor(Math.random() * 1000000000); // Generates a 9-digit random number
-    return `9${randomNumber.toString().padStart(9, '0')}`; // Ensures exactly 10 digits starting with '9'
-}
 
 (async () => {
     const browser = await puppeteer.launch({
         headless: false,
-        slowMo: 2,
+        slowMo: 5,
         defaultViewport: null,
         devtools:true
     });
@@ -27,12 +23,11 @@ function generateRandomPhone() {
     // Click on the ORGANISATION radio button
     await page.click(staffTypeSelector);
 
-    await page.type('#brahmaId', 'B00001');
-    await page.type('#mobileNo', generateRandomPhone());
+    await page.type('#brahmaId', 'B4510469');
+    await page.type('#mobileNo', "9519564617");
     await page.type('#password-signup', 'Anurag@123');
 
     await page.type('#confirmPassword', 'Anurag@123');
-    await page.type('#orgName', 'org1');
     await page.type('#department', 'eye');
     await page.type('#hospitalId', 'H0001');
     await page.type('#appointment', 'appointment');

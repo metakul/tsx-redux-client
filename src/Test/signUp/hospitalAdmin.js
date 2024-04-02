@@ -37,7 +37,7 @@ function generateRandomServiceNo() {
 
     const browser = await puppeteer.launch({
         headless: false,
-        slowMo: 2,
+        slowMo: 5,
         defaultViewport: null,
     });
 

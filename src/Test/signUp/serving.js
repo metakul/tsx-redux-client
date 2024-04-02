@@ -24,7 +24,7 @@ function generateRandomServiceNo() {
   // Launch the browser
   const browser = await puppeteer.launch({
     headless: false,
-    slowMo: 2,
+    slowMo: 5,
     defaultViewport: null,
     // devtools:true
   });
@@ -102,7 +102,6 @@ function generateRandomServiceNo() {
   await page.type('input[name="registeredHospital"]', 'H0001');
 
   // orgName
-  await page.type('input[name="orgName"]', 'org1');
   await page.type('#password-signup', "Anurag@123");
   await page.type('input[name="confirmPassword"]',"Anurag@123");
 

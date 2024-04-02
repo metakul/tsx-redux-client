@@ -10,7 +10,7 @@ const RootAdmin = {
   // Launch the browser
   const browser = await puppeteer.launch({
     headless: false,
-    slowMo: 12,
+    slowMo: 5,
     // devtools:true
     defaultViewport: null,
 
@@ -48,22 +48,22 @@ const RootAdmin = {
   // Wait for navigation to complete to the dashboard
   await page.waitForNavigation();
 
-  // // You can further interact with the dashboard page here
-  // await page.waitForSelector('.updateOrgAdminButton');
-  // await page.click('.updateOrgAdminButton');
-  // // Click on the "Approve" menu item
-  await page.evaluate(() => {
-    window.scrollTo(0, document.body.scrollHeight);
-  });
+  // // // You can further interact with the dashboard page here
+  // // await page.waitForSelector('.updateOrgAdminButton');
+  // // await page.click('.updateOrgAdminButton');
+  // // // Click on the "Approve" menu item
+  // await page.evaluate(() => {
+  //   window.scrollTo(0, document.body.scrollHeight);
+  // });
   
-  // Wait for the last row to become visible
-  await page.waitForSelector('.dataGridRow:last-child');
+  // // Wait for the last row to become visible
+  // await page.waitForSelector('.dataGridRow:last-child');
   
-  // Click on the last row to open its menu
-  await page.click('.dataGridRow:last-child');
+  // // Click on the last row to open its menu
+  // await page.click('.dataGridRow:last-child');
 
-  await page.click('.userOptionMenu'); // Assuming '.userOptionMenu' is the class of the menu container
-  await page.waitForSelector('.userOptionMenu'); // Wait for the menu to appear
-  await page.click('.userOptionMenu MenuItem'); // Click on the first menu item
+  // await page.click('.userOptionMenu'); // Assuming '.userOptionMenu' is the class of the menu container
+  // await page.waitForSelector('.userOptionMenu'); // Wait for the menu to appear
+  // await page.click('.userOptionMenu MenuItem'); // Click on the first menu item
 
 })();
