@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, loginVerifyUser, resendOtpLogin } from '../../redux/slices/authApiSlice';
-import { LoginData } from '../../interfaces/interface';
+import { LoginData, VerifyLoginData } from '../../interfaces/interface';
 import { AppDispatch } from '../../redux/store';
 import CustomHeading from '../Typogrpahy/Text/Heading';
 import CustomTextField from '../Typogrpahy/Text/TextFeild';
@@ -9,12 +9,13 @@ import { LoginFormProps } from '../../interfaces/interface';
 import { LoginButtonText } from '../../DataTypes/constText';
 import DependentSignUpForm from './SignUp/Applicants/Dependent';
 import { Pages, UserType } from '../../DataTypes/enums';
-import { selectUser } from '../../redux/slices/authSlice';
+import { selectTrxId, selectUser } from '../../redux/slices/authSlice';
 import { Link } from 'react-router-dom';
 
 const LoginForm: React.FC<LoginFormProps> = (props) => {
   const dispatch = useDispatch();
   const selectedUser = useSelector(selectUser)
+  const trxId=useSelector(selectTrxId)
   
   const [user, setuser] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -27,7 +28,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
 
     try {
       const loginData: LoginData = {
-        id: user,
+        userId: user,
         password: password,
         userType: props.userType,
       };
@@ -43,10 +44,9 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
     event.preventDefault();
 
     try {
-      const verifyLoginData = {
-        id: user,
+      const verifyLoginData : VerifyLoginData= {
+        trxId,
         otp: otp,
-        userType: props.userType,
       };
 
       // Dispatch loginVerifyUser action
@@ -57,7 +57,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
   };
 
   const handleResendOtp = async () => {
-    (dispatch as AppDispatch)(resendOtpLogin({ id: user, userType: props.userType }));
+    (dispatch as AppDispatch)(resendOtpLogin({  trxId: props.userType }));
   };
 
   const handleSignUpForm = async () => {

@@ -26,25 +26,24 @@ export interface LoginFormProps {
 
 //login form state
 export interface LoginData {
-  id: string;
+  userId: string;
   password: string;
   userType:UserType;
 }
 
 //verify login data
 export interface VerifyLoginData{
-  id:string,
+  trxId:string,
   otp:string,
-  userType:UserType
 }
 //resend login OTP
 export interface ResendOtpData{
-  id:string,
-  userType:UserType
+  trxId:string,
 }
 
 //logged in state
 export interface AuthState {
+  loginTrxId:string;
   isAuthenticated: boolean;
   user: string | null;
   token: string | null;
@@ -55,7 +54,7 @@ export interface AuthState {
 export interface RequestOptions {
   method: AxiosRequestConfig['method'];
   url: string;
-  data?: unknown; // Allow any data type initially  // $MAJOR
+  data?: unknown; // todo Allow any data type initially  // $MAJOR
   headers?: AxiosRequestConfig['headers'];
 }
 

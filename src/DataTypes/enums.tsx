@@ -23,7 +23,7 @@ export enum ProfileTab {
 
 // define endpoints here
 export const ApiEndpoint: Record<string, RequestOptions> = {
-  LOGIN: { url: '/auth/user/login', method: 'POST', headers: { 'Content-Type': 'application/json'}},
-  LOGINVERIFY: { url: '/auth/user/login/verify', method: 'POST', headers: { 'Content-Type': 'application/json'}},
-  RESENDLOGINOTP: { url: '/login/otp/resend', method: 'POST', headers: { 'Content-Type': 'application/json'}},
+  LOGIN: { url: '/authApi/auth/user/login', method: 'POST', headers: { 'Content-Type': 'application/json'}},
+  LOGINVERIFY: { url: '/authApi/auth/user/login/verify', method: 'POST', headers: { 'Content-Type': 'application/json'}},
+  RESENDLOGINOTP: { url: '/authApi/login/otp/resend', method: 'POST', headers: { 'Content-Type': 'application/json'}},
 };

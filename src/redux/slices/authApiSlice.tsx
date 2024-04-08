@@ -1,6 +1,6 @@
 // authActions.tsx
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setCredentials } from './authSlice';
+import { setCredentials, setLoginTrxId } from './authSlice';
 import { ApiError, LoginData, VerifyLoginData, ResendOtpData } from '../../interfaces/interface';
 import { ApiEndpoint } from '../../DataTypes/enums';
 import request from '../../Backend/axiosCall/apiCall';
@@ -9,17 +9,18 @@ import { ErrorType } from '../../DataTypes/errors';
 
 export const loginUser = createAsyncThunk(
   'auth/login',
-  async ({ id, password, userType }: LoginData, { rejectWithValue }) => {
+  async ({ userId, password, userType }: LoginData, { rejectWithValue,dispatch }) => {
     try {
       const response = await request({
         url: `${ApiEndpoint.LOGIN.url}`,
         method: ApiEndpoint.LOGIN.method,
-        data: { id, password, userType },
+        data: { userId, password, userType },
         headers: ApiEndpoint.LOGIN.headers
       })
-      console.log(response.data)
-      if (response.data.status === 200) {
-        
+      
+        const { trxId:loginTrxId, } = response.data;
+
+        dispatch(setLoginTrxId({loginTrxId,userType}))
         const apiSuccess: ApiSuccess = {
           statusCode: response.status,
           message: 'OTP Sent Successfully',
@@ -27,10 +28,6 @@ export const loginUser = createAsyncThunk(
         };
 
         return apiSuccess;
-      }
-      else {
-        return rejectWithValue(ErrorType.LOGINERROR);
-      }
     } catch (error) {
       const castedError = error as ApiError
       console.error(ErrorType.UNKNOWN_ERROR, error);
@@ -42,23 +39,20 @@ export const loginUser = createAsyncThunk(
 // * @param otp
 export const loginVerifyUser = createAsyncThunk(
   'auth/login/verifyOtp',
-  async ({ id, otp, userType }: VerifyLoginData, { rejectWithValue, dispatch }) => {
+  async ({ trxId, otp }: VerifyLoginData, { rejectWithValue, dispatch }) => {
     try {
       const response = await request({
-        url: `${ApiEndpoint.LOGINVERIFY.url}?id=${id}`,
+        url: `${ApiEndpoint.LOGINVERIFY.url}?trxId=${trxId}`,
         method: ApiEndpoint.LOGINVERIFY.method,
         data: { otp },
         headers: ApiEndpoint.LOGINVERIFY.headers
       })
-      if (response.data.status === 200) {
-
-        // * Assuming the response contains user information and a token
         const { accessToken:token,refreshToken:user } = response.data;
 
         // TODO: save access and refresh in cookies and apply the refresh logic
 
         // * Dispatch the setCredentials action to update the authentication state
-        dispatch(setCredentials({ user, token, userType }));
+        dispatch(setCredentials({ user, token }));
 
         const apiSuccess: ApiSuccess = {
           statusCode: response.status,
@@ -67,10 +61,7 @@ export const loginVerifyUser = createAsyncThunk(
         };
 
         return apiSuccess;
-      }
-      else {
-        return rejectWithValue(ErrorType.VERIFYLOGINERROR);
-      }
+    
     } catch (error) {
       const castedError = error as ApiError
       console.error(ErrorType.UNKNOWN_ERROR, error);
@@ -82,10 +73,10 @@ export const loginVerifyUser = createAsyncThunk(
 // * @param otp
 export const resendOtpLogin = createAsyncThunk(
   'auth/login/resentOtp',
-  async ({ id,userType }: ResendOtpData, { rejectWithValue }) => {
+  async ({ trxId }: ResendOtpData, { rejectWithValue }) => {
     try {
       const response = await request({
-        url: `${ApiEndpoint.RESENDLOGINOTP.url}?userType=${userType}?id=${id}`,
+        url: `${ApiEndpoint.RESENDLOGINOTP.url}?trxId=${trxId}`,
         method: ApiEndpoint.RESENDLOGINOTP.method,
         headers: ApiEndpoint.RESENDLOGINOTP.headers
       })

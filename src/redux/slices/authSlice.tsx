@@ -6,9 +6,11 @@ import { UserType } from '../../DataTypes/enums';
 const storedUser = localStorage.getItem('user');
 const storedToken = localStorage.getItem('token');
 const storedUserType = localStorage.getItem('userType');
+const storedLoginTrxId = localStorage.getItem('loginTrxId');
 
 const initialState: AuthState = {
   isAuthenticated: false,
+  loginTrxId: storedLoginTrxId ? storedLoginTrxId : "",
   user: storedUser ? storedUser : null,
   token: storedToken ? storedToken : null,
   userType: storedUserType ? (storedUserType as UserType) : null,
@@ -18,17 +20,22 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setCredentials: (state, action: PayloadAction<{ user: string; token: string; userType: UserType }>) => {
+    setLoginTrxId:(state, action: PayloadAction<{ loginTrxId: string;userType:UserType} > )=>{
+      state.loginTrxId=action.payload.loginTrxId
+      state.userType = action.payload.userType;
+
+      localStorage.setItem('loginTrxId', action.payload.loginTrxId);
+      localStorage.setItem('userType', action.payload.userType);
+    },
+    setCredentials: (state, action: PayloadAction<{ user: string; token: string; }>) => {
 
       // TODO: Update the user authentication logic
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.userType = action.payload.userType;
 
       localStorage.setItem('user', action.payload.user);
       localStorage.setItem('token', action.payload.token);
-      localStorage.setItem('userType', action.payload.userType);
     },
     logout: (state) => {
       state.isAuthenticated = false;
@@ -43,7 +50,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, logout,setLoginTrxId } = authSlice.actions;
 
 export default authSlice.reducer;
 
@@ -52,3 +59,4 @@ export const selectUser = (state: { auth: { user: string } }) => state.auth.user
 export const selectToken = (state: { auth: { token: string } }) => state.auth.token;
 export const isAuthenticated = (state: { auth: { isAuthenticated: boolean } }) => state.auth.isAuthenticated;
 export const selectUserType = (state: { auth: { userType: string } }) => state.auth.userType;
+export const selectTrxId = (state: { auth: { loginTrxId: string } }) => state.auth.loginTrxId;
