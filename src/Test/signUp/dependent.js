@@ -61,8 +61,10 @@ export function createRandomUser() {
   const dropZone = await page.waitForFunction('document.querySelector(".dropzone")');
   console.log(dropZone);
 
-  // Generate a random file path
-  const filePath = 'src/Test/signUp/Screen.jpg'; // Replace this with the path to your random image file
+  const randomImageIndex = Math.floor(Math.random() * 4) + 1;
+  const fileName = `${randomImageIndex}.png`; 
+
+  const filePath = `src/Test/signUp/images/${fileName}`; 
 
   // Find the input element for file upload
   const inputUploadHandle = await page.$('input[type=file]');

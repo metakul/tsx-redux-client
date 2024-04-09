@@ -45,7 +45,11 @@ function generateRandomServiceNo() {
   // input file:
   await page.waitForFunction('document.querySelector(".dropzone")');
 
-  const filePath = 'src/Test/signUp/Screen.jpg'; 
+  const randomImageIndex = Math.floor(Math.random() * 4) + 1;
+  const fileName = `${randomImageIndex}.png`; 
+
+
+  const filePath = `src/Test/signUp/images/${fileName}`; 
 
   // Find the input element for file upload
   const inputUploadHandle = await page.$('input[type=file]');
