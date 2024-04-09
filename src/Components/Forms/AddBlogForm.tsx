@@ -7,10 +7,10 @@ import { Typography, Button, Grid } from '@mui/material';
 import CustomDialog from '../Dailog/Dailog';
 import CustomTextField from '../TextFeild';
 import ImageUploader from '../ImageUploader';
-import ReactQuill from 'react-quill';
+import WYSIWYGEditor from '../WYSWYGEditor';
 import 'react-quill/dist/quill.snow.css';
 
-interface AddBlogProps { }
+interface AddBlogProps {}
 
 interface ErrorMessages {
     [key: string]: string;
@@ -37,7 +37,6 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
     const [description, setDescription] = useState('');
     const [isError, setIsError] = useState<boolean>(false);
 
-
     const [errors, setErrors] = useState<ErrorMessages>(newErrors);
 
     const handleFormSubmit = async (event: React.FormEvent) => {
@@ -50,19 +49,19 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
             if (typeof formValue === 'string') {
                 if (formValue.trim() === '' && key !== 'description') {
                     newErrors[key] = `${key.charAt(0).toUpperCase() + key.slice(1)} is required`;
-                    setIsError(true)
+                    setIsError(true);
                 }
             } else if (Array.isArray(formValue)) {
                 if (formValue.length === 0 && key !== 'description') {
                     newErrors[key] = `${key.charAt(0).toUpperCase() + key.slice(1)} is required`;
-                    setIsError(true)
+                    setIsError(true);
                 }
             }
         });
         setErrors(newErrors as typeof errors);
 
         // If there are no errors, dispatch action to add blog
-        if (Object.values(newErrors).every(error => !error)) {
+        if (Object.values(newErrors).every((error) => !error)) {
             setIsError(false);
 
             // Dispatch action to add blog
@@ -73,11 +72,16 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
     const handleChange = (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>, field: keyof Ipost) => {
         if (field === 'categories') {
             // Split the input value by comma and trim each category
-            const categoriesArray = e.currentTarget.value.split(',').map(category => category.trim());
+            const categoriesArray = e.currentTarget.value.split(',').map((category) => category.trim());
             setFormData({ ...formData, [field]: categoriesArray });
         } else {
             setFormData({ ...formData, [field]: e.currentTarget.value });
         }
+    };
+
+    // Callback function to update the description state
+    const handleDescriptionChange = (value: string) => {
+        setDescription(value);
     };
 
     return (
@@ -105,15 +109,12 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="h3">Description</Typography>
-                        <ReactQuill
-                            theme="snow"
-                            value={description}
-                            onChange={(value) => setDescription(value)}
-                        />
+                        {/* Use the WYSIWYGEditor component and pass the callback function to update description */}
+                        <WYSIWYGEditor value={description} onChange={handleDescriptionChange} />
                     </Grid>
                     <Grid item xs={12}>
-                    <Typography variant="h3">Image</Typography>
-                        <ImageUploader/>
+                        <Typography variant="h3">Image</Typography>
+                        <ImageUploader />
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="h3">Author</Typography>
@@ -126,7 +127,6 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                             placeholder="Enter author"
                             error={errors.author}
                             isError={isError}
-
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -140,7 +140,6 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                             placeholder="Enter categories"
                             error={errors.categories}
                             isError={isError}
-
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -154,7 +153,6 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                             placeholder="Enter crypto symbol"
                             error={errors.cryptoSymbol}
                             isError={isError}
-
                         />
                     </Grid>
                 </Grid>

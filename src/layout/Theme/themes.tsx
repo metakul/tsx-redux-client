@@ -31,7 +31,7 @@ export const tokens = (mode: string) => ({
             },
 
             primary: {
-                100: "#e0f7fa", // very light shade of sky blue
+                100: "#fffff", // very light shade of sky blue
                 200: "#00bfff", // deep sky blue
                 300: "#0099cc", // slightly darker shade of sky blue
                 400: "#007399", // a bit darker shade of sky blue
@@ -208,7 +208,7 @@ export const themeSettings = (mode: PaletteMode): ExtendedTheme => {
                             light: colors.grey[100],
                         },
                         background: {
-                            default: "rgba(98, 202, 196, 0.71)",
+                            default:  colors.primary[900],
                         },
                     }),
             },

@@ -8,15 +8,16 @@ import { BalanceItem } from '../../interfaces/interface';
 import { ConnectWallet } from '@thirdweb-dev/react';
 import NftCard from '../Card/NftCard';
 
+// eslint-disable-next-line react-refresh/only-export-components
+export  const svgStyle = {
+    fill: '#5893f9', // Set your desired fill color here
+    height: '1em',
+  };
 const MetakulCollection = () => {
   const dispatch = useDispatch()
 
   const balance = useSelector(selectNftCollection).nfts as BalanceItem[]
 
-  const svgStyle = {
-    fill: '#5893f9', // Set your desired fill color here
-    height: '1em',
-  };
   const handleLoadNft = () => {
     const collectionInfo: CollectionInfo = {
       collectionAddress: "0x710E9161e8A768c0605335AB632361839f761374"

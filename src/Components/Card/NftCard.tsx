@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BalanceItem } from '../../interfaces/interface';
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 
 interface Props {
   balance: BalanceItem[];
@@ -13,10 +13,13 @@ interface Props {
 const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText, onHandleButtonClick }) => {
   return (
     <>
+<Grid container>
+
       {balance && balance.length > 0 ? (
         balance.map((item: BalanceItem, index: number) => (
+          <Grid item xs={6}>
           <article key={index}>
-            <div className="block rounded-2.5xl border border-jacarta-100 p-[1.1875rem] transition-shadow hover:shadow-lg">
+            <div className="block ml-2 rounded-2.5xl border border-jacarta-100 p-[1.1875rem] transition-shadow hover:shadow-lg max-w-80">
               <figure className="relative">
                 <a href={item?.metadata?.name}>
                   <img
@@ -107,6 +110,8 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
               </div>
             </div>
           </article>
+    </Grid>
+
         ))
       ) : (
         <div className="flex flex-row">
@@ -115,6 +120,8 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
           </button>
         </div>
       )}
+</Grid>
+
     </>
   );
 };

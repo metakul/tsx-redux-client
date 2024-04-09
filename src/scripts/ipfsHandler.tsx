@@ -27,7 +27,7 @@ export const uploadJSONToIPFS = async (JSONBody: unknown) => {
             console.log(error)
             return {
                 success: false,
-                message: error.message,
+                pinataURL: error.message,
             }
 
         });
@@ -86,7 +86,7 @@ export const uploadFileToIPFS = async (file: unknown) => {
             console.log(error)
             return {
                 success: false,
-                message: error.message,
+                pinataURL: error.message,
             }
 
         });

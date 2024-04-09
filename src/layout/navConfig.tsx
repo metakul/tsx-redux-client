@@ -1,11 +1,11 @@
 import {
   HomeOutlined,
-  ShoppingCartOutlined,
+  // ShoppingCartOutlined,
   ReceiptLongOutlined,
   PublicOutlined,
   TodayOutlined,
   CalendarMonthOutlined,
-  AdminPanelSettingsOutlined,
+  // AdminPanelSettingsOutlined,
   PieChartOutlined,
 } from "@mui/icons-material";
 
@@ -21,15 +21,15 @@ export const navConfig = [
     to: "",
   },
   {
-    text: "Mint NFT",
+    text: "Claim NFT",
     icon: <TodayOutlined />,
     to: "mint",
   },
-  {
-    text: "Explore",
-    icon: <ShoppingCartOutlined />,
-    to: "metakul",
-  },
+  // {
+  //   text: "Explore",
+  //   icon: <ShoppingCartOutlined />,
+  //   to: "metakul",
+  // },
   {
     text: "Earn With Nft",
     icon: <PieChartOutlined />,
@@ -51,15 +51,15 @@ export const navConfig = [
     icon:null,
     to: "",
   },
+  // {
+  //   text: "Profile",
+  //   icon: <AdminPanelSettingsOutlined />,
+  //   to: "Profile",
+  // },
   {
-    text: "Profile",
-    icon: <AdminPanelSettingsOutlined />,
-    to: "Profile",
-  },
-  {
-    text: "KYC",
+    text: "Create Own NFT",
     icon: <PublicOutlined />,
-    to: "kyc",
+    to: "CREATE_NFT",
   },
   {
     text: "Career",

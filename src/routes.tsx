@@ -10,6 +10,7 @@ import { ProtectedPageInfo, HomePageInfo } from "./DataTypes/enums";
 import MintPage from "./pages/Web3Pages/MintPage";
 import Career from "./pages/CareerPage";
 import EarnPage from "./pages/EarnPage";
+import CreateNft from "./pages/CreateNftPage";
 const Router: React.FC = () => {
   const token = useSelector(selectToken);
 
@@ -33,6 +34,10 @@ const Router: React.FC = () => {
         {
           path: Pages.EARN,
           element: <EarnPage/>,
+        },
+        {
+          path: Pages.CREATE_NFT,
+          element: <CreateNft/>,
         },
         {
           path: Pages.DASHBOARD,
