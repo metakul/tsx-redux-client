@@ -1,7 +1,6 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { BalanceItem } from '../../interfaces/interface';
-import { Button, Grid } from '@mui/material';
+import { Button, Menu, MenuItem } from '@mui/material';
 
 interface Props {
   balance: BalanceItem[];
@@ -11,15 +10,22 @@ interface Props {
 }
 
 const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText, onHandleButtonClick }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
-<Grid container>
-
       {balance && balance.length > 0 ? (
         balance.map((item: BalanceItem, index: number) => (
-          <Grid item xs={6}>
           <article key={index}>
-            <div className="block ml-2 rounded-2.5xl border border-jacarta-100 p-[1.1875rem] transition-shadow hover:shadow-lg max-w-80">
+            <div className="block ml-2 rounded-2.5xl border border-jacarta-100 p-[1\5rem] transition-shadow hover:shadow-lg max-w-80">
               <figure className="relative">
                 <a href={item?.metadata?.name}>
                   <img
@@ -52,16 +58,15 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
               </figure>
               <div className="mt-7 flex items-center justify-between">
                 <a href={item?.metadata?.name}>
-                  <span className="font-display text-base hover:text-accent">
-                    {item?.metadata?.name}
-                  </span>
+                  <span className="font-display text-base hover:text-accent">{item?.metadata?.name}</span>
                 </a>
-                <div className="dropup rounded-full">
-                  <a
-                    className="dropdown-toggle inline-flex h-8 w-8 items-center justify-center text-sm"
+                <div>
+                  <Button
                     id={`itemActions${index}`}
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
+                    aria-controls={`menu-${index}`}
+                    aria-haspopup="true"
+                    onClick={handleClick}
+                    className="dropdown-toggle inline-flex h-8 w-8 items-center justify-center text-sm"
                   >
                     <svg
                       width="16"
@@ -75,53 +80,56 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
                       <circle cx="8" cy="2" r="2" />
                       <circle cx="14" cy="2" r="2" />
                     </svg>
-                  </a>
-                  <div
-                    className="dropdown-menu dropdown-menu-end z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl py-4 px-2 text-left shadow-xl"
-                    aria-labelledby={`itemActions${index}`}
+                  </Button>
+                  <Menu
+                    id={`menu-${index}`}
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    MenuListProps={{
+                      'aria-labelledby': `itemActions${index}`,
+                    }}
                   >
-                    <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors">
-                      New bid
-                    </button>
-                    <hr className="my-2 mx-4 h-px border-0" />
-                    <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors">
-                      Refresh Metadata
-                    </button>
-                    <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors">
-                      Share
-                    </button>
-                    <button className="block w-full rounded-xl px-5 py-2 text-left font-display text-sm transition-colors">
-                      Report
-                    </button>
-                  </div>
+                    <MenuItem onClick={handleClose}>New bid</MenuItem>
+                    <MenuItem onClick={handleClose}>Refresh Metadata</MenuItem>
+                    <MenuItem onClick={handleClose}>Share</MenuItem>
+                    <MenuItem onClick={handleClose}>Report</MenuItem>
+                  </Menu>
                 </div>
               </div>
               <div className="mt-8 flex items-center justify-between">
-
                 {item && item?.metadata?.id ? (
-                  <>
-                    <Button onClick={() => item && item.metadata && onHandleButtonClick(item.metadata.id)}>
-                      {handleNftButtonText}
-                    </Button>
-                  </>
+                  <Button onClick={() => item && item.metadata && onHandleButtonClick(item.metadata.id)}>{handleNftButtonText}</Button>
                 ) : (
                   <h3>Not Minted Yet</h3>
                 )}
               </div>
             </div>
           </article>
-    </Grid>
-
         ))
       ) : (
         <div className="flex flex-row">
-          <button className="dropdown-toggle m-4 p-4 group group flex items-center rounded-lg border border-jacarta-100 font-display text-lg font-semibold transition-colors hover:border-transparent">
+          <Button
+            className="dropdown-toggle m-4 p-4 group group flex items-center rounded-lg border border-jacarta-100 font-display text-lg font-semibold transition-colors hover:border-transparent"
+            onClick={handleClick}
+          >
             <span>{loadingMessage}</span>
-          </button>
+          </Button>
+          <Menu
+            id="menu"
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}>Logout</MenuItem>
+          </Menu>
         </div>
       )}
-</Grid>
-
     </>
   );
 };

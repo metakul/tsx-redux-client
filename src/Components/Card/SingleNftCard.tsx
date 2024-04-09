@@ -10,7 +10,7 @@ const nftDropContractAddress = "0x710E9161e8A768c0605335AB632361839f761374"
 const stakingContractAddress = "0x7615Cc203dDe705bFD65C42CEAcA7e15eB41b11b"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const NFTCard = ({ tokenId }: any) => {
+const SingleNftCard = ({ tokenId }: any) => {
   const { contract } = useContract(nftDropContractAddress, "nft-drop");
   const { data: nft } = useNFT(contract, tokenId);
 
@@ -50,4 +50,4 @@ const NFTCard = ({ tokenId }: any) => {
     </>
   );
 };
-export default NFTCard;
+export default SingleNftCard;

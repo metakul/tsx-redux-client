@@ -3,7 +3,7 @@ import { useAddress, useTokenBalance } from "@thirdweb-dev/react";
 import { useContract, useContractRead } from "@thirdweb-dev/react";
 import  { useState, useEffect } from 'react';
 import {  ethers } from "ethers";
-import NFTCard from "../../Components/Card/SingleNftCard";
+import SingleNftCard from "../../Components/Card/SingleNftCard";
 // If used on the FRONTEND pass your 'clientId'
 
 const nftDropContractAddress = "0x710E9161e8A768c0605335AB632361839f761374"
@@ -78,7 +78,7 @@ const Mywallet = () => {
               </p>
 
 
-      <section className="relative py-12">
+      <section className="relative py-2">
         <picture className="pointer-events-none absolute inset-0 -z-10 dark:hidden">
           <img src="img/gradient_light.jpg" alt="gradient" className="h-full w-full" />
         </picture>
@@ -87,13 +87,13 @@ const Mywallet = () => {
 
           <div className="tab-content">
             <div className="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="items-tab">
-              <div className="grid grid-cols-1 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
                 {loading ? (
                   <div className="text-center">Loading...</div>
                 ) : stakedTokens ? (
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   stakedTokens[0]?.map((stakedToken: { toNumber: () => any; toString: () => any; }) => (
-                    <NFTCard
+                    <SingleNftCard
                       tokenId={stakedToken.toNumber()}
                       key={stakedToken.toString()}
                     />

@@ -49,26 +49,26 @@ const MintPage = () => {
   }
 
   return (
-    <Container sx={{mt:4}}>
+    <Container className='container'>
+      <Container>
 
-      <div className="container mx-auto mt-8 ">
-        <div
-          className="featuredlaunch_rightCol"
-          style={{ justifyContent: "center", alignItems: "center" }}
-        >
+      <div className="  mt-8 ">
+       
           <Grid container sx={{mt:12}}>
-            <Grid item xs={10}>
-              <Typography variant="h2">
+            <Grid item xs={6} sx={{
+              mb:4
+            }}>
+              <Typography variant="h3">
                 GASLESS NFT Mint
               </Typography>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={6}>
               <ConnectWallet />
             </Grid>
           </Grid>
           <img
             src="https://media.discordapp.net/attachments/954642077340278825/1019585636375732285/6tckjj.gif"
-            alt="NFT img"
+            alt=""
             width="300px"
           />
           <StyledContainer>
@@ -124,7 +124,7 @@ const MintPage = () => {
             </div>
         </div>
 
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-8">
 
           {address &&
             <div>
@@ -159,7 +159,8 @@ const MintPage = () => {
             </StyledContent>
           ))}
         </div>
-      </div>
+      </Container>
+
     </Container>
 
   );
