@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BalanceItem } from '../../interfaces/interface';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Button, Menu, MenuItem, Typography } from '@mui/material';
 
 interface Props {
   balance: BalanceItem[];
@@ -31,7 +31,7 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
                   <img
                     src={item?.metadata?.image}
                     alt={`item ${index + 1}`}
-                    className="w-full rounded-[0.625rem]"
+                    className="w-full rounded-t-2.5xl border "
                     loading="lazy"
                   />
                 </a>
@@ -56,8 +56,8 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
                   <span className="text-sm"></span>
                 </div>
               </figure>
-              <div className="mt-7 flex items-center justify-between">
-                <a href={item?.metadata?.name}>
+              <div className="mt-4 ml-4 flex items-center justify-between">
+                <a href={item?.metadata?.name} >
                   <span className="font-display text-base hover:text-accent">{item?.metadata?.name}</span>
                 </a>
                 <div>
@@ -97,7 +97,7 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
                   </Menu>
                 </div>
               </div>
-              <div className="mt-8 flex items-center justify-between">
+              <div className="mt-8 flex items-center justify-between ml-4">
                 {item && item?.metadata?.id ? (
                   <Button onClick={() => item && item.metadata && onHandleButtonClick(item.metadata.id)}>{handleNftButtonText}</Button>
                 ) : (
@@ -108,27 +108,10 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
           </article>
         ))
       ) : (
-        <div className="flex flex-row">
-          <Button
-            className="dropdown-toggle m-4 p-4 group group flex items-center rounded-lg border border-jacarta-100 font-display text-lg font-semibold transition-colors hover:border-transparent"
-            onClick={handleClick}
-          >
-            <span>{loadingMessage}</span>
-          </Button>
-          <Menu
-            id="menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-          >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
-          </Menu>
+        <div>
+          <Typography variant='h3' className='w-[100%]'>{loadingMessage}</Typography>
         </div>
+
       )}
     </>
   );

@@ -37,6 +37,11 @@ export interface AuthState {
 }
 
 // api request
+//pre api=request
+export interface apiCallEndpoint{
+  apiId:string,
+  data?: unknown; 
+}
 export interface RequestOptions {
   method: AxiosRequestConfig['method'];
   url: string;

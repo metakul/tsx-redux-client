@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, Container, useMediaQuery } from "@mui/material";
 
 import navConfig from "./navConfig";
 const APP_BAR_MOBILE = 8;
@@ -24,14 +24,14 @@ export default function DashboardLayout() {
         
       />
       <MiniDrawer isNonMobile={isNonMobile} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={handleSideBarState} navConfig={navConfig} />
-      <Box component="main" sx={{
+      <Container component="main" sx={{
         flexGrow: 1,
         mt: APP_BAR_MOBILE,
         ml:"auto",
         mr:"auto",
       }}>
         <Outlet />
-      </Box>
+      </Container>
     </Box>
   );
 }

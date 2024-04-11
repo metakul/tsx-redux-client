@@ -6,7 +6,7 @@ import { fetchBlogApiSlice } from '../../redux/slices/Blogs/BlogApiSlice';
 import { Ipost } from '../../interfaces/interface';
 import { FetchBlogData } from '../../interfaces/interface';
 import { Grid } from '@mui/material';
-import LikeButton from '../Buttons/LikeButton';
+import ShareButton from '../Buttons/ShareButton';
 import BlogDetails from '../BlogInfoTabs';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -15,7 +15,7 @@ const Blogs = () => {
   const dispatch = useDispatch()
   const blogsData = useSelector(selectedBlogs).blogs
   const [blogPage, setBlogPage] = useState(1);
-  const [pageSize, ] = useState(2);
+  const [pageSize,] = useState(2);
 
   const handleLoadBlogs = () => {
 
@@ -42,7 +42,7 @@ const Blogs = () => {
 
         (blogsData as Ipost[])?.map((post: Ipost, index: number) => (
           <section key={index} className="relative py-4 ">
-              <Helmet>
+            <Helmet>
               <title>{post.title}</title>
               <meta name="description" content={post.description} />
               {/* Add more meta tags as needed */}
@@ -50,15 +50,15 @@ const Blogs = () => {
             <Box className="flex flex-col rounded-2.5xl border border-jacarta-300 transition-shadow shadow-lg justify-center">
 
               <div
-                className="rounded-[1.25rem] p-4 rounded-[1.25rem] flex-row flex-row justify-center"
+                className="rounded-[1.25rem] p-4 flex-row justify-center"
               >
                 <div className='mb-3 flex flex-wrap items-center space-x-1 text-xs flex-row justify-center'>
 
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className=" w-80 sm:h-3/4 object-cover transition-transform duration-[100ms] will-change-transform group-hover:scale-105"
-                    />
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className=" w-80 sm:h-3/4 object-cover transition-transform duration-[100ms] will-change-transform group-hover:scale-105"
+                  />
                 </div>
                 <Grid container className='mt-8'>
 
@@ -92,7 +92,7 @@ const Blogs = () => {
                     </h2>
                   </Grid>
                   <Grid item xs={4} md={4} lg={4} className='mx-auto'>
-                    <LikeButton />
+                    <ShareButton />
 
                   </Grid>
                   <BlogDetails cryptoSymbol={post.cryptoSymbol} _blogId={post._id || ''} />

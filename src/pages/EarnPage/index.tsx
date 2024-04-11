@@ -14,7 +14,7 @@ export default function EarnPage() {
 
 
   return (
-    <Box sx={{ width: '100%',ml:4 }}>
+    <Box sx={{ width: '100%',}}>
    <MobileTabNavigation tabs={tabs} />
 
     </Box>

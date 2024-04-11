@@ -29,11 +29,9 @@ const SingleNftCard = ({ tokenId }: any) => {
             action={async (contract) => {
               // Start a loading toast
               const toastId = toast.loading('Processing...');
-
               try {
                 // Call the contract method
                 await contract?.call("withdraw", [[nft.metadata.id]]);
-
                 // Update the toast on success
                 toast.success('Withdraw successful!', { id: toastId });
               } catch (error) {

@@ -27,6 +27,7 @@ const MintPage = () => {
   const dispatch = useDispatch()
 
   const { data: ownedNfts } = useOwnedNFTs(nftDrop, address);
+  console.log(ownedNfts);
 
   async function opensea(id: string) {
     const nft = id;
@@ -52,8 +53,7 @@ const MintPage = () => {
     <Container className='container'>
       <Container>
 
-      <div className="  mt-8 ">
-       
+      <div className="mt-8">
           <Grid container sx={{mt:12}}>
             <Grid item xs={6} sx={{
               mb:4
@@ -62,7 +62,7 @@ const MintPage = () => {
                 GASLESS NFT Mint
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} className="flex justify-end">
               <ConnectWallet />
             </Grid>
           </Grid>
@@ -72,7 +72,7 @@ const MintPage = () => {
             width="300px"
           />
           <StyledContainer>
-          {!ownedNfts &&
+          {ownedNfts && ownedNfts.length === 0 &&
             <button onClick={handleClaimNft} className="inline-block rounded-full bg-accent py-3 px-8 text-center font-semibold  shadow-accent-volume transition-all hover:bg-accent-dark">
                 Claim NFT
             </button>
@@ -124,7 +124,7 @@ const MintPage = () => {
             </div>
         </div>
 
-        <div className="flex items-center justify-center mt-8">
+        <div className="flex items-center justify-start mt-16">
 
           {address &&
             <div>

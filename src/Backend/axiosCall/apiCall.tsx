@@ -3,7 +3,10 @@ import { RequestOptions } from '../../interfaces/interface';
 import toast from 'react-hot-toast';
 
 const request = async (options: RequestOptions) => {
-  const toastId = toast.loading(options.loadingMessage as string, { duration: 8000 }); // Corrected this line
+  let toastId
+  if (options.loadingMessage) {
+    toastId = toast.loading(options.loadingMessage as string, { duration: 8000 }); // Corrected this line
+  }
   try {
     // Construct the full request URL, prepending the API endpoint if necessary
     const fullUrl = `${options.url}`;
@@ -16,14 +19,19 @@ const request = async (options: RequestOptions) => {
       headers: options?.headers
     });
 
-    toast.success(response.data.message, { id: toastId });
+    if (toastId) {
+      toast.success(response.data.message, { id: toastId });
+
+    }
 
     // Return the parsed response data
     console.log(response); // Accessing response data
     return response;
   } catch (error) {
-    toast.error("OHO. ERROR, RELOAAAD.", { id: toastId });
+    if (toastId) {
 
+      toast.error("OHO. ERROR, RELOAAAD.", { id: toastId });
+    }
     // Handle errors gracefully, providing more informative messages if possible
     console.error(`API request error: ${error}`);
     throw error;

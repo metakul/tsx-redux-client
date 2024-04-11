@@ -44,6 +44,7 @@ const Staking = () => {
   return (
     <Container className=''>
         <ConnectWallet/>
+        <h2 className="font-display text-4xl font-medium  dark:text-white"> NFT Staking</h2>
         <div className="grid grid-cols-2 gap-[1rem] md:grid-cols-2 lg:grid-cols-4 mt-4">
 
         <NftCard balance={ownedNfts as BalanceItem[]} handleNftButtonText={"Stake Now"} onHandleButtonClick={stakeNft} loadingMessage={!address ? 'Loading Owner NFT. Keep Your wallet Conencted.' : "No Nfts to Stake"}/>

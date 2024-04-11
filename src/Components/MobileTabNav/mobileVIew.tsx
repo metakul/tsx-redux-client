@@ -29,7 +29,7 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position
         onChange={handleChange}
         aria-label="mobile tabs example"
         variant="fullWidth"
-        className={` fixed ${position=="top" ? "top-16" : " bottom-0"} w-full flex flex-row bg-blue z-20`}
+        className={` fixed ${position=="top" ? "top-16" : " bottom-0 left-0"} w-full flex flex-row bg-blue z-20`}
       >
         {tabs.map(({ value }, index) => (
           <Tab key={index} icon={React.createElement('div', null, value)} {...a11yProps(index)} sx={{

@@ -76,12 +76,10 @@ import { uploadFileToIPFS, uploadJSONToIPFS } from '../../scripts/ipfsHandler';
         <Container className='container'>
          
             <Container sx={{
-                mb: 4
+                mb: 4,
             }}>
-                <Box sx={{
-                    mt: 2
-                }}>
-                    <Typography variant="h4">Create Your own NFT Now</Typography>
+                <Box >
+                    <Typography variant="h4" >Create Your own NFT Now</Typography>
                     <Typography variant="body2">We're always happy to onboard new talent in the web3 space!</Typography>
                     <Typography variant="body2" sx={{ textAlign: 'center', marginTop: 2 }}>
                         {message}
