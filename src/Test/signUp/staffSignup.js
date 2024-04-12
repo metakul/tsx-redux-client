@@ -14,17 +14,14 @@ import puppeteer from 'puppeteer';
 
     await page.goto('http://localhost:3000/staff/signup');
 
-    await page.click('.yes-button');
-
-
     const staffTypeSelector = '.laboratory input[type="radio"]';
     await page.waitForSelector(staffTypeSelector, { visible: true });
 
     // Click on the ORGANISATION radio button
     await page.click(staffTypeSelector);
 
-    await page.type('#brahmaId', 'B4510469');
-    await page.type('#mobileNo', "9519564617");
+    await page.type('#brahmaId', 'B0634469');
+    await page.type('#mobileNo', "9804520824");
     await page.type('#password-signup', 'Anurag@123');
 
     await page.type('#confirmPassword', 'Anurag@123');

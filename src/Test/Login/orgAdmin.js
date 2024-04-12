@@ -58,8 +58,8 @@ async function addHospital(page) {
   const hospitalName=getRandomIndianCity()
   await page.waitForSelector(".orgName")
   
-  await page.click(".orgName")
-  await page.type('.orgName',`org1`);
+  // await page.click(".orgName")
+  // await page.type('.orgName',`org1`);
 
   await page.click(".hospitalName")
   await page.type('.hospitalName',`${hospitalName} Military Hospital`);

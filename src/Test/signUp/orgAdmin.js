@@ -29,7 +29,7 @@ function generateRandomServiceNo() {
 
     await page.goto('http://localhost:3000/admin/signup');
 
-    await page.click('.yes-button');
+    
     const orgAdminRadioSelector = '.orgAdmin input[type="radio"]';
     await page.waitForSelector(orgAdminRadioSelector, { visible: true });
 

@@ -52,7 +52,6 @@ import puppeteer from 'puppeteer';
 
     await page.goto('http://localhost:3000/doctor/signup');
 
-    await page.click('.yes-button');
 
     await page.type('#brahmaId', brahmaId);
     await page.type('#mobileNo', mobileNo);

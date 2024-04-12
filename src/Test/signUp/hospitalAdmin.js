@@ -45,7 +45,6 @@ function generateRandomServiceNo() {
 
     await page.goto('http://localhost:3000/admin/signup');
 
-    await page.click('.yes-button');
   
     await page.type('input[name="orgName"]', 'org1');
     await page.type('input[name="hospitalId"]', hospitalId);
