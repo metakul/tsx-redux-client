@@ -25,6 +25,8 @@ export const claimNft = async ({ address, claim }: ClaimNftInterface) => {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const data = await performClaim().then((res: unknown) => {
+      console.log(res);
+      
       toast.success("NFT Claimed Successfully", { id: toastId });
       const apiSuccess: ApiSuccess = {
         statusCode: 200,

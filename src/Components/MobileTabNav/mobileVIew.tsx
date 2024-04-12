@@ -64,7 +64,7 @@ const CustomTabPanel: React.FC<CustomTabPanelProps> = ({ children, value, index 
       paddingBottom:"50px",
       marginBottom:"50px",
     }}
-    className='md:container'
+    className='container'
   >
     {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
   </div>

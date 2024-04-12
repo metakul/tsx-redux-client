@@ -8,9 +8,8 @@ const SingleBlogDetails: React.FC<BlogDetailsProps> = ({ _id }) => {
 
   const selectedBlog = blogsData.find(blog => blog._id === _id);
 
-
   return (
-    <div>
+    <div className=''>
       {selectedBlog?.description}
     </div>
   );
