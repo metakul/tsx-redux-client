@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProtectedPageProps } from '../../interfaces/interface'
+import { ProtectedPageProps } from '../../interfaces/CompInterfaces'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/slices/authSlice'

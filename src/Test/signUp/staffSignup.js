@@ -20,8 +20,8 @@ import puppeteer from 'puppeteer';
     // Click on the ORGANISATION radio button
     await page.click(staffTypeSelector);
 
-    await page.type('#brahmaId', 'B0236550');
-    await page.type('#mobileNo', "9940193683");
+    await page.type('#brahmaId', 'B6836858');
+    await page.type('#mobileNo', "9359943998");
     await page.type('#password-signup', 'Anurag@123');
 
     await page.type('#confirmPassword', 'Anurag@123');

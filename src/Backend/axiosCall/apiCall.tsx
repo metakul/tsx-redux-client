@@ -21,7 +21,9 @@ const request = async (options: RequestOptions) => {
 
     // Return the parsed response data
     console.log(response)
-    return response;
+
+    // todo properly get the api response Data
+    return response.data;
     
   } catch (error) {
     // Handle errors gracefully, providing more informative messages if possible

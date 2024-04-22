@@ -1,41 +1,25 @@
 import { UserType } from "../DataTypes/enums";
 //pages interface
 import { AxiosRequestConfig } from "axios"
-export interface Layoutprops {
-}
 
-export interface HomePageProps {
-  pageTitle: string;
-  pageDescription:string
-}
 
-export interface ProtectedPageProps {
-  pageTitle: string;
-  pageDescription:string
-}
-
-export interface VerificationProps {
-  pageTitle: string | undefined;
-  userType:string
-}
-
-export interface LoginFormProps {
-  loginTitle: string;
+export interface UserData {
+  userId: string;
+  password: string;
   userType: UserType;
 }
 
 //login form state
-export interface LoginData {
-  userId: string;
-  password: string;
-  userType:UserType;
+export interface LoginData extends UserData {
+  onClick?: (userData: UserData) => Promise<ApiSuccess>;
 }
 
 //verify login data
-export interface VerifyLoginData{
-  trxId:string,
-  otp:string,
+export interface VerifyLoginData {
+  trxId: string;
+  otp: string;
 }
+
 //resend login OTP
 export interface ResendOtpData{
   trxId:string,

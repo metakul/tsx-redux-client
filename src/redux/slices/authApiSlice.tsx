@@ -1,7 +1,7 @@
 // authActions.tsx
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setCredentials, setLoginTrxId } from './authSlice';
-import { ApiError, LoginData, VerifyLoginData, ResendOtpData } from '../../interfaces/interface';
+import { ApiError,  VerifyLoginData, ResendOtpData, UserData } from '../../interfaces/interface';
 import { ApiEndpoint } from '../../DataTypes/enums';
 import request from '../../Backend/axiosCall/apiCall';
 import { ApiSuccess } from '../../interfaces/interface';
@@ -9,7 +9,7 @@ import { ErrorType } from '../../DataTypes/errors';
 
 export const loginUser = createAsyncThunk(
   'auth/login',
-  async ({ userId, password, userType }: LoginData, { rejectWithValue,dispatch }) => {
+  async ({ userId, password, userType }: UserData, { rejectWithValue,dispatch }) => {
     try {
       const response = await request({
         url: `${ApiEndpoint.LOGIN.url}`,
@@ -31,7 +31,7 @@ export const loginUser = createAsyncThunk(
     } catch (error) {
       const castedError = error as ApiError
       console.error(ErrorType.UNKNOWN_ERROR, error);
-      return rejectWithValue(castedError?.error === "string" ? castedError?.error : ErrorType.UNKNOWN_ERROR);
+      throw rejectWithValue(castedError?.error === "string" ? castedError?.error : ErrorType.UNKNOWN_ERROR);
     }
   }
 );

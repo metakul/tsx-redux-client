@@ -1,4 +1,21 @@
 import { ReactNode } from 'react';
+import { UserType } from '../DataTypes/enums';
+
+
+export interface Layoutprops {
+}
+
+export interface HomePageProps {
+  pageTitle: string;
+  pageDescription:string
+}
+
+export interface ProtectedPageProps {
+  pageTitle: string;
+  pageDescription:string;
+  userType:UserType
+}
+
 
 export interface CustomDialogProps {
   triggerButtonText: React.ReactNode;
@@ -12,6 +29,13 @@ export interface CustomDialogProps {
 export interface HomeButtonProps {
   onClick?: () => void; 
   children?: ReactNode;
+}
+
+
+export interface LoginFormProps {
+  loginTitle: string;
+  userType: UserType;
+  
 }
 
 export interface CustomTextFieldProps {
@@ -41,6 +65,11 @@ export interface CustomLinkProps {
 export interface CustomTabProps {
   value: string;
   children: ReactNode;
+}
+
+export interface VerificationProps {
+  pageTitle: string | undefined;
+  userType:string
 }
 
 export interface OverViewProps {

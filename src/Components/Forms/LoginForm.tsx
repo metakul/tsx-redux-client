@@ -5,7 +5,7 @@ import { LoginData, VerifyLoginData } from '../../interfaces/interface';
 import { AppDispatch } from '../../redux/store';
 import CustomHeading from '../Typogrpahy/Text/Heading';
 import CustomTextField from '../Typogrpahy/Text/TextFeild';
-import { LoginFormProps } from '../../interfaces/interface';
+import { LoginFormProps } from '../../interfaces/CompInterfaces';
 import { LoginButtonText } from '../../DataTypes/constText';
 import DependentSignUpForm from './SignUp/Applicants/Dependent';
 import { Pages, UserType } from '../../DataTypes/enums';
@@ -15,8 +15,8 @@ import { Link } from 'react-router-dom';
 const LoginForm: React.FC<LoginFormProps> = (props) => {
   const dispatch = useDispatch();
   const selectedUser = useSelector(selectUser)
-  const trxId=useSelector(selectTrxId)
-  
+  const trxId = useSelector(selectTrxId)
+
   const [user, setuser] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [otp, setOtp] = useState<string>('');
@@ -44,7 +44,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
     event.preventDefault();
 
     try {
-      const verifyLoginData : VerifyLoginData= {
+      const verifyLoginData: VerifyLoginData = {
         trxId,
         otp: otp,
       };
@@ -57,7 +57,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
   };
 
   const handleResendOtp = async () => {
-    (dispatch as AppDispatch)(resendOtpLogin({  trxId: props.userType }));
+    (dispatch as AppDispatch)(resendOtpLogin({ trxId: props.userType }));
   };
 
   const handleSignUpForm = async () => {
@@ -67,85 +67,94 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
   const renderSignUpFormBasedOnUserType = () => {
     switch (props.userType as UserType) {
       case props.userType:
-        return <DependentSignUpForm userType={props.userType} />
+        return <DependentSignUpForm userType={props.userType} isSignnFormOpen={showSignUpForm} handleSignUpForm={handleSignUpForm} />
       default:
-        return <DependentSignUpForm userType={UserType.RANDOM} />
+        return <DependentSignUpForm userType={UserType.RANDOM} isSignnFormOpen={showSignUpForm} handleSignUpForm={handleSignUpForm} />
     }
   }
 
   return (
-    <div>
+    <>
       {!selectedUser ? (
         <>
-          <form onSubmit={showOtpField ? handleVerifyOtpSubmit : handleLoginSubmit}>
-            <CustomHeading placeholder="Login Form" style={{ fontSize: '24px' }}>
-              {props.loginTitle}
-            </CustomHeading>
+          {!showSignUpForm &&
+            <>
+              <form onSubmit={showOtpField ? handleVerifyOtpSubmit : handleLoginSubmit}>
+                <CustomHeading placeholder="Login Form" style={{ fontSize: '24px' }}>
+                  {props.loginTitle}
+                </CustomHeading>
 
-            <CustomTextField
-              className="usernameLogin"
-              label="Username"
-              placeholder="Enter your username"
-              value={user}
-              onChange={(value) => setuser(value)}
-            />
+                <CustomTextField
+                  className="usernameLogin"
+                  label="Username"
+                  placeholder="Enter your username"
+                  value={user}
+                  onChange={(value) => setuser(value)}
+                />
 
-            <CustomTextField
-              className="loginPassword"
-              label="Password"
-              placeholder="Enter your password"
-              type="password"
-              value={password}
-              onChange={(value) => setPassword(value)}
-            />
+                <CustomTextField
+                  className="loginPassword"
+                  label="Password"
+                  placeholder="Enter your password"
+                  type="password"
+                  value={password}
+                  onChange={(value) => setPassword(value)}
+                />
 
-            {showOtpField && (
-              <CustomTextField
-                className="loginOtp"
-                label="OTP"
-                placeholder="Enter OTP"
-                type="text"
-                value={otp}
-                onChange={(value) => setOtp(value)}
-              />
-            )}
+                {showOtpField && (
+                  <CustomTextField
+                    className="loginOtp"
+                    label="OTP"
+                    placeholder="Enter OTP"
+                    type="text"
+                    value={otp}
+                    onChange={(value) => setOtp(value)}
+                  />
+                )}
 
-            <div>
-              <button type="submit" className={`${showOtpField ? "verifyOtp" : "sendOtp"}`}>
-                {showOtpField ? LoginButtonText.VERIFY_OTP : LoginButtonText.SEND_OTP}
+                <div>
+                  <button type="submit" className={`${showOtpField ? "verifyOtp" : "sendOtp"}`}>
+                    {showOtpField ? LoginButtonText.VERIFY_OTP : LoginButtonText.SEND_OTP}
+                  </button>
+
+                  {showOtpField && (
+                    <button type="button" onClick={handleResendOtp}>
+                      {LoginButtonText.RESEND_OTP}
+                    </button>
+                  )}
+                </div>
+              </form>
+
+              <button type="button" onClick={handleSignUpForm}>
+                SIGNUP
               </button>
 
-              {showOtpField && (
-                <button type="button" onClick={handleResendOtp}>
-                  {LoginButtonText.RESEND_OTP}
-                </button>
-              )}
-            </div>
-          </form>
+            </>
 
-          <button type="button" onClick={handleSignUpForm}>
-            SIGNUP
-          </button>
-
+          }
           {showSignUpForm && (
             <div>
               {renderSignUpFormBasedOnUserType()}
+
+              <button type="button" onClick={handleSignUpForm}>
+                SIGNIN
+              </button>
             </div>
           )}
         </>
       ) : (
         <>
-        <CustomHeading style={{
-          fontSize:"18px"
-        }}>
-          Already Logged In. Visit the
-        </CustomHeading>
-        <Link to={Pages.DASHBOARD}>
-           DASHBOARD
-        </Link>
-          </>
+          <CustomHeading style={{
+            fontSize: "18px"
+          }}>
+            Already Logged In. Visit the
+          </CustomHeading>
+          <Link to={Pages.DASHBOARD}>
+            DASHBOARD
+          </Link>
+        </>
       )}
-    </div>
+    </>
 
   );
 };
