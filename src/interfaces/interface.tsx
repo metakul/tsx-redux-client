@@ -96,6 +96,13 @@ export interface BalanceItem {
   historyLink?: string;
 }
 
+// interface for dex
+export interface DexItem{
+  metadata?: {
+    name: string;
+    id: string;
+  };
+}
 //interfaces for post
 export interface Ipost  {
   _id?: string;
