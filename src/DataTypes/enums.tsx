@@ -18,7 +18,8 @@ export enum Pages {
   MINT = '/mint',
   CAREER='/Career',
   EARN='/EARN',
-  CREATE_NFT="/CREATE_NFT"
+  CREATE_NFT="/CREATE_NFT",
+  LAUNDRY_PAGE="/laundry"
 }
 
 export enum HomePageInfo{

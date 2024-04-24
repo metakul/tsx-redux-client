@@ -11,6 +11,8 @@ import MintPage from "./pages/Web3Pages/MintPage";
 import Career from "./pages/CareerPage";
 import EarnPage from "./pages/EarnPage";
 import CreateNft from "./pages/CreateNftPage";
+import LaundryPage from "./pages/LaundryPage";
+
 const Router: React.FC = () => {
   const token = useSelector(selectToken);
 
@@ -43,6 +45,11 @@ const Router: React.FC = () => {
           path: Pages.DASHBOARD,
           element: token ? <ProtectedPage pageTitle={ProtectedPageInfo.pageTitle} pageDescription={ProtectedPageInfo.pageDescription}/> : <Navigate to={Pages.HOME} />,
         },
+        {
+          path: Pages.LAUNDRY_PAGE,
+          element: <LaundryPage/>,
+        },
+      
       ],
     },
     { path: "*", element: <Navigate to={Pages.HOME} /> },

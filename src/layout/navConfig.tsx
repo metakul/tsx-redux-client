@@ -7,6 +7,7 @@ import {
   CalendarMonthOutlined,
   // AdminPanelSettingsOutlined,
   PieChartOutlined,
+  Checkroom
 } from "@mui/icons-material";
 
 export const navConfig = [
@@ -47,6 +48,15 @@ export const navConfig = [
   },
 
   {
+    text: "For GBPIET Student",
+    icon:null,
+    to: "",
+  },
+  {
+    text: "LAUNDRY",
+    icon:<Checkroom/>,
+    to: "/laundry",
+  },  {
     text: "Extras",
     icon:null,
     to: "",
