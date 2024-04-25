@@ -20,6 +20,7 @@ const CustomDataGrid: FC<DatagridProps> = ({getRowId, hideFooter, columns, rows 
 
   return (
     <DataGrid
+      autoHeight
       columns={columns}
       rows={rows}
       getRowId={getRowId || ''}
