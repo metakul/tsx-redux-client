@@ -5,7 +5,7 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 export default function LikeButton() {
   return (
-    <Box className='flex justify-center items-center mt-8 '>
+    <Box className='flex justify-center items-center '>
       <FavoriteOutlinedIcon fontSize="large"/>
     </Box>
   );

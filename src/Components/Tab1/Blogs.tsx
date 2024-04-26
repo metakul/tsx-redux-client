@@ -10,6 +10,7 @@ import ShareButton from '../Buttons/ShareButton';
 import BlogDetails from '../BlogInfoTabs';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import LikeButton from '../Buttons/LikeButton';
 const Blogs = () => {
   // const theme = useTheme()
   const dispatch = useDispatch()
@@ -64,7 +65,6 @@ const Blogs = () => {
 
                   <Grid item xs={8} md={8} lg={8}>
 
-                    <div className="mb-3 flex flex-wrap items-center space-x-1 ">
                       {/* <a
                         href="#"
                         className="font-display hover:text-accent"
@@ -79,10 +79,17 @@ const Blogs = () => {
                           </h5>
                         ))}
                       </span>
-                    </div>
 
-                    <h2
-                      className="mb-4 font-display text-md sm:text-xl"
+               
+
+                  </Grid>
+                  <Grid item xs={4} md={4} lg={4} className='mx-auto flex items-end justify-around pr-8 pb-4'>
+                    <ShareButton />
+                    <LikeButton />
+
+                  </Grid>
+                  <h2
+                      className="mb-4 font-display text-md "
                     >
                       {post.title
                         .split(' ')
@@ -90,11 +97,6 @@ const Blogs = () => {
                         .join(' ')}
                       {/* <Link target='_blank' to={`/singleBlog/${post.id}`}>{post.title}</Link> */}
                     </h2>
-                  </Grid>
-                  <Grid item xs={4} md={4} lg={4} className='mx-auto'>
-                    <ShareButton />
-
-                  </Grid>
                   <BlogDetails cryptoSymbol={post.cryptoSymbol} _blogId={post._id || ''} />
                   <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
                     <span>

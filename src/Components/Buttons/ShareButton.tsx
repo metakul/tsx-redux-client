@@ -5,7 +5,7 @@ import { ShareRounded } from "@mui/icons-material";
 
 export default function ShareButton() {
   return (
-    <Box className='flex justify-center items-center mt-8 '>
+    <Box className='flex justify-center items-center '>
       <ShareRounded fontSize="large"/>
     </Box>
   );
