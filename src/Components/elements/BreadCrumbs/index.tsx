@@ -16,7 +16,7 @@ function generateBreadcrumbItems(currentPath: string): BreadcrumbItem[] {
   const paths = currentPath.split('/').filter(Boolean);
   let accumulatedPath = '';
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  return paths.map((path, index) => {
+  return paths.map((path) => {
     accumulatedPath += `/${path}`;
     return {
       label: path.toUpperCase(), // Convert label to uppercase
