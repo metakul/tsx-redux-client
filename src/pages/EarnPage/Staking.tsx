@@ -1,5 +1,6 @@
 import {
   Container,
+  Typography,
 } from '@mui/material';
 import NftCard from '../../Components/Card/NftCard';
 import { ConnectWallet, useAddress, useContract, useOwnedNFTs } from '@thirdweb-dev/react';
@@ -43,12 +44,22 @@ const Staking = () => {
   }
   return (
     <Container className=''>
-        <ConnectWallet/>
         <h2 className="font-display text-4xl font-medium  dark:text-white"> NFT Staking</h2>
+        <ConnectWallet/>
+        
+        {address ? (
         <div className="grid grid-cols-2 gap-[1rem] md:grid-cols-2 lg:grid-cols-4 mt-4">
 
         <NftCard balance={ownedNfts as BalanceItem[]} handleNftButtonText={"Stake Now"} onHandleButtonClick={stakeNft} loadingMessage={!address ? 'Loading Owner NFT. Keep Your wallet Conencted.' : "No Nfts to Stake"}/>
         </div>
+        ):(
+          <Typography variant='h3' sx={{
+            mt:2
+          }}>
+            Connect Your Wallet To View your Staked NFT's
+          </Typography>
+        )}
+
     </Container>
   );
 };

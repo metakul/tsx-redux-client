@@ -26,7 +26,7 @@ export default function DashboardLayout() {
       <MiniDrawer isNonMobile={isNonMobile} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={handleSideBarState} navConfig={navConfig} />
       <Container component="main" sx={{
         flexGrow: 1,
-        mt: APP_BAR_MOBILE,
+        mt: APP_BAR_MOBILE+4,
         ml:"auto",
         mr:"auto",
       }}>

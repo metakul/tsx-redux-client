@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {  CryptoData } from '../../../interfaces/interface';
 
-interface CryptoInfo {
+export interface CryptoInfo {
   _id: string;
   cryptoData: CryptoData;
 }

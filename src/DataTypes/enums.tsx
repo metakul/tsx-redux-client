@@ -12,6 +12,7 @@ export enum Tabs {
   tabTitle3="Wallet",
   tabTitle4="PROFILE"
 }
+
 export enum Pages {
   HOME = '/',
   DASHBOARD = '/dashboard/app',
@@ -19,7 +20,8 @@ export enum Pages {
   CAREER='/Career',
   EARN='/EARN',
   CREATE_NFT="/CREATE_NFT",
-  LAUNDRY_PAGE="/laundry"
+  LAUNDRY_PAGE="/laundry",
+  CREATE_ORDER="/createOrder",
 }
 
 export enum HomePageInfo{

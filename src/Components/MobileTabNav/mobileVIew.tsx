@@ -66,7 +66,7 @@ const CustomTabPanel: React.FC<CustomTabPanelProps> = ({ children, value, index 
     }}
     className='container'
   >
-    {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    {value === index && <Box sx={{ pl: 3 }}>{children}</Box>}
   </div>
 );
 

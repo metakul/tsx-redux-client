@@ -12,6 +12,7 @@ import Career from "./pages/CareerPage";
 import EarnPage from "./pages/EarnPage";
 import CreateNft from "./pages/CreateNftPage";
 import LaundryPage from "./pages/LaundryPage";
+import CreateOrder from "./pages/LaundryPage/CreateOrder";
 
 const Router: React.FC = () => {
   const token = useSelector(selectToken);
@@ -40,6 +41,10 @@ const Router: React.FC = () => {
         {
           path: Pages.CREATE_NFT,
           element: <CreateNft/>,
+        },
+        {
+          path: Pages.CREATE_ORDER,
+          element: <CreateOrder/>,
         },
         {
           path: Pages.DASHBOARD,
