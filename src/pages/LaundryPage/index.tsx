@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
@@ -19,22 +19,19 @@ import {
 // Import your loading GIF
 import { orderColumn } from "./Columns";
 import CustomDataGrid from "../../Components/DataGrid";
-export default function BasicEditingGrid() {
+import BreadCrumbs from "../../Components/elements/BreadCrumbs";
+export default function ViewLaundryDetails() {
   const [searchQuery, setSearchQuery] = React.useState("");
-
+  const location = useLocation();
 
   const handleSearchInputChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
     setSearchQuery(event.target.value);
   };
 
 
-
-
   return (
     <Container className="container">
       <Container >
-
-
         <Stack
           sx={{
             display: "flex",
@@ -44,33 +41,15 @@ export default function BasicEditingGrid() {
             mb: 5,
           }}
         >
-          <Typography variant="h4" gutterBottom>
-            Orders List
-          </Typography>
-
+        <BreadCrumbs currentPath={location.pathname}/>
           <Button
             to={"/createOrder"}
             component={RouterLink}
-            sx={{
-              py: 1.25,
-              px: 3,
-              borderRadius: 2,
-              fontWeight: 700,
-            }}
           >
-            <AddIcon
-              sx={{
-                mr: 1,
-              }}
-            />
-            <Typography>
-              Add Order
-
-            </Typography>
+            <AddIcon/>
+            <Typography>  Add Order </Typography>
           </Button>
         </Stack>
-
-
 
         <>
           <TextField

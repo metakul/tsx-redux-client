@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import {
   useContract,
   useAddress,
@@ -8,7 +8,7 @@ import {
   useContractWrite,
   ConnectWallet,
 } from "@thirdweb-dev/react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { svgStyle } from "../../Components/Tab2/MetakulCollection";
 import {
   StyledContainer, StyledContent,
@@ -17,10 +17,13 @@ import { ClaimNftInterface } from "../../interfaces/interface";
 import { AppDispatch } from "../../redux/store";
 import { ClaimNftSlice } from "../../redux/slices/Web3Profile/NftApiSlice";
 import { useDispatch } from "react-redux";
+import BreadCrumbs from "../../Components/elements/BreadCrumbs";
+import toast from "react-hot-toast";
 
 const myNftDropContractAddress = "0x710E9161e8A768c0605335AB632361839f761374"
 
 const MintPage = () => {
+  const location = useLocation()
   const address = useAddress();
   const { contract: nftDrop } = useContract(myNftDropContractAddress);
   const [mintMsg,] = useState("")
@@ -46,15 +49,19 @@ const MintPage = () => {
     claim
   };
   const handleClaimNft = async () => {
+    if(!address){
+      toast.error("Wallet not Connected")
+      return
+    }
     (dispatch as AppDispatch)(ClaimNftSlice(claimNftHandler));
   }
 
   return (
     <Container className='container'>
       <Container>
-
-        <div className="mt-8">
-          <Grid container sx={{ mt: 12 }}>
+        <BreadCrumbs currentPath={location.pathname} />
+        <div className="">
+          <Grid container sx={{ mt: 4 }}>
             <Grid item xs={6} sx={{
               mb: 4
             }}>
@@ -63,12 +70,16 @@ const MintPage = () => {
               </Typography>
             </Grid>
             <Grid item xs={6} className="flex justify-end">
-              <ConnectWallet />
+              <Box>
+
+              <ConnectWallet className="max-h-[220px]" />
+              </Box>
             </Grid>
             <Grid xs={12} sx={{
               my: 4,
               display: "flex",
               justifyContent: "center",
+              maxHeight:"450px"
             }}>
               <video className="border-2 rounded-2xl" controls>
                 <source src="MetakulInfo.mp4" type="video/mp4" />
@@ -78,11 +89,9 @@ const MintPage = () => {
           </Grid>
 
           <StyledContainer>
-            {ownedNfts && ownedNfts.length === 0 &&
               <button onClick={handleClaimNft} className="inline-block rounded-full bg-accent py-3 px-8 text-center font-semibold  shadow-accent-volume transition-all hover:bg-accent-dark">
                 Claim NFT
               </button>
-            }
             {mintMsg && <p>{mintMsg}</p>}
           </StyledContainer>
           <StyledContainer className="mt-4">
@@ -130,41 +139,41 @@ const MintPage = () => {
           </div>
         </div>
         <Grid container className="flex items-center justify-center mt-16">
-            <Grid>
-              {address &&
-                <div>
-                  <h3>Your Owned NFT</h3>
-                  <p style={{ marginTop: "0px", fontWeight: "bold" }}>
-                    ( Will Load After Mint )
-                  </p>
-                </div>
-              }
-            </Grid>
-            <Grid>
-              {ownedNfts?.map((nft) => (
-                <StyledContent>
-                  <div
-                    key={nft.metadata.id.toString()}
-                    className=""
+          <Grid>
+            {address &&
+              <div>
+                <h3>Your Owned NFT</h3>
+                <p style={{ marginTop: "0px", fontWeight: "bold" }}>
+                  ( Will Load After Mint )
+                </p>
+              </div>
+            }
+          </Grid>
+          <Grid>
+            {ownedNfts?.map((nft) => (
+              <StyledContent>
+                <div
+                  key={nft.metadata.id.toString()}
+                  className=""
+                >
+                  <ThirdwebNftMedia
+                    metadata={nft.metadata}
+                    className="nftMedia"
+                  />
+                  <h3
                   >
-                    <ThirdwebNftMedia
-                      metadata={nft.metadata}
-                      className="nftMedia"
-                    />
-                    <h3
-                    >
-                      {nft.metadata.name}
-                    </h3>
-                    <Button
-                      onClick={() => opensea(nft.metadata.id)}
-                      className="mainButton"
-                    >
-                      View on Opensea
-                    </Button>
-                  </div>
-                </StyledContent>
-              ))}
-            </Grid>
+                    {nft.metadata.name}
+                  </h3>
+                  <Button
+                    onClick={() => opensea(nft.metadata.id)}
+                    className="mainButton"
+                  >
+                    View on Opensea
+                  </Button>
+                </div>
+              </StyledContent>
+            ))}
+          </Grid>
         </Grid>
       </Container>
 
