@@ -4,7 +4,8 @@ import { useContract, useContractRead } from "@thirdweb-dev/react";
 import { useState, useEffect } from 'react';
 import { ethers } from "ethers";
 import SingleNftCard from "../../Components/Card/SingleNftCard";
-import { Container, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import BreadCrumbs from "../../Components/elements/BreadCrumbs";
 // If used on the FRONTEND pass your 'clientId'
 
 const nftDropContractAddress = "0x710E9161e8A768c0605335AB632361839f761374"
@@ -55,38 +56,53 @@ const Mywallet = () => {
 
   return (
     <Container className=''>
-      <h2 className="font-display text-4xl font-medium  dark:text-white"> NFT UnStaking</h2>
-       <ConnectWallet />
-       {claimableRewards && 
-      <p className="mt-4" >
-        Claimable Balance: <b>
-        {ethers.utils.formatUnits(claimableRewards, 18)}
-        </b>{" "}
-        {tokenBalance?.symbol}
-      </p>}
+      <BreadCrumbs currentPath={location.pathname} />
+      <Grid container sx={{ mt: 4 }}>
+        <Grid item xs={6} sx={{ mb: 4 }}>
+          <Typography variant="h3">
+            NFT Unstaking
+          </Typography>
+        </Grid>
+        <Grid item xs={6} className="flex justify-end">
+          <Box>
+            <ConnectWallet className="max-h-[220px]" />
+          </Box>
+        </Grid>
+      </Grid>
+
+      {address && claimableRewards &&
+        <Typography className="mt-4" >
+          Claimable Balance: <b>
+            {ethers.utils.formatUnits(claimableRewards, 18)}
+          </b>{" "}
+          {tokenBalance?.symbol}
+        </Typography>}
 
       <section className="relative py-2">
 
-          {stakedTokens && stakedTokens[0].length>0 ? (
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            stakedTokens[0]?.map((stakedToken: { toNumber: () => any; toString: () => any; }) => (
-        <div className="grid grid-cols-2 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
+        {stakedTokens && stakedTokens[0].length > 0 ? (
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          stakedTokens[0]?.map((stakedToken: { toNumber: () => any; toString: () => any; }) => (
+            <Box className="grid grid-cols-2 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
               <SingleNftCard
                 tokenId={stakedToken.toNumber()}
                 key={stakedToken.toString()}
               />
-            </div>
-            ))
-          ) : (
-            <Typography variant="h3" sx={{
-            mt:2
+            </Box>
+          ))
+        ) : (
+          <Box sx={{
+            display:"flex",
+            justifyContent:"center",
+            mt:12
           }}>
-              No NFT's To UnStake
-            </Typography>
-          )}
-
-
-
+          <Typography variant="h3" sx={{
+            mt: 2
+          }}>
+            No NFT's To UnStake
+          </Typography>
+          </Box>
+        )}
       </section>
     </Container >
   );

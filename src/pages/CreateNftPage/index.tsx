@@ -2,12 +2,16 @@ import  { useState } from 'react';
 import { Container, Grid, Typography, TextField, Button, Box, IconButton } from '@mui/material';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { uploadFileToIPFS, uploadJSONToIPFS } from '../../scripts/ipfsHandler';
+import BreadCrumbs from '../../Components/elements/BreadCrumbs';
+import { useLocation } from 'react-router-dom';
+
  const CreateNft = () => {
     const [formParams, updateFormParams] = useState({ name: '', email: '', position: '', linkdin: '', portfolio: '', cover: '', mobile: '', resume: '' });
     const [fileURL, setFileURL] = useState('');
     const [disableButton, setDisableButton] = useState(true);
     const [message, updateMessage] = useState('Please Fill all required* fields.');
     const [uploading, setUploading] = useState(false);
+    const location = useLocation();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFileChange = async (e:any) => {
@@ -78,7 +82,8 @@ import { uploadFileToIPFS, uploadJSONToIPFS } from '../../scripts/ipfsHandler';
             <Container sx={{
                 mb: 4,
             }}>
-                <Box >
+                <BreadCrumbs currentPath={location.pathname}/>
+                <Box sx={{mt:4}} >
                     <Typography variant="h4" >Create Your own NFT Now</Typography>
                     <Typography variant="body2">We're always happy to onboard new talent in the web3 space!</Typography>
                     <Typography variant="body2" sx={{ textAlign: 'center', marginTop: 2 }}>

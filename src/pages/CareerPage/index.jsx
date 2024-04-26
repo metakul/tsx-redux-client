@@ -5,13 +5,14 @@ import Groups3OutlinedIcon from '@mui/icons-material/Groups3Outlined';
 import DeveloperModeOutlinedIcon from '@mui/icons-material/DeveloperModeOutlined';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { uploadFileToIPFS, uploadJSONToIPFS } from '../../scripts/ipfsHandler';
+import BreadCrumbs from '../../Components/elements/BreadCrumbs';
  const Career = () => {
     const [formParams, updateFormParams] = useState({ name: '', email: '', position: '', linkdin: '', portfolio: '', cover: '', mobile: '', resume: '' });
     const [fileURL, setFileURL] = useState(null);
     const [disableButton, setDisableButton] = useState(true);
     const [message, updateMessage] = useState('Please Fill all required* fields.');
     const [uploading, setUploading] = useState(false);
-
+    
     const handleFileChange = async (e) => {
         console.log("Uploading image to Pinata............ ");
         const file = e.target.files[0];
@@ -77,7 +78,8 @@ import { uploadFileToIPFS, uploadJSONToIPFS } from '../../scripts/ipfsHandler';
     return (
         <Container className='container'>
             <Container>
-                <Typography variant="h4" align="center" sx={{ marginBottom: "50px" }}>
+            <BreadCrumbs currentPath={location.pathname}/>
+                <Typography variant="h4" align="center" sx={{ mb: "50px",mt:4 }}>
                     Open Positions
                 </Typography>
                 <Grid container spacing={4}>
