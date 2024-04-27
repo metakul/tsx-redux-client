@@ -57,7 +57,7 @@ const MintPage = () => {
   }
 
   return (
-    <Container className='container'>
+    <Container >
       <Container>
         <BreadCrumbs currentPath={location.pathname} />
         <div className="">

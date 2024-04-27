@@ -77,7 +77,7 @@ import { useLocation } from 'react-router-dom';
     }
 
     return (
-        <Container className='container'>
+        <Container>
          
             <Container sx={{
                 mb: 4,

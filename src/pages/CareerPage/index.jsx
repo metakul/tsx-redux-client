@@ -76,10 +76,10 @@ import BreadCrumbs from '../../Components/elements/BreadCrumbs';
     }
 
     return (
-        <Container className='container'>
+        <Container >
             <Container>
             <BreadCrumbs currentPath={location.pathname}/>
-                <Typography variant="h4" align="center" sx={{ mb: "50px",mt:4 }}>
+                <Typography variant="h3" align="center" sx={{ mb: 4,mt:2 }}>
                     Open Positions
                 </Typography>
                 <Grid container spacing={4}>

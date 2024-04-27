@@ -30,7 +30,7 @@ export default function ViewLaundryDetails() {
 
 
   return (
-    <Container className="container">
+    <Container >
       <Container >
         <Stack
           sx={{
