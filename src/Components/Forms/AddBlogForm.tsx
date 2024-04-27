@@ -84,6 +84,11 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
         setDescription(value);
     };
 
+    const register: (e: string) => void = (e) => {
+        setFormData({ ...formData, image: e });
+      };
+      
+
     return (
         <CustomDialog
             open={isDialogOpen}
@@ -114,7 +119,7 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="h3">Image</Typography>
-                        <ImageUploader />
+                        <ImageUploader register={register} />
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="h3">Author</Typography>

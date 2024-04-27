@@ -2,8 +2,8 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import {
   MoreVert as MoreIcon,
+  PreviewOutlined,
 } from "@mui/icons-material";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { Link } from 'react-router-dom';
 
 const BlogColumn = (
@@ -34,7 +34,7 @@ const BlogColumn = (
     {
       field: "actions",
       headerName: "Actions",
-      width: 120,
+      width: 160,
       editable: false,
       renderCell: (params: { row: { id: string; }; }) => (
         <div>
@@ -52,7 +52,7 @@ const BlogColumn = (
             <Button
               variant="contained"
             >
-              <SettingsOutlinedIcon />
+              <PreviewOutlined />
             </Button>
           </Link>
         </div>

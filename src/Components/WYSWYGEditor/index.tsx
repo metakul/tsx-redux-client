@@ -1,41 +1,42 @@
-import  { useRef } from 'react';
+import React from 'react';
+import ReactQuill from 'react-quill'; // Import ReactQuill
+import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 
-// Import Tailwind CSS utility classes
-import 'tailwindcss/tailwind.css';
+interface WYSIWYGEditorProps {
+  value?: string;
+  onChange: (value: string) => void;
+}
 
-// Import CSS for component styling
-// import './WYSIWYGEditor.css';
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const WYSIWYGEditor = (_props: any) => {
-  const editorRef = useRef(null);
-
-  const handleInsertImage = () => {
-    const url = prompt('Enter image URL:');
-    if (url) {
-      document.execCommand('insertImage', false, url);
-    }
+const WYSIWYGEditor: React.FC<WYSIWYGEditorProps> = ({ value, onChange }) => {
+  // Define modules for the editor
+  const modules = {
+    toolbar: [
+      [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+      [{ 'size': [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
   };
 
-  const handleInsertLink = () => {
-    const url = prompt('Enter link URL:');
-    if (url) {
-      document.execCommand('createLink', false, url);
-    }
-  };
+  // Define formats for the editor
+  const formats = [
+    'header', 'font', 'size',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'video'
+  ];
 
   return (
-    <div className="wysiwyg-container">
-      <div
-        ref={editorRef}
-        className="wysiwyg-editor"
-        contentEditable="true"
-      ></div>
-      <div className="wysiwyg-toolbar">
-        <button onClick={handleInsertImage}>Insert Image</button>
-        <button onClick={handleInsertLink}>Insert Link</button>
-      </div>
-    </div>
+    <ReactQuill
+      theme="snow"
+      value={value}
+      onChange={onChange}
+      modules={modules}
+      formats={formats}
+      placeholder="Write your blog content here..."
+    />
   );
 };
 
