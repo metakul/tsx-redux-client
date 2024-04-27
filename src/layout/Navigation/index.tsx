@@ -15,7 +15,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 export interface MiniDrawerProps {
     isSidebarOpen: boolean;
     setIsSidebarOpen: () => void;
-    setShowOutlet: () => void;
+    setShowOutlet: (showOutlet: boolean) => void;
     isNonMobile: boolean;
     navConfig: {
         text: string;
