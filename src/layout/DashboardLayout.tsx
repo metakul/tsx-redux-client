@@ -6,12 +6,12 @@ import navConfig from "./navConfig";
 import Header from "./TopBar";
 import MiniDrawer from "./Navigation/index";
 
-import MobileTabNavigation from '../Components/MobileTabNav/mobileVIew';
 import { Tabs } from '../DataTypes/enums';
-import LoginForm from '../Components/Forms/LoginForm';
-import CustomDialog from '../Components/Dailog/Dailog';
+import MobileTabNavigation from '../Components/MobileTabNav/mobileVIew';
 import MetakulCollection from '../Components/Tab2/MetakulCollection';
 import DexPage from '../Components/Tab3';
+import Tab4 from "../Components/Tab4";
+
 
 import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
 import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
@@ -21,7 +21,6 @@ import ContactEmergencyOutlinedIcon from '@mui/icons-material/ContactEmergencyOu
 export default function DashboardLayout() {
   const isNonMobile = useMediaQuery("(min-width: 766px)");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
   const [showOutlet, setShowOutlet] = useState<boolean>(false);
 
   const handleSideBarState = () => {
@@ -33,17 +32,7 @@ export default function DashboardLayout() {
     { value: <StoreOutlinedIcon />, content: <MetakulCollection />, label: Tabs.tabTitle2 },
     { value: <CategoryOutlinedIcon />, content: <DexPage />, label: Tabs.tabTitle3 },
     {
-      value: <ContactEmergencyOutlinedIcon />, content: <CustomDialog
-        open={isDialogOpen}
-        onClose={() => setDialogOpen(!isDialogOpen)}
-        triggerButtonText={"Login"}
-        title={"Login Now"}
-        description={"This is description for Login"}
-      >
-        <LoginForm
-          loginTitle="Login"
-        />
-      </CustomDialog>, label: Tabs.tabTitle4
+      value: <ContactEmergencyOutlinedIcon />, content:<Tab4/> , label: Tabs.tabTitle4
     },
   ];
 
