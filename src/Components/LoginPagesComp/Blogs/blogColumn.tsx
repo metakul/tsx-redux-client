@@ -47,6 +47,7 @@ const BlogColumn = (
           >
             <MoreIcon />
           </Button>
+          
           <Link to="/blogs/:id">
             <Button
               variant="contained"
