@@ -76,32 +76,11 @@ const MintPage = () => {
               </Box>
             </Grid>
             <Grid xs={12} sx={{
-              my: 4,
               display: "flex",
               justifyContent: "center",
               maxHeight:"450px"
             }}>
-              <video className="border-2 rounded-2xl" controls>
-                <source src="MetakulInfo.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </Grid>
-          </Grid>
-
-          <StyledContainer>
-              <button onClick={handleClaimNft} className="inline-block rounded-full bg-accent py-3 px-8 text-center font-semibold  shadow-accent-volume transition-all hover:bg-accent-dark">
-                Claim NFT
-              </button>
-            {mintMsg && <p>{mintMsg}</p>}
-          </StyledContainer>
-          <StyledContainer className="mt-4">
-            <Link to="/earn">
-              <button className="inline-block rounded-full bg-accent py-3 px-8 text-center font-semibold  shadow-accent-volume transition-all hover:bg-accent-dark"
-              > Already Claimed? Stake Now</button>
-            </Link>
-
-          </StyledContainer>
-          <div className="mt-2 flex items-center justify-center space-x-2.5">
+             <div className="mt-2 flex items-center justify-center space-x-2.5">
             <a href="https://discord.gg/wMcv6HW6VJ" target="_blank" rel="noopener noreferrer" aria-label="Discord">
               <div
                 className="rounded-xl border border-jacarta-100     "
@@ -135,8 +114,35 @@ const MintPage = () => {
 
               </div>
             </a>
-
           </div>
+          </Grid>
+            <Grid xs={12} sx={{
+              my: 4,
+              display: "flex",
+              justifyContent: "center",
+              maxHeight:"450px"
+            }}>
+              <video className="border-2 rounded-2xl" controls>
+                <source src="MetakulInfo.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </Grid>
+          </Grid>
+
+          <StyledContainer>
+              <button onClick={handleClaimNft} className="inline-block rounded-full bg-accent py-3 px-8 text-center font-semibold  shadow-accent-volume transition-all hover:bg-accent-dark">
+                Claim NFT
+              </button>
+            {mintMsg && <p>{mintMsg}</p>}
+          </StyledContainer>
+          <StyledContainer className="mt-4">
+            <Link to="/earn">
+              <button className="inline-block rounded-full bg-accent py-3 px-8 text-center font-semibold  shadow-accent-volume transition-all hover:bg-accent-dark"
+              > Already Claimed? Stake Now</button>
+            </Link>
+
+          </StyledContainer>
+         
         </div>
         <Grid container className="flex items-center justify-center mt-16">
           <Grid>

@@ -86,9 +86,14 @@ export function CustomNoRowsOverlay() {
               </g>
             </g>
           </svg>
-          <Box sx={{ mt: 1 }}>No Orders</Box>
+          <Box sx={{ mt: 1 }}>
+              <Typography variant='h3' sx={{
+            mb:4
+          }}>
+           Only for GBPIET Students. 
+           Launching Soon.
+          </Typography></Box>
         </>
-
       ) : (
         <>
           <Typography variant='h3' sx={{
