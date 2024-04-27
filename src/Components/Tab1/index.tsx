@@ -11,28 +11,26 @@ const Tab1 = () => {
     // Simulate page loading delay
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000); 
+    }, 1000);
   }, []);
 
   return (
     <>
-      <div className="">
-        {isLoading ? (
-          <div>Loading...</div> 
-        ) : (
-          <div className="">
-            <h3 className="mb-4 text-center font-display text-xl font-medium ">
-              METAKUL - <Link target="_blank" className="text-blue" to="https://www.erc4337.io/">
-                Member of the 4337 Revolution
-              </Link>
-            </h3>
-            <Marquee />
-            <Blogs />
-          </div>
-        )}
-          </div>
-      </>
-      );
+      <h3 className="mb-4 text-center font-display text-xl font-medium ">
+        METAKUL - <Link target="_blank" className="text-blue" to="https://www.erc4337.io/">
+          Member of the 4337 Revolution
+        </Link>
+      </h3>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <Marquee />
+          <Blogs />
+        </>
+      )}
+    </>
+  );
 };
 
-      export default Tab1;
+export default Tab1;
