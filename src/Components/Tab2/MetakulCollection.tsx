@@ -3,7 +3,7 @@ import { selectNftCollection } from '../../redux/slices/MetakulCollection/NftSli
 import { AppDispatch } from '../../redux/store';
 import { LoadNftSlice } from '../../redux/slices/MetakulCollection/NftApiSlice';
 import { CollectionInfo } from '../../interfaces/interface';
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import { BalanceItem } from '../../interfaces/interface';
 import { ConnectWallet } from '@thirdweb-dev/react';
 import NftCard from '../Card/NftCard';
@@ -36,7 +36,7 @@ const MetakulCollection = () => {
 };
 
   return (
-    <main className="pt-[1.5rem] lg:pt-6">
+    <Container className="pt-[1.5rem] lg:pt-6">
       {/* <div className="relative">
         <img src="img/collections/collection_banner.jpg" alt="banner" className="h-[18.75rem] object-cover" />
       </div> */}
@@ -52,11 +52,12 @@ const MetakulCollection = () => {
                 <img
                   src="img/logo.png"
                   alt="collection avatar"
-                  className=" rounded-xl border-[5px] border-white "
+                                 className="bottom-0 flex items-center justify-center rounded-full border-2  p-4  border-white  "
+
                   width="200"
                   height="200"
                 />
-                <div className='bg-green relative top-20 right-8'>
+                <div className='bg-green relative top-20 right-28'>
 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -398,7 +399,7 @@ const MetakulCollection = () => {
 
         </div>
       </div>
-    </main>
+    </Container>
   );
 };
 

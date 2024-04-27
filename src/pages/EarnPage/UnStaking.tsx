@@ -1,5 +1,5 @@
 
-import { ConnectWallet, useAddress, useTokenBalance } from "@thirdweb-dev/react";
+import { ConnectWallet, Web3Button, useAddress, useTokenBalance } from "@thirdweb-dev/react";
 import { useContract, useContractRead } from "@thirdweb-dev/react";
 import { useState, useEffect } from 'react';
 import { ethers } from "ethers";
@@ -71,12 +71,22 @@ const Mywallet = () => {
       </Grid>
 
       {address && claimableRewards &&
+      <>
         <Typography className="mt-4" >
           Claimable Balance: <b>
             {ethers.utils.formatUnits(claimableRewards, 18)}
           </b>{" "}
           {tokenBalance?.symbol}
-        </Typography>}
+        </Typography>
+          <Web3Button
+          action={(contract: { call: (arg0: string) => unknown; }) => contract.call("claimRewards")}
+          contractAddress={stakingContractAddress}
+        >
+          Claim Rewards
+        </Web3Button>
+      </>
+        
+        }
 
       <section className="relative py-2">
 
