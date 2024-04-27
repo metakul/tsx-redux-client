@@ -10,16 +10,20 @@ interface NavItemProps {
     };
     isSidebarOpen: boolean;
     isNonMobile:boolean;
+    setShowOutlet: (showOutlet: boolean) => void;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ item, isSidebarOpen }) => {
+const NavItem: React.FC<NavItemProps> = ({ item, isSidebarOpen,setShowOutlet }) => {
     const { text, icon, to } = item;
-
+    const handleClick = () => {
+        setShowOutlet(true); 
+    };
     return (
         <ListItem key={text} disablePadding sx={{ display: 'block' }}>
             <ListItemButton
                 component={RouterLink}
                 to={to}
+                onClick={handleClick}
                 sx={{
                     minHeight: 48,
                     justifyContent: isSidebarOpen ? 'initial' : 'center',

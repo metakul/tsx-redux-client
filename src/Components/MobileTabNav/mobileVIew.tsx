@@ -1,16 +1,25 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { useMediaQuery } from '@mui/material';
 
 interface MobileTabNavigationProps {
   tabs: { value: ReactNode; content: ReactNode; label: string }[];
-  position?:string
+  position?:string;
+  showOutlet?:boolean
 }
 
-const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position }) => {
+const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position ,showOutlet}) => {
+ 
+  useEffect(() => {
+    if (showOutlet) {
+      setValue(0);
+    }
+  }, [showOutlet]);
+  
   const [value, setValue] = React.useState(0);
-
+  const isNonMobile = useMediaQuery("(min-width: 766px)");
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -29,7 +38,7 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position
         onChange={handleChange}
         aria-label="mobile tabs example"
         variant="fullWidth"
-        className={` fixed ${position=="top" ? "top-16" : " bottom-0 left-0"} w-full flex flex-row bg-[#005580] z-20`}
+        className={` fixed ${position=="top" ? "top-16 left-0 " : " bottom-0 left-0"} w-full flex flex-row bg-[#005580] z-20`}
       >
         {tabs.map(({ value }, index) => (
           <Tab key={index} icon={React.createElement('div', null, value)} {...a11yProps(index)} sx={{
@@ -40,7 +49,7 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position
         ))}
       </Tabs>
       {tabs.map(({ content }, index) => (
-        <CustomTabPanel key={index} value={value} index={index}>
+        <CustomTabPanel isNonMobile={isNonMobile} key={index} value={value} position={position} index={index}>
           {content}
         </CustomTabPanel>
       ))}
@@ -52,9 +61,11 @@ interface CustomTabPanelProps {
   children: React.ReactNode;
   index: number;
   value: number;
+  isNonMobile:boolean
+  position?:string
 }
 
-const CustomTabPanel: React.FC<CustomTabPanelProps> = ({ children, value, index }) => (
+const CustomTabPanel: React.FC<CustomTabPanelProps> = ({isNonMobile, children, value, index,position  }) => (
   <div
     role="tabpanel"
     hidden={value !== index}
@@ -64,9 +75,8 @@ const CustomTabPanel: React.FC<CustomTabPanelProps> = ({ children, value, index 
       paddingBottom:"50px",
       marginBottom:"50px",
     }}
-    className='container'
-  >
-    {value === index && <Box sx={{ pl: 3 }}>{children}</Box>}
+    >
+    {value === index && <Box   className={` ${position=="top" ? "pt-12" : ""}`} sx={{ pl: isNonMobile ? 3 : 0 }}>{children}</Box>}
   </div>
 );
 

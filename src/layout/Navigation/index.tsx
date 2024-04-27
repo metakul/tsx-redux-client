@@ -15,6 +15,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 export interface MiniDrawerProps {
     isSidebarOpen: boolean;
     setIsSidebarOpen: () => void;
+    setShowOutlet: () => void;
     isNonMobile: boolean;
     navConfig: {
         text: string;
@@ -24,7 +25,7 @@ export interface MiniDrawerProps {
 }
 
 
-const MiniDrawer: React.FC<MiniDrawerProps> = ({ setIsSidebarOpen, isNonMobile, isSidebarOpen, navConfig }) => {
+const MiniDrawer: React.FC<MiniDrawerProps> = ({ setIsSidebarOpen, isNonMobile, isSidebarOpen, navConfig, setShowOutlet }) => {
     const theme = useTheme();
 
     return (
@@ -39,7 +40,7 @@ const MiniDrawer: React.FC<MiniDrawerProps> = ({ setIsSidebarOpen, isNonMobile, 
                     <Divider />
                     <List >
                         {navConfig.map((item, index) => (
-                            <NavItem isNonMobile={isNonMobile} item={item} key={index} isSidebarOpen={isSidebarOpen} />
+                            <NavItem isNonMobile={isNonMobile} item={item} key={index} isSidebarOpen={isSidebarOpen} setShowOutlet={setShowOutlet} />
                         ))}
                     </List>
                     <Divider />
@@ -57,7 +58,7 @@ const MiniDrawer: React.FC<MiniDrawerProps> = ({ setIsSidebarOpen, isNonMobile, 
                     <Divider />
                     <List >
                         {navConfig.map((item, index) => (
-                            <NavItem isNonMobile={isNonMobile} item={item} key={index} isSidebarOpen={isSidebarOpen} />
+                            <NavItem isNonMobile={isNonMobile} item={item} key={index} isSidebarOpen={isSidebarOpen} setShowOutlet={setShowOutlet} />
                         ))}
                     </List>
                     <Divider />
