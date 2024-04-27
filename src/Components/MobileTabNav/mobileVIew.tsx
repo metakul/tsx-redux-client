@@ -16,7 +16,7 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position
     if (showOutlet) {
       setValue(0);
     }
-  }, [showOutlet]);
+  }, [showOutlet, tabs]);
   
   const [value, setValue] = React.useState(0);
   const isNonMobile = useMediaQuery("(min-width: 766px)");
