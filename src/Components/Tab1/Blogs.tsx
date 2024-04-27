@@ -98,13 +98,7 @@ const Blogs = () => {
                       {/* <Link target='_blank' to={`/singleBlog/${post.id}`}>{post.title}</Link> */}
                     </h2>
                   <BlogDetails cryptoSymbol={post.cryptoSymbol} _blogId={post._id || ''} />
-                  <div className="flex flex-wrap items-center space-x-2 text-sm text-jacarta-400">
-                    <span>
-                      <time dateTime={post.date}>{post.date}</time>
-                    </span>
-                    <span>•</span>
-                    <span>3 min read</span>
-                  </div>
+                  
                 </Grid>
               </div>
 

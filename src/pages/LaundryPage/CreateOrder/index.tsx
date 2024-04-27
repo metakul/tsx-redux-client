@@ -1,9 +1,15 @@
-import { Container } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 
 function CreateLaundryOrder() {
   return (
     <Container className='container'>
-        index
+      <Box sx={{ mt: 1 }}>
+        <Typography variant='h3' sx={{
+          mb: 4
+        }}>
+          Only for GBPIET Students.
+          Launching Soon.
+        </Typography></Box>
     </Container>
   )
 }

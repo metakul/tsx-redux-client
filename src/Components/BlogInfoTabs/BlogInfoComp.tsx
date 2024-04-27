@@ -52,7 +52,7 @@ const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs }) => {
           role="tabpanel"
           hidden={value !== index}
           id={`blog-tabpanel-${index}`}
-          className='max-h-60 overflow-auto'
+          className='max-h-80 overflow-auto'
         >
           {value === index && <Box sx={{ pt: 1 }}>{content}</Box>}
         </div>

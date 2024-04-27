@@ -90,22 +90,21 @@ const Mywallet = () => {
 
       <section className="relative py-2">
 
+        <Box className="grid grid-cols-2 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
         {stakedTokens && stakedTokens[0].length > 0 ? (
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           stakedTokens[0]?.map((stakedToken: { toNumber: () => any; toString: () => any; }) => (
-            <Box className="grid grid-cols-2 gap-[1.875rem] md:grid-cols-2 lg:grid-cols-4">
               <SingleNftCard
                 tokenId={stakedToken.toNumber()}
                 key={stakedToken.toString()}
               />
-            </Box>
-          ))
-        ) : (
-          <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            mt:12
-          }}>
+            ))
+          ) : (
+            <Box sx={{
+              display:"flex",
+              justifyContent:"center",
+              mt:12
+            }}>
           <Typography variant="h3" sx={{
             mt: 2
           }}>
@@ -113,6 +112,7 @@ const Mywallet = () => {
           </Typography>
           </Box>
         )}
+        </Box>
       </section>
     </Container >
   );

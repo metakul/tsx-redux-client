@@ -27,14 +27,12 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
           <article key={index}>
             <div className="block ml-2 rounded-2.5xl border border-jacarta-100 p-[1\5rem] transition-shadow hover:shadow-lg max-w-80">
               <figure className="relative">
-                <a href={item?.metadata?.name}>
                   <img
                     src={item?.metadata?.image}
                     alt={`item ${index + 1}`}
                     className="w-full rounded-t-2.5xl border "
                     loading="lazy"
                   />
-                </a>
                 <div className="absolute top-3 right-3 flex items-center space-x-1 rounded-md  p-2">
                   <span
                     className="js-likes relative cursor-pointer before:absolute before:h-4 before:w-4 before:bg-[url('../img/heart-fill.svg')] before:bg-cover before:bg-center before:bg-no-repeat before:opacity-0"
@@ -57,9 +55,7 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
                 </div>
               </figure>
               <div className="mt-4 ml-4 flex items-center justify-between">
-                <a href={item?.metadata?.name} >
                   <span className="font-display text-base hover:text-accent">{item?.metadata?.name}</span>
-                </a>
                 <div>
                   <Button
                     id={`itemActions${index}`}
@@ -97,9 +93,17 @@ const NftCard: React.FC<Props> = ({ loadingMessage, balance, handleNftButtonText
                   </Menu>
                 </div>
               </div>
-              <div className="mt-8 flex items-center justify-between ml-4">
+              <div className="mt-4 flex items-center justify-between ml-4">
                 {item && item?.metadata?.id ? (
-                  <Button onClick={() => item && item.metadata && onHandleButtonClick(item.metadata.id)}>{handleNftButtonText}</Button>
+                  <Button sx={{
+                    background:"white",
+                    mb:2
+                  }} onClick={() => item && item.metadata && onHandleButtonClick(item.metadata.id)}>
+                   <Typography variant='h5'>
+
+                    {handleNftButtonText}
+                   </Typography>
+                    </Button>
                 ) : (
                   <h3>Not Minted Yet</h3>
                 )}

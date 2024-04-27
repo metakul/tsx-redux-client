@@ -19,10 +19,14 @@ const BlogDescription = ({ _id }: BlogDetailsProps) => {
       switch (node.nodeName.toLowerCase()) {
         case 'b':
         case 'strong':
-          return <span key={index} className="font-bold bg-blue">{Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}</span>;
+          return (
+            <span key={index} className="font-bold underline" style={{ fontSize: '24px' }}>
+            {Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}
+          </span>
+          );
         case 'a':
           return (
-            <a key={index} className="text-blue-500 bg-red underline" href={node.getAttribute('href')} target="_blank" rel="noopener noreferrer">
+            <a key={index} className="font-bold underline" style={{ fontSize: '16px',color:"blue" }} href={node.getAttribute('href')} target="_blank" rel="noopener noreferrer">
               {Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}
             </a>
           );
@@ -55,13 +59,29 @@ const BlogDescription = ({ _id }: BlogDetailsProps) => {
     return text.replace(/_/g, ''); // Remove underscores (assuming underscores indicate italics)
   };
 
+  const calculateReadingTime = (description: string) => {
+    // Assuming an average reading speed of 200 words per minute
+    const wordsPerMinute = 120;
+    const words = description.split(/\s+/).length;
+    const minutes = Math.ceil(words / wordsPerMinute);
+    return minutes;
+  };
+
   return (
-    <div className=''>
+    <div className='px-8 mt-4'>
       {selectedBlog?.description && (
+        <>
         <div>
+        <div className="flex flex-wrap items-center space-x-2 text-md mb-2 text-jacarta-400">
+                    <span>•</span>
+                    <span>{calculateReadingTime(selectedBlog?.description)} min read</span>
+                  </div>
+
           {parseHTML(selectedBlog.description).map((node, index) => renderCustomStyles(node, index))}
         </div>
+        </>
       )}
+                 
     </div>
   );
 };

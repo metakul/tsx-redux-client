@@ -17,14 +17,19 @@ const SingleNftCard = ({ tokenId }: any) => {
   return (
     <>
       {nft && (
-        <div className="header">
+            <div className=" rounded-2.5xl border border-jacarta-100 transition-shadow hover:shadow-lg max-w-72">
+        <div className="w-full rounded-t-2.5xl border">
+
           {nft.metadata && (
             <ThirdwebNftMedia
               metadata={nft.metadata}
-              className="mt-4"
+              className=" w-full rounded-t-2.5xl"
             />
           )}
+          </div>
           <h3>{nft.metadata.name}</h3>
+          <div className="mt-8 mb-4 flex items-center justify-between ml-4">
+
           <Web3Button
             action={async (contract) => {
               // Start a loading toast
@@ -43,6 +48,7 @@ const SingleNftCard = ({ tokenId }: any) => {
           >
             Withdraw
           </Web3Button>
+        </div>
         </div>
       )}
     </>
