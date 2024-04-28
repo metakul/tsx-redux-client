@@ -15,6 +15,29 @@ import {
 
 // import { FetchMyOrders } from '../../utils/apiUrl/Laundry/Get/getApi';
 // import { markOrderAsPickedUp } from '../../utils/apiUrl/Laundry/Post/PostApi';
+// Mock order array based on the orderColumn structure
+const mockOrders = [
+  {
+      _id: "1",
+      orderNumber: "ORD001",
+      status: "Pending",
+      items: ["Item 1", "Item 2", "Item 3"]
+  },
+  {
+      _id: "2",
+      orderNumber: "ORD002",
+      status: "Completed",
+      items: ["Item 4", "Item 5"]
+  },
+  {
+      _id: "3",
+      orderNumber: "ORD003",
+      status: "Processing",
+      items: ["Item 6"]
+  },
+  // Add more mock orders as needed
+];
+
 
 // Import your loading GIF
 import { orderColumn } from "./Columns";
@@ -47,10 +70,9 @@ export default function ViewLaundryDetails() {
             component={RouterLink}
           >
             <AddIcon/>
-            <Typography>  Add Order </Typography>
+            <Typography>Add Order</Typography>
           </Button>
         </Stack>
-
         <>
           <TextField
             label="Search"
@@ -61,7 +83,7 @@ export default function ViewLaundryDetails() {
             style={{ marginBottom: 16 }}
           />
           <CustomDataGrid
-            rows={[]}
+            rows={mockOrders}
             columns={orderColumn}
             getRowId={(row) => row.orderNumber}
           />

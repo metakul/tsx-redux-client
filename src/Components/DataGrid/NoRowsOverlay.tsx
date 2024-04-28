@@ -1,7 +1,6 @@
 import { styled } from '@mui/system';
 import { Box, Typography } from '@mui/material';
 import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
-import { useEffect } from 'react';
 
 const StyledGridOverlay = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -28,20 +27,7 @@ const StyledGridOverlay = styled('div')(({ theme }) => ({
 }));
 export function CustomNoRowsOverlay() {
   const address = useAddress()
-
-  const fetchOrderInfo = async (address: string | undefined) => {
-    try {
-      console.log("Order Fetched successFully",address);
-         } catch (error) {
-      console.error('Error fetching crypto info:', error);
-    }
-  };
-
-  useEffect(() => {
-    if(address)
-    fetchOrderInfo(address);
-  }, [address]);
-  
+ 
   return (
     <StyledGridOverlay>
       {address ? (
