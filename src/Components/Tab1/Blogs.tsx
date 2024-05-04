@@ -8,34 +8,45 @@ import { FetchBlogData } from '../../interfaces/interface';
 import { Grid } from '@mui/material';
 import ShareButton from '../Buttons/ShareButton';
 import BlogDetails from '../BlogInfoTabs';
-import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { SetStateAction, useEffect, useState } from 'react';
 import LikeButton from '../Buttons/LikeButton';
+import { selectUserType } from '../../redux/slices/authSlice';
+
 const Blogs = () => {
   // const theme = useTheme()
   const dispatch = useDispatch()
   const blogsData = useSelector(selectedBlogs).blogs
   const [blogPage, setBlogPage] = useState(1);
   const [pageSize,] = useState(2);
-
+  const [openedBlogId, setOpenedBlogId] = useState<string | null>(null);
+  const userType = useSelector(selectUserType);
   const handleLoadBlogs = () => {
 
-    const userType: FetchBlogData = {
-      userType: "user",
+    const loadForUser: FetchBlogData = {
+      userType: userType,
     };
     (dispatch as AppDispatch)(fetchBlogApiSlice({
-      fetchBlogData: userType,
+      fetchBlogData: loadForUser,
       pageSize,
       blogPage,
       setBlogPage,
     }));
   }
 
+   // Get current domain dynamically
+   const currentDomain = window.location.origin;
+
   useEffect(() => {
     // Load blogs when the component mounts
     handleLoadBlogs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleOpenBlogs = (postId: SetStateAction<string | null> = null) => {
+    setOpenedBlogId(postId === openedBlogId ? null : postId);
+  };
+  
+  
   return (
 
     <div className=" sm:w-full overflow-hidden mx-auto">
@@ -43,11 +54,7 @@ const Blogs = () => {
 
         (blogsData as Ipost[])?.map((post: Ipost, index: number) => (
           <section key={index} className="relative py-4 ">
-            <Helmet>
-              <title>{post.title}</title>
-              <meta name="description" content={post.description} />
-              {/* Add more meta tags as needed */}
-            </Helmet>
+           
             <Box className="flex flex-col rounded-2.5xl border border-jacarta-300 transition-shadow shadow-lg justify-center">
 
               <div
@@ -56,9 +63,10 @@ const Blogs = () => {
                 <div className='mb-3 flex flex-wrap items-center space-x-1 text-xs flex-row justify-center'>
 
                   <img
-                    src={post.image}
+                    src={`data:image/png;base64,${post.image}`}
                     alt={post.title}
                     className=" w-80 sm:h-3/4 object-cover transition-transform duration-[100ms] will-change-transform group-hover:scale-105"
+                    onClick={() => handleOpenBlogs(post._id)}
                   />
                 </div>
                 <Grid container className='mt-8'>
@@ -84,20 +92,21 @@ const Blogs = () => {
 
                   </Grid>
                   <Grid item xs={4} md={4} lg={4} className='mx-auto flex items-end justify-around pr-8 pb-4'>
-                    <ShareButton />
+                    <ShareButton link={ `${currentDomain}/blogDetails/${post._id}`}/>
                     <LikeButton />
 
                   </Grid>
                   <h2
                       className="mb-4 font-display text-md "
-                    >
+                      onClick={() => handleOpenBlogs(post._id)}
+                      >
                       {post.title
                         .split(' ')
                         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                         .join(' ')}
                       {/* <Link target='_blank' to={`/singleBlog/${post.id}`}>{post.title}</Link> */}
                     </h2>
-                  <BlogDetails cryptoSymbol={post.cryptoSymbol} _blogId={post._id || ''} />
+                  <BlogDetails isBlogInfoOpen={openedBlogId === post._id} cryptoSymbol={post.cryptoSymbol} _blogId={post._id || ''} />
                   
                 </Grid>
               </div>

@@ -1,20 +1,21 @@
-export function fileToBlob(file: File, callback: (blob: Blob) => void) {
-    // Create a new file reader
-    const reader = new FileReader();
-  
-    // Define the onload event handler
-    reader.onload = (event: ProgressEvent<FileReader>) => {
-      // Ensure event target is not null
-      if (event.target) {
-        // Create a new Blob object with the file content
-        const blob = new Blob([event.target.result as ArrayBuffer], { type: file.type });
-        
-        // Execute the callback function with the Blob object
-        callback(blob);
-      }
-    };
-  
-    // Read the file as array buffer
-    reader.readAsArrayBuffer(file);
-  }
-  
+export const convertFileToBase64 = (file: Blob) => {
+    return new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            const base64Data = reader.result as string | null; // Type assertion
+            if (base64Data) {
+                resolve(base64Data.split(",")[1]); // Extract the base64 data part
+            } else {
+                reject(new Error("File reading failed"));
+            }
+        };
+
+        reader.onerror = (error) => {
+            reject(error);
+        };
+
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+    });
+};

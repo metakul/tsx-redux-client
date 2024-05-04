@@ -85,6 +85,8 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
     };
 
     const register: (e: string) => void = (e) => {
+        console.log(e);
+        
         setFormData({ ...formData, image: e });
       };
       

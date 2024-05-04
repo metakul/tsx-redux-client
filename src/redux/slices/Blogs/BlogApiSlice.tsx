@@ -42,6 +42,37 @@ export const fetchBlogApiSlice = createAsyncThunk(
     }
   }
 );
+export const fetchSingleBlogApiSlice = createAsyncThunk(
+  'blogCollection/setLoadedBlogs',
+  // eslint-disable-next-line no-empty-pattern
+  async ({ fetchBlogData,id  }: { fetchBlogData: FetchBlogData,id:string }, { rejectWithValue, dispatch }) => {
+    try {
+      console.log("userType",fetchBlogData.userType)
+      const response = await request({
+        url:`${ApiEndpoint.GETSINGLEBLOG.url}/${id}`,
+        method: ApiEndpoint.GETSINGLEBLOG.method,
+        headers: ApiEndpoint.GETSINGLEBLOG.headers,
+        loadingMessage:ApiEndpoint.GETSINGLEBLOG.loadingMessage
+      })
+      const blogs:Ipost = response.data;
+
+      dispatch(setLoadedBlogs({blogData:[blogs]} ));
+
+      const apiSuccess: ApiSuccess = {
+        statusCode: response.status,
+        message: 'Blogs Fetched SuccessFully',
+        data: response.data,
+      };
+  
+      return apiSuccess;
+
+    } catch (error) {
+      const castedError =error as ApiError
+      console.error('Error Fetching Blogs:', error);
+      return rejectWithValue(castedError?.error === "string" ? castedError?.error : 'Unknown Error');
+    }
+  }
+);
 
 export const addBlogApiSlice = createAsyncThunk(
   'blogCollection/addBlog',

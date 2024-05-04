@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -7,15 +7,24 @@ import { getColors } from '../../layout/Theme/themes';
 
 interface BlogInfoTabProps {
   tabs: { value: ReactNode; content: ReactNode; label: string }[];
+  openedTab?: boolean
 }
 
-const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs }) => {
+const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs, openedTab  }) => {
   const [value, setValue] = React.useState<number | null>(null); // Corrected useState type
   const theme = useTheme();
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    // Set the selected tab value to 0 when onBase4ImageClick changes
+
+    if(openedTab){
+      setValue(0)
+    }
+  }, [openedTab]);
 
   function a11yProps(index: number) {
     return {

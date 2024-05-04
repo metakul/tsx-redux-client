@@ -132,6 +132,7 @@ export interface CryptoInfoProps{
 
 export interface BlogDetailsProps{
   _id:string
+  userType:string
 }
 
 export interface SocialProfileProps{

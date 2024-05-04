@@ -1,20 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { BlogDetailsProps } from '../../interfaces/interface';
-import { selectedBlogs } from '../../redux/slices/Blogs/BlogSlice';
+import React from "react";
 
-const BlogDescription = ({ _id }: BlogDetailsProps) => {
-  const blogsData = useSelector(selectedBlogs).blogs;
-  const selectedBlog = blogsData.find((blog) => blog._id === _id);
-
-  const parseHTML = (html: string) => {
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
-    return Array.from(tempDiv.childNodes);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const renderCustomStyles = (node: any, index: number) => {
+ // eslint-disable-next-line @typescript-eslint/no-explicit-any
+ export const renderCustomStyles = (node: any, index: number) => {
     if (node.nodeType === 1) { // Node.ELEMENT_NODE
       switch (node.nodeName.toLowerCase()) {
         case 'b':
@@ -59,7 +46,16 @@ const BlogDescription = ({ _id }: BlogDetailsProps) => {
     return text.replace(/_/g, ''); // Remove underscores (assuming underscores indicate italics)
   };
 
-  const calculateReadingTime = (description: string) => {
+  
+  export const parseHTML = (html: string) => {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    return Array.from(tempDiv.childNodes);
+  };
+
+
+
+  export const calculateReadingTime = (description: string) => {
     // Assuming an average reading speed of 200 words per minute
     const wordsPerMinute = 120;
     const words = description.split(/\s+/).length;
@@ -67,23 +63,17 @@ const BlogDescription = ({ _id }: BlogDetailsProps) => {
     return minutes;
   };
 
-  return (
-    <div className='px-8 mt-4'>
-      {selectedBlog?.description && (
-        <>
-        <div>
-        <div className="flex flex-wrap items-center space-x-2 text-md mb-2 text-jacarta-400">
-                    <span>•</span>
-                    <span>{calculateReadingTime(selectedBlog?.description)} min read</span>
-                  </div>
 
-          {parseHTML(selectedBlog.description).map((node, index) => renderCustomStyles(node, index))}
-        </div>
-        </>
-      )}
-                 
-    </div>
-  );
-};
-
-export default BlogDescription;
+  export const handleShare = (link: string) => {
+    // Fallback for browsers that do not support Web Share API
+    navigator.clipboard.writeText(link)
+      .then(() => {
+        console.log('Shareable link copied to clipboard:', link);
+        alert('Shareable link copied to clipboard');
+      })
+      .catch((error) => {
+        console.error('Error copying shareable link to clipboard:', error);
+        alert('Error copying shareable link to clipboard');
+      });
+  };
+  

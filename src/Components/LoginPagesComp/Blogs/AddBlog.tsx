@@ -39,8 +39,6 @@ const AddBlogComp = () => {
             (dispatch as AppDispatch)(fetchBlogApiSlice({ fetchBlogData: userType }));
     }, [dispatch]);
 
-    console.log(blogsData)
-
     const filteredRows = blogsData.filter((row) =>
         row?._id?.toLowerCase().includes(searchQuery.toLowerCase())
     );

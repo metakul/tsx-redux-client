@@ -13,6 +13,7 @@ import EarnPage from "./pages/EarnPage";
 import CreateNft from "./pages/CreateNftPage";
 import LaundryPage from "./pages/LaundryPage";
 import CreateOrder from "./pages/LaundryPage/CreateOrder";
+import SingleBlogDetails from "./Components/BlogDetails.tsx/SingleBlogDetails.tsx";
 
 const Router: React.FC = () => {
   const token = useSelector(selectToken);
@@ -55,6 +56,10 @@ const Router: React.FC = () => {
           element: <LaundryPage/>,
         },
       
+        {
+          path: Pages.SINGLE_BLOG,
+          element: <SingleBlogDetails />,
+        }      
       ],
     },
     { path: "*", element: <Navigate to={Pages.HOME} /> },

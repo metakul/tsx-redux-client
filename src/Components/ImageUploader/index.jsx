@@ -2,7 +2,7 @@ import { AddAPhoto as AddAPhotoIcon } from "@mui/icons-material";
 import { useDropzone } from "react-dropzone";
 import { useState } from "react";
 import { Container, Typography, Box, Paper } from "@mui/material";
-import { fileToBlob } from "../../scripts/fileConverter";
+import { convertFileToBase64 } from "../../scripts/fileConverter";
 
 export default function ImageUploader(props) {
   const { register } = props;
@@ -14,7 +14,7 @@ export default function ImageUploader(props) {
     },
     onDrop: async (acceptedFiles) => {
       const file = acceptedFiles[0];
-      const base64Image=await fileToBlob(file)
+      const base64Image=await convertFileToBase64(file)
       register(base64Image);
       setFile({ preview: URL.createObjectURL(file) });
     },

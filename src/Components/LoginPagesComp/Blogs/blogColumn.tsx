@@ -36,25 +36,26 @@ const BlogColumn = (
       headerName: "Actions",
       width: 160,
       editable: false,
-      renderCell: (params: { row: { id: string; }; }) => (
+      renderCell: (params: { row: { _id: string; }; }) => (
         <div>
           <Button
             variant="contained"
             onClick={(event) => {
               setOpenMenu(event.currentTarget);
-              setSelectedRowId(params.row.id);
+              setSelectedRowId(params.row._id);
             }}
           >
             <MoreIcon />
           </Button>
           
-          <Link to="/blogs/:id">
-            <Button
-              variant="contained"
-            >
-              <PreviewOutlined />
-            </Button>
-          </Link>
+          <Link  onClick={(event) => {
+              setOpenMenu(event.currentTarget);
+              setSelectedRowId(params.row._id);
+            }} to={`/blogDetails/${params.row._id}`}>
+        <Button variant="contained">
+          <PreviewOutlined />
+        </Button>
+      </Link>
         </div>
       ),
     },
