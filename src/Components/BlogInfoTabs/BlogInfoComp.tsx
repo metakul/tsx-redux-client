@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material';
+import { getColors } from '../../layout/Theme/themes';
 
 interface BlogInfoTabProps {
   tabs: { value: ReactNode; content: ReactNode; label: string }[];
@@ -39,7 +40,7 @@ const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs }) => {
             sx={{
               backgroundColor: value === index ? theme.palette.grey[200] : 'inherit',
               '&:hover': {
-                backgroundColor: theme.palette.action.hover,
+                backgroundColor: getColors().blueAccent[800],
               },
             }}
             className='max-h-2'

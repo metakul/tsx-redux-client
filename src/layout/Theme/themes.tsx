@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useMemo } from "react";
-import { createTheme, Theme } from '@mui/material/styles';
+import { createTheme, Theme, useTheme } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 
 interface ExtendedTheme extends Theme {
@@ -266,4 +266,11 @@ export const useMode = (): [Theme, ColorModeContextType] => {
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
     return [theme, colorMode];
+};
+
+// Define colors dynamically based on the current theme mode
+export const getColors = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const theme = useTheme();
+  return tokens(theme.palette.mode);
 };

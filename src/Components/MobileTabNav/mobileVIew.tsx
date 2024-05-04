@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useMediaQuery } from '@mui/material';
+import { getColors } from '../../layout/Theme/themes';
 
 interface MobileTabNavigationProps {
   tabs: { value: ReactNode; content: ReactNode; label: string }[];
@@ -38,13 +39,21 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position
         onChange={handleChange}
         aria-label="mobile tabs example"
         variant="fullWidth"
-        className={` fixed ${position=="top" ? "top-16 left-0 " : " bottom-0 left-0"} w-full flex flex-row bg-[#005580] z-20`}
+        sx={{
+          backgroundColor:getColors().blueAccent[900],
+          color:getColors().redAccent[500],
+
+        }}
+        className={`  ${position=="top" ? "" : "fixed bottom-0 left-0"} w-full flex flex-row  z-20`}
       >
         {tabs.map(({ value }, index) => (
           <Tab key={index} icon={React.createElement('div', null, value)} {...a11yProps(index)} sx={{
             '&.Mui-selected': {
-              background: 'green',
+              backgroundColor:getColors().greenAccent[800],
+              color:getColors().blueAccent[100],
             },
+          color:getColors().blueAccent[300],
+
           }}/>
         ))}
       </Tabs>

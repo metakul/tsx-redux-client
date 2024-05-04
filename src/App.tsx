@@ -43,7 +43,7 @@ function App() {
             smartWallet(
               embeddedWallet({
                 auth: {
-                  options: ["email", "google", "apple", "facebook"],
+                  options: ["email", "google", "apple", "facebook","email","phone"],
                 },
               }),
               smartWalletOptions

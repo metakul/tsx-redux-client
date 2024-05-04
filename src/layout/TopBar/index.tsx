@@ -13,7 +13,7 @@ import {
   Menu as MenuIcon,
 } from "@mui/icons-material";
 // import app
-import { ColorModeContext } from "../Theme/themes";
+import { ColorModeContext, getColors } from "../Theme/themes";
 import { motion } from "framer-motion";
 // const NAV_WIDTH = 280;
 import "./style.css"
@@ -37,12 +37,14 @@ interface HeaderProps{
   }
 
   return (
-    <AppBar >
+    <AppBar sx={{
+      backgroundColor:getColors().blueAccent[900]
+    }} >
       <Toolbar>
         <IconButton
           onClick={() => setIsSidebarOpen()}
           sx={{
-            color: "text.primary",
+            color: getColors().blueAccent[100]
           }}
         >
           <MenuIcon />

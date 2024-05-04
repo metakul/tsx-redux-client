@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, Container, TextField, Typography } from "@mui/material";
 import * as s from "./MintFormCss";
 import { uploadJSONToIPFS } from "../../../scripts/ipfsHandler";
 import ImageUploader from "../../../Components/ImageUploader";
@@ -43,19 +43,20 @@ function Home() {
     try {
       const metadataURL = await uploadMetadataToIPFS();
       console.log(metadataURL);
+
       alert("Successfully Saved your NFT for future Mint");
       updateFormParams({ name: '', description: '', external_url: '' });
-      window.location.replace("/");
     } catch (e) {
       alert("Upload error" + e);
     }
   }
 
   return (
-    <s.Container>
+    <Container>
       <s.ResponsiveWrapper >
-        <s.TextInfo> * Required fields</s.TextInfo>
-        <s.TextSubTitle>Image, Video, Audio, or 3D Model *</s.TextSubTitle>
+        <Typography variant="h4" sx={{
+          mt:6
+        }}>Image, Video, Audio, or 3D Model *</Typography>
         <s.TextInfo> File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size: 100 MB</s.TextInfo>
 
         <ImageUploader register={onChangeFile} />
@@ -69,7 +70,7 @@ function Home() {
         />
 
         <s.TextSubTitle>External link</s.TextSubTitle>
-        <s.TextInfo>OpenSea will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</s.TextInfo>
+        <s.TextInfo>Blockchain will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</s.TextInfo>
 
         <TextField
           type="text"
@@ -97,7 +98,7 @@ function Home() {
         
         <s.TextInfo>Upload Image to enable Mint Button</s.TextInfo>
       </s.ResponsiveWrapper>
-    </s.Container>
+    </Container>
   );
 }
 
