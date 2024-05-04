@@ -41,46 +41,73 @@ const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => 
     
    
     const [description, setDescription] = useState(postInfo ? postInfo.description : "");
-    const [isError, setIsError] = useState<boolean>(false);
 
     const [errors, setErrors] = useState<ErrorMessages>(newErrors);
 
     const handleFormSubmit = async (event: React.FormEvent) => {
-        setIsError(false);
+        // Reset errors to null or empty string
+        setErrors({
+            title: '',
+            image: '',
+            author: '',
+            categories: '',
+            cryptoSymbol: '',
+        });
+
         console.log(formData);
         
+    
         event.preventDefault();
+    
         // Validate form fields
-
         Object.keys(formData).forEach((key) => {
             const formValue = formData[key as keyof Ipost];
             if (typeof formValue === 'string') {
                 if (formValue.trim() === '' && key !== 'description') {
-                    newErrors[key] = `${key.charAt(0).toUpperCase() + key.slice(1)} is required`;
-                    setIsError(true);
+                
+                    // Update the errors state if the field is empty
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        [key]: `${key.charAt(0).toUpperCase() + key.slice(1)} is required`,
+                    }));
                 }
-            } else if (Array.isArray(formValue)) {
-                if (formValue.length === 0 && key !== 'description') {
-                    newErrors[key] = `${key.charAt(0).toUpperCase() + key.slice(1)} is required`;
-                    setIsError(true);
+            } else if (Array.isArray(formValue) && key !== 'description') {
+                if (formValue.length === 0) {
+                    // Update the errors state if the field is empty
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        [key]: `${key.charAt(0).toUpperCase() + key.slice(1)} is required`,
+                    }));
                 }
             }
         });
-        setErrors(newErrors as typeof errors);
-
+    
         // If there are no errors, dispatch action to add blog
-        if (Object.values(newErrors).every((error) => !error)) {
-            setIsError(false);
-
+        const hasErrors = Object.values(errors).some((error) => !!error);
+        if (!hasErrors) {
             // Dispatch action to add blog
-            (dispatch as AppDispatch)(addBlogApiSlice({ newBlogData: { ...formData, description, postId: postInfo?.postId }, setDialogOpen, postType }));  }
+            (dispatch as AppDispatch)(
+                addBlogApiSlice({
+                    newBlogData: { ...formData, description, postId: postInfo?.postId },
+                    setDialogOpen,
+                    postType,
+                })
+            );
+        }
     };
+    
 
     const handleChange = (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>, field: keyof Ipost) => {
         if (field === 'categories') {
-            // Split the input value by comma and trim each category
-            const categoriesArray = e.currentTarget.value.split(',').map((category) => category.trim());
-            setFormData({ ...formData, [field]: categoriesArray });
+            // Check if the input value is empty
+            if (e.currentTarget.value.trim() === '') {
+                // If it's empty, set categories to an empty array
+                setFormData({ ...formData, [field]: [] });
+            } else {
+                // Otherwise, split the input value by comma and trim each category
+                const categoriesArray = e.currentTarget.value.split(',').map((category) => category.trim());
+                setFormData({ ...formData, [field]: categoriesArray });
+            }
         } else {
             setFormData({ ...formData, [field]: e.currentTarget.value });
         }
@@ -118,7 +145,7 @@ const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => 
                             onChange={(e) => handleChange(e, 'title')}
                             placeholder="Enter title"
                             error={errors.title}
-                            isError={isError}
+                            isError={errors.title ? true :false}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -140,7 +167,7 @@ const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => 
                             onChange={(e) => handleChange(e, 'author')}
                             placeholder="Enter author"
                             error={errors.author}
-                            isError={isError}
+                            isError={errors.author ? true :false}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -153,7 +180,7 @@ const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => 
                             onChange={(e) => handleChange(e, 'categories')}
                             placeholder="Enter categories"
                             error={errors.categories}
-                            isError={isError}
+                            isError={errors.categories ? true :false}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -166,7 +193,7 @@ const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => 
                             onChange={(e) => handleChange(e, 'cryptoSymbol')}
                             placeholder="Enter crypto symbol"
                             error={errors.cryptoSymbol}
-                            isError={isError}
+                            isError={errors.cryptoSymbol ? true :false}
                         />
                     </Grid>
                 </Grid>

@@ -105,9 +105,12 @@ export const addBlogApiSlice = createAsyncThunk(
           loadingMessage:ApiEndpoint.ADD_BLOG.loadingMessage
         });
       }
+      const newBlog:Ipost=response.data.newPost
 
-      dispatch(addBlog(response.data.newPost)); // Dispatch addBlog action with new blog data
-
+      const { _id: postId, ...rest } = newBlog;
+      const updatedBlogs = { postId, ...rest };
+      dispatch(addBlog(updatedBlogs)); // Dispatch addBlog action with new blog data
+      
       const apiSuccess: ApiSuccess = {
         statusCode: response.status,
         message: 'Blog Added Successfully',

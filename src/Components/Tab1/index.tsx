@@ -5,7 +5,7 @@ import Marquee from '../MarqueCrypto';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 const Tab1 = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Simulate page loading delay
