@@ -2,7 +2,7 @@ import { AddAPhoto as AddAPhotoIcon } from "@mui/icons-material";
 import { useDropzone } from "react-dropzone";
 import { useState } from "react";
 import { Container, Typography, Box, Paper } from "@mui/material";
-import { uploadFileToIPFS } from "../../scripts/ipfsHandler";
+import { fileToBlob } from "../../scripts/fileConverter";
 
 export default function ImageUploader(props) {
   const { register } = props;
@@ -14,8 +14,8 @@ export default function ImageUploader(props) {
     },
     onDrop: async (acceptedFiles) => {
       const file = acceptedFiles[0];
-      const data=await uploadFileToIPFS(file)
-      register(data.pinataURL);
+      const base64Image=await fileToBlob(file)
+      register(base64Image);
       setFile({ preview: URL.createObjectURL(file) });
     },
   });
