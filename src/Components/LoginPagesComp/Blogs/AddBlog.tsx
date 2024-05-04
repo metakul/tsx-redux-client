@@ -40,7 +40,7 @@ const AddBlogComp = () => {
     }, [dispatch]);
 
     const filteredRows = blogsData.filter((row) =>
-        row?._id?.toLowerCase().includes(searchQuery.toLowerCase())
+        row?.postId?.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const updateBlogStatus = (status: unknown) => {
@@ -54,7 +54,7 @@ const AddBlogComp = () => {
         <Box sx={{ width: "100%", position: "relative" }} className="sm:w-full overflow-hidden mx-auto ">
             <Paper sx={{ mb: 2, overflow: "hidden", borderRadius: 4, padding: 2 }}>
                 <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-                <AddBlogForm  />
+                <AddBlogForm  formEvent={"ADD BLOG"}/>
                 <CustomDataGrid  getRowId={(row: { _id?: string }) => row._id || ''} columns={columns} rows={filteredRows} />
                 <UserOptionsMenu
                     openMenu={openMenu}

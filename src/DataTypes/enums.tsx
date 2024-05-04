@@ -41,6 +41,7 @@ export enum ProtectedPageInfo{
     GETBLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
     GETSINGLEBLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
     ADD_BLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Adding New Blog"},
+    EDIT_BLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'PATCH', headers: { 'Content-Type': 'application/json'},loadingMessage:"Editing Blog"},
     FetchCryptoInfo: { url: "https://rest.coinapi.io/v1/exchangerate", method: 'GET', headers: { "X-CoinAPI-Key":"21F0E4E9-1955-4555-A4DA-51524A1E8ED3"}, loadingMessage:"Loading Crypto"},
   };
   

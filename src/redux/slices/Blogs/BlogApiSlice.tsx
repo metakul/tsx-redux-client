@@ -20,9 +20,13 @@ export const fetchBlogApiSlice = createAsyncThunk(
         headers: ApiEndpoint.GETBLOG.headers,
         loadingMessage:ApiEndpoint.GETBLOG.loadingMessage
       })
-      const blogs:Ipost[] = response.data;
-
-      dispatch(setLoadedBlogs({blogData:blogs} ));
+      const blogs: Ipost[] = response.data;
+      const transformedBlogs = blogs.map(blog => ({
+          ...blog,
+          postId: blog._id
+      }));
+      
+      dispatch(setLoadedBlogs({ blogData: transformedBlogs }));
 
       const apiSuccess: ApiSuccess = {
         statusCode: response.status,
@@ -56,7 +60,10 @@ export const fetchSingleBlogApiSlice = createAsyncThunk(
       })
       const blogs:Ipost = response.data;
 
-      dispatch(setLoadedBlogs({blogData:[blogs]} ));
+      const { _id: postId, ...rest } = blogs;
+      const updatedBlogs = { postId, ...rest };
+
+      dispatch(setLoadedBlogs({blogData:[updatedBlogs]} ));
 
       const apiSuccess: ApiSuccess = {
         statusCode: response.status,
@@ -76,15 +83,28 @@ export const fetchSingleBlogApiSlice = createAsyncThunk(
 
 export const addBlogApiSlice = createAsyncThunk(
   'blogCollection/addBlog',
-  async ({newBlogData,setDialogOpen}:  { newBlogData: Ipost, setDialogOpen: (open: boolean) => void }, { rejectWithValue, dispatch }) => {
+  async ({newBlogData,setDialogOpen, postType}:  { newBlogData: Ipost, setDialogOpen: (open: boolean) => void,postType?:string }, { rejectWithValue, dispatch }) => {
     try {
-      const response = await request({
-        url: ApiEndpoint.ADD_BLOG.url,
-        method: ApiEndpoint.ADD_BLOG.method,
-        headers: ApiEndpoint.ADD_BLOG.headers,
-        data: newBlogData,
-        loadingMessage:ApiEndpoint.ADD_BLOG.loadingMessage
-      });
+
+        let response
+      if(postType=="edit"){
+        response = await request({
+          url: `${ApiEndpoint.EDIT_BLOG.url}/${newBlogData.postId}`,
+          method: ApiEndpoint.EDIT_BLOG.method,
+          headers: ApiEndpoint.EDIT_BLOG.headers,
+          data: newBlogData,
+          loadingMessage:ApiEndpoint.EDIT_BLOG.loadingMessage
+        });
+      }
+      else{
+        response = await request({
+          url: ApiEndpoint.ADD_BLOG.url,
+          method: ApiEndpoint.ADD_BLOG.method,
+          headers: ApiEndpoint.ADD_BLOG.headers,
+          data: newBlogData,
+          loadingMessage:ApiEndpoint.ADD_BLOG.loadingMessage
+        });
+      }
 
       dispatch(addBlog(response.data.newPost)); // Dispatch addBlog action with new blog data
 

@@ -10,7 +10,11 @@ import ImageUploader from '../ImageUploader';
 import WYSIWYGEditor from '../WYSWYGEditor';
 import 'react-quill/dist/quill.snow.css';
 
-interface AddBlogProps {}
+interface AddBlogProps {
+    postInfo?:Ipost;
+    postType?:string;
+    formEvent:string
+}
 
 interface ErrorMessages {
     [key: string]: string;
@@ -24,23 +28,27 @@ const newErrors: ErrorMessages = {
     cryptoSymbol: '',
 };
 
-const AddBlogForm: React.FC<AddBlogProps> = () => {
+const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => {
     const dispatch = useDispatch();
     const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
-    const [formData, setFormData] = useState<Ipost>({
+    const [formData, setFormData] = useState<Ipost>(postInfo ? postInfo : {
         title: '',
         image: '',
         author: '',
         categories: [],
         cryptoSymbol: '',
     });
-    const [description, setDescription] = useState('');
+    
+   
+    const [description, setDescription] = useState(postInfo ? postInfo.description : "");
     const [isError, setIsError] = useState<boolean>(false);
 
     const [errors, setErrors] = useState<ErrorMessages>(newErrors);
 
     const handleFormSubmit = async (event: React.FormEvent) => {
         setIsError(false);
+        console.log(formData);
+        
         event.preventDefault();
         // Validate form fields
 
@@ -65,8 +73,7 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
             setIsError(false);
 
             // Dispatch action to add blog
-            (dispatch as AppDispatch)(addBlogApiSlice({ newBlogData: { ...formData, description }, setDialogOpen }));
-        }
+            (dispatch as AppDispatch)(addBlogApiSlice({ newBlogData: { ...formData, description, postId: postInfo?.postId }, setDialogOpen, postType }));  }
     };
 
     const handleChange = (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>, field: keyof Ipost) => {
@@ -95,7 +102,7 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
         <CustomDialog
             open={isDialogOpen}
             onClose={() => setDialogOpen(!isDialogOpen)}
-            triggerButtonText={'Add Blog'}
+            triggerButtonText={formEvent}
             title={'New Blog'}
             description={'This is adding for New Blog Page'}
         >
@@ -163,7 +170,13 @@ const AddBlogForm: React.FC<AddBlogProps> = () => {
                         />
                     </Grid>
                 </Grid>
-                <Button type="submit">Save</Button>
+                {postType==="edit"?(
+                    <Button type="submit">Edit</Button>
+
+                ):(
+                    <Button type="submit">Save</Button>
+
+                )}
             </form>
         </CustomDialog>
     );

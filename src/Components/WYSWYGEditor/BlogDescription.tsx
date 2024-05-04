@@ -8,10 +8,9 @@ import { Link } from 'react-router-dom';
 
 const BlogDescription = ({ _id,userType }: BlogDetailsProps) => {
 
-  console.log(_id);
   
   const blogsData = useSelector(selectedBlogs).blogs;
-  const selectedBlog = blogsData.find((blog) => blog._id === _id);
+  const selectedBlog = blogsData.find((blog) => blog.postId === _id);
   const [timeToRead,setTimeToRead]=useState<number>()
   const parseHTML = (html: string) => {
     const tempDiv = document.createElement('div');

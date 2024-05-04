@@ -11,6 +11,7 @@ import { FetchBlogData } from '../../interfaces/interface';
 import { fetchSingleBlogApiSlice } from '../../redux/slices/Blogs/BlogApiSlice';
 import { Helmet } from 'react-helmet';
 import { handleShare, parseHTML, renderCustomStyles } from '../../scripts/handleBlogCss';
+import AddBlogForm from '../Forms/AddBlogForm';
 
 const SingleBlogDetails = () => {
 
@@ -23,6 +24,7 @@ const SingleBlogDetails = () => {
 
 
   const userType = useSelector(selectUserType);
+
   const handleLoadBlogs = () => {
 
     const loadForUser: FetchBlogData = {
@@ -45,39 +47,60 @@ const SingleBlogDetails = () => {
   console.log("in SingleBlogDetails", id);
 
   const blogsData = useSelector(selectedBlogs).blogs;
-  const selectedBlog = blogsData.find((blog) => blog._id === id);
+  const selectedBlog = blogsData.find((blog) => blog.postId === id);
 
-  const truncatedDescription = selectedBlog?.description
-  const image = selectedBlog?.image
-  const title = selectedBlog?.title
-  const author = selectedBlog?.author
-
+  // Perform null checks before accessing properties
+  const truncatedDescription = selectedBlog?.description ?? '';
+  const image = selectedBlog?.image ?? '';
+  const title = selectedBlog?.title ?? '';
+  const author = selectedBlog?.author ?? '';
+  const cryptoSymbol = selectedBlog?.cryptoSymbol ?? '';
+  const categories = selectedBlog?.categories ?? [];
 
 
   return (
-    <div className='px-8 mt-4'>
+    <div className='px-8 mt-4 ml-8 mr-8'>
 
-      <Helmet>
+      <Helmet> 
         <title>{title}</title>
         <meta name="description" content={truncatedDescription} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={truncatedDescription} />
         {/* Add more meta tags as needed */}
       </Helmet>
-
-
       {truncatedDescription && (
         <>
           <BreadCrumbs currentPath={location.pathname} />
           <div>
             <div className="flex mt-6 flex-wrap justify-between items-center space-x-2 text-md mb-2 text-jacarta-400">
+
+
+
+              {userType === "METAKUL_USER" ? (
+
+                <AddBlogForm formEvent={"EDIT"} postInfo={{
+                  postId: id,
+                  title,
+                  description: truncatedDescription,
+                  image: image,
+                  author: author,
+                  categories: categories,
+                  cryptoSymbol: cryptoSymbol
+                }} postType="edit" />
+              ):(
+                
               <Button variant='contained' sx={{
                 position: "fixed",
                 background: getColors().blueAccent[800],
                 color: getColors().blueAccent[100]
-              }} onClick={() => window.history.back()}>
-                Back
+              }} onClick={() => {
+
+                window.history.back();
+              }}>
+                BACK
               </Button>
+              )
+              }
               <Button
                 variant='contained'
                 sx={{
@@ -86,7 +109,7 @@ const SingleBlogDetails = () => {
                   background: getColors().blueAccent[800],
                   color: getColors().blueAccent[100]
                 }}
-                onClick={()=>handleShare(postLink)}
+                onClick={() => handleShare(postLink)}
               >
                 Share
               </Button>
@@ -111,8 +134,14 @@ const SingleBlogDetails = () => {
                 alt={"Post image"}
                 className=" w-80 sm:h-3/4 object-cover transition-transform duration-[100ms] will-change-transform group-hover:scale-105"
               />
-
             </Box>
+            <span className="inline-flex flex-wrap items-center space-x-1 text-accent">
+              {categories.map((category, index) => (
+                <h5 key={index} >
+                  {category}
+                </h5>
+              ))}
+            </span>
             {parseHTML(truncatedDescription).map((node, index) => renderCustomStyles(node, index))}
 
 

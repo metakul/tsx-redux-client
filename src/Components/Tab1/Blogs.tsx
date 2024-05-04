@@ -66,7 +66,7 @@ const Blogs = () => {
                     src={`data:image/png;base64,${post.image}`}
                     alt={post.title}
                     className=" w-80 sm:h-3/4 object-cover transition-transform duration-[100ms] will-change-transform group-hover:scale-105"
-                    onClick={() => handleOpenBlogs(post._id)}
+                    onClick={() => handleOpenBlogs(post.postId)}
                   />
                 </div>
                 <Grid container className='mt-8'>
@@ -92,13 +92,13 @@ const Blogs = () => {
 
                   </Grid>
                   <Grid item xs={4} md={4} lg={4} className='mx-auto flex items-end justify-around pr-8 pb-4'>
-                    <ShareButton link={ `${currentDomain}/blogDetails/${post._id}`}/>
+                    <ShareButton link={ `${currentDomain}/blogDetails/${post.postId}`}/>
                     <LikeButton />
 
                   </Grid>
                   <h2
                       className="mb-4 font-display text-md "
-                      onClick={() => handleOpenBlogs(post._id)}
+                      onClick={() => handleOpenBlogs(post.postId)}
                       >
                       {post.title
                         .split(' ')
@@ -106,7 +106,7 @@ const Blogs = () => {
                         .join(' ')}
                       {/* <Link target='_blank' to={`/singleBlog/${post.id}`}>{post.title}</Link> */}
                     </h2>
-                  <BlogDetails isBlogInfoOpen={openedBlogId === post._id} cryptoSymbol={post.cryptoSymbol} _blogId={post._id || ''} />
+                  <BlogDetails isBlogInfoOpen={openedBlogId === post.postId} cryptoSymbol={post.cryptoSymbol} _blogId={post.postId || ''} />
                   
                 </Grid>
               </div>

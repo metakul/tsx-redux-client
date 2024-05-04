@@ -25,7 +25,7 @@ const CryptoInfoPage: React.FC<CryptoInfoProps> = ({ _id, cryptoSymbol }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const filteredBlogs = cryptoData.blogs.filter(blog => blog._id === _id);
+  const filteredBlogs = cryptoData.blogs.filter(blog => blog.postId === _id);
   
   const rowData: RowData[] = filteredBlogs.map(blog => {
     const row: RowData = { ...blog.cryptoData };
