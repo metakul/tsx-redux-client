@@ -116,12 +116,12 @@ const SingleBlogDetails = () => {
 
             </div>
             <Typography variant='h3' sx={{
-              m: 4,
-              mb: 1
+              mb: 1,
+              mt:6
             }}>
               {title}
             </Typography>
-            <Typography variant='h5' sx={{ ml: 4 }}>
+            <Typography variant='h5' >
               Author: {author}
             </Typography>
             <Box sx={{
