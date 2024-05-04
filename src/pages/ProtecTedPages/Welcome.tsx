@@ -30,7 +30,7 @@ const ProtectedPage: React.FC<ProtectedPageProps> = (
     console.log(userType)
     switch (userType) {
       // TODO create /root admin
-      case 'METAKUL_USER':
+      case 'SYSTEM_ADMIN':
         return <AddBlogComp />;
       default:
         return <AddBlogComp />;

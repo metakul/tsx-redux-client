@@ -76,7 +76,7 @@ const SingleBlogDetails = () => {
 
 
 
-              {userType === "METAKUL_USER" ? (
+              {userType === "SYSTEM_ADMIN" ? (
 
                 <AddBlogForm formEvent={"EDIT"} postInfo={{
                   postId: id,

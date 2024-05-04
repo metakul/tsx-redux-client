@@ -38,6 +38,7 @@ export enum ProtectedPageInfo{
 // define endpoints here
   export const ApiEndpoint: Record<string, RequestOptions> = {
     LOGIN: { url: '/smartwallet/auth/user/login', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Logging In"},
+    ADMINLOGGIN: { url: '/smartwallet/auth/systemAdmin/login', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Logging In"},
     GETBLOG: { url: '/blogApi/post', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
     GETSINGLEBLOG: { url: '/blogApi/post', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
     ADD_BLOG: { url: '/blogApi/post', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Adding New Blog"},

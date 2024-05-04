@@ -2,8 +2,9 @@ import axios from 'axios';
 import { RequestOptions } from '../../interfaces/interface';
 import toast from 'react-hot-toast';
 
-const request = async (options: RequestOptions) => {
+const Request = async (options: RequestOptions) => {
   let toastId
+  const storedAccessToken = localStorage.getItem('access');
   if (options.loadingMessage) {
     toastId = toast.loading(options.loadingMessage as string, { duration: 8000 }); // Corrected this line
   }
@@ -16,7 +17,10 @@ const request = async (options: RequestOptions) => {
       method: options.method,
       url: fullUrl,
       data: options?.data,
-      headers: options?.headers
+      headers: {
+        ...options.headers,
+        Authorization: `Bearer ${storedAccessToken}`
+      }
     });
 
     if (toastId) {
@@ -38,4 +42,4 @@ const request = async (options: RequestOptions) => {
   }
 };
 
-export default request;
+export default Request;

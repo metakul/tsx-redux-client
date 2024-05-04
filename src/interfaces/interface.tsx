@@ -32,7 +32,8 @@ export interface CollectionInfo {
 export interface AuthState {
   isAuthenticated: boolean;
   user: string | null;
-  token: string | null;
+  access: string | null;
+  refresh: string | null;
   userType: string | null;
 }
 
