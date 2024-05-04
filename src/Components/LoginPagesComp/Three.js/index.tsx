@@ -84,7 +84,7 @@ const Userpage: React.FC<UserpageProps> = () => {
       {/* <a href="#" onClick={() => setBg(!bg)}>
         <div ref={mount}></div>
       </a> */}
-        <AddBlogForm  />
+        <AddBlogForm formEvent={"ADD blog"}  />
     </div>
   );
 };
