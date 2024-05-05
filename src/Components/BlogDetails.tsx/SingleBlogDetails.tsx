@@ -59,7 +59,7 @@ const SingleBlogDetails = () => {
 
 
   return (
-    <div className='px-8 mt-4 ml-8 mr-8'>
+    <div className='px-4 mt-4 ml-2 mr-2'>
 
       <Helmet> 
         <title>{title}</title>

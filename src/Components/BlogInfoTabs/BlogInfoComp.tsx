@@ -24,6 +24,9 @@ const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs, openedTab  }) => {
     if(openedTab){
       setValue(0)
     }
+    else{
+      setValue(null)
+    }
 
   }, [openedTab]);
 
