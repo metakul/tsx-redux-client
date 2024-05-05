@@ -36,7 +36,7 @@ const AddBlogComp = () => {
             const userType: FetchBlogData = {
                 userType: "user",
             };
-            (dispatch as AppDispatch)(fetchBlogApiSlice({ fetchBlogData: userType }));
+            (dispatch as AppDispatch)(fetchBlogApiSlice({ fetchBlogData: userType,status:"approved" }));
     }, [dispatch]);
 
     const filteredRows = blogsData.filter((row) =>

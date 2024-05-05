@@ -11,11 +11,11 @@ import { Ipost } from '../../../interfaces/interface';
 export const fetchBlogApiSlice = createAsyncThunk(
   'blogCollection/setLoadedBlogs',
   // eslint-disable-next-line no-empty-pattern
-  async ({ fetchBlogData, pageSize, blogPage, setBlogPage }: { fetchBlogData: FetchBlogData, pageSize?: number, blogPage?: number, setBlogPage?: (page: number) => void }, { rejectWithValue, dispatch }) => {
+  async ({ fetchBlogData, pageSize, blogPage, setBlogPage,status }: { fetchBlogData: FetchBlogData, pageSize?: number, blogPage?: number, setBlogPage?: (page: number) => void , status:string}, { rejectWithValue, dispatch }) => {
     try {
-      console.log("userType",fetchBlogData.userType)
+      console.log("userType",fetchBlogData.userType,status)
       const response = await request({
-        url:`${ApiEndpoint.GETBLOG.url}?pagesize=${pageSize}&page=${blogPage}`,
+        url:`${ApiEndpoint.GETBLOG.url}?status=${status}&pagesize=${pageSize}&page=${blogPage}`,
         method: ApiEndpoint.GETBLOG.method,
         headers: ApiEndpoint.GETBLOG.headers,
         loadingMessage:ApiEndpoint.GETBLOG.loadingMessage

@@ -39,7 +39,7 @@ export enum ProtectedPageInfo{
   export const ApiEndpoint: Record<string, RequestOptions> = {
     LOGIN: { url: 'https://smart-wallet-us83.onrender.com/auth/user/login', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Logging In"},
     ADMINLOGGIN: { url: '/smartwallet/auth/systemAdmin/login', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Logging In"},
-    GETBLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
+    GETBLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post/postType', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
     GETSINGLEBLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
     ADD_BLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Adding New Blog"},
     EDIT_BLOG: { url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'PATCH', headers: { 'Content-Type': 'application/json'},loadingMessage:"Editing Blog"},

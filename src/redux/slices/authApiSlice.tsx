@@ -39,7 +39,8 @@ export const loginUser = createAsyncThunk(
         data: response.data,
       };
   
-      console.log(apiSuccess);
+    window.location.href = '/';
+
       return apiSuccess;
 
     } catch (error) {

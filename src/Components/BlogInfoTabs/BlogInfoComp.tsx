@@ -11,7 +11,7 @@ interface BlogInfoTabProps {
 }
 
 const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs, openedTab  }) => {
-  const [value, setValue] = React.useState<number | null>(null); // Corrected useState type
+  const [value, setValue] = React.useState<number | null>();
   const theme = useTheme();
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -24,6 +24,7 @@ const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs, openedTab  }) => {
     if(openedTab){
       setValue(0)
     }
+
   }, [openedTab]);
 
   function a11yProps(index: number) {
@@ -35,6 +36,7 @@ const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs, openedTab  }) => {
 
   return (
     <Box sx={{ width: '100%' }}>
+      {openedTab && 
       <Tabs
         value={value}
         onChange={handleChange}
@@ -55,7 +57,7 @@ const BlogInfoTab: React.FC<BlogInfoTabProps> = ({ tabs, openedTab  }) => {
             className='max-h-2'
           />
         ))}
-      </Tabs>
+      </Tabs>}
       {tabs.map(({ content }, index) => (
         <div
           key={index}

@@ -30,6 +30,7 @@ const Blogs = () => {
       pageSize,
       blogPage,
       setBlogPage,
+      status:"approved"
     }));
   }
 

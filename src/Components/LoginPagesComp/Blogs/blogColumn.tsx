@@ -30,6 +30,12 @@ const BlogColumn = (
       width: 120,
       editable: false,
     },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 120,
+      editable: false,
+    },
 
     {
       field: "actions",
