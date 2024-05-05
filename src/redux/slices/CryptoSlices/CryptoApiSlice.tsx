@@ -9,6 +9,13 @@ import { ApiSuccess } from '../../../interfaces/interface';
 export const fetchSingleCryptoDispatcher = createAsyncThunk(
   'FetchCryptoInfo',
   async ({ cryptoSymbol,currency }: CryptoInfoProps, { rejectWithValue,dispatch }) => {
+    dispatch(fetchSingleCryptoInfo({_id:cryptoSymbol || "", loading: true, cryptoData: {
+      cryptoSymbol:cryptoSymbol,
+      currency:currency,
+      price:"loading",
+      marketCap:"loading",
+    } })); // Dispatch loading as true
+ 
     try {
       const response = await request({
         url: `${ApiEndpoint.FetchCryptoInfo.url}/${cryptoSymbol}/${currency}`,
@@ -24,7 +31,7 @@ export const fetchSingleCryptoDispatcher = createAsyncThunk(
         price: response.data.rate,
         marketCap: response.data.time
       };
-      dispatch(fetchSingleCryptoInfo({_id:cryptoSymbol || "",cryptoData}));
+      dispatch(fetchSingleCryptoInfo({_id:cryptoSymbol || "",cryptoData,loading:false}));
 
       const apiSuccess: ApiSuccess = {
         statusCode: response.status,

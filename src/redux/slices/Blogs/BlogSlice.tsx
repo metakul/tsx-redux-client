@@ -3,7 +3,9 @@ import { BlogsState, CryptoData, Ipost } from '../../../interfaces/interface';
 
 const initialState: BlogsState = {
   blogs: []as Ipost[],
+  loading:false
 };
+
 interface CryptoInfo {
   _id: string;
   cryptoData: CryptoData;
@@ -13,13 +15,14 @@ const blogCollectionSlice = createSlice({
   name: 'blogsCollection',
   initialState,
   reducers: {
-    setLoadedBlogs: (state, action: PayloadAction<{ blogData: Ipost[] }>) => {
+    setLoadedBlogs: (state, action: PayloadAction<{ blogData?: Ipost[],loading:boolean }>) => {
       const loadedBlogs = action.payload.blogData;
-      loadedBlogs.forEach(blog => {
+      loadedBlogs && loadedBlogs.forEach(blog => {
         if (!state.blogs.some(existingBlog => existingBlog.postId === blog.postId)) {
           state.blogs.push(blog);
         }
       })
+      state.loading=action.payload.loading
     },
     addBlog: (state, action: PayloadAction<Ipost>) => {
       state.blogs.push(action.payload);

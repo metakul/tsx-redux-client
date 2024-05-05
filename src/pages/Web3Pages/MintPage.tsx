@@ -123,7 +123,7 @@ const MintPage = () => {
               maxHeight:"450px"
             }}>
               <video className="border-2 rounded-2xl" controls>
-                <source src="MetakulInfo.mp4" type="video/mp4" />
+                <source src="video/MetakulInfo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </Grid>

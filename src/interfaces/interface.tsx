@@ -86,6 +86,7 @@ export interface NFTCollectionState {
 }
 export interface BlogsState {
   blogs: Ipost[];
+  loading?:boolean
 }
 
 export interface BalanceItem {
@@ -119,10 +120,10 @@ export interface Ipost  {
 }
 
 export interface CryptoData {
-  cryptoSymbol:string;
-  currency: string;
-  price: number;
-  marketCap: number;
+  cryptoSymbol?:string;
+  currency?: string;
+  price: number | string;
+  marketCap: number | string;
 }
 
 //crypto comp

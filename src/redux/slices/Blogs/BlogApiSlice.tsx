@@ -7,11 +7,13 @@ import request from '../../../Backend/axiosCall/apiCall';
 import { ApiSuccess } from '../../../interfaces/interface';
 import { FetchBlogData } from '../../../interfaces/interface';
 import { Ipost } from '../../../interfaces/interface';
-
 export const fetchBlogApiSlice = createAsyncThunk(
   'blogCollection/setLoadedBlogs',
   // eslint-disable-next-line no-empty-pattern
   async ({ fetchBlogData, pageSize, blogPage, setBlogPage,status }: { fetchBlogData: FetchBlogData, pageSize?: number, blogPage?: number, setBlogPage?: (page: number) => void , status:string}, { rejectWithValue, dispatch }) => {
+    dispatch(setLoadedBlogs({
+      loading: true,
+    }));
     try {
       console.log("userType",fetchBlogData.userType,status)
       const response = await request({
@@ -26,7 +28,7 @@ export const fetchBlogApiSlice = createAsyncThunk(
           postId: blog._id
       }));
       
-      dispatch(setLoadedBlogs({ blogData: transformedBlogs }));
+      dispatch(setLoadedBlogs({ blogData: transformedBlogs,loading:false }));
 
       const apiSuccess: ApiSuccess = {
         statusCode: response.status,
@@ -50,6 +52,9 @@ export const fetchSingleBlogApiSlice = createAsyncThunk(
   'blogCollection/setLoadedBlogs',
   // eslint-disable-next-line no-empty-pattern
   async ({ fetchBlogData,id  }: { fetchBlogData: FetchBlogData,id:string }, { rejectWithValue, dispatch }) => {
+    dispatch(setLoadedBlogs({
+      loading: true,
+    }));
     try {
       console.log("userType",fetchBlogData.userType)
       const response = await request({
@@ -63,7 +68,7 @@ export const fetchSingleBlogApiSlice = createAsyncThunk(
       const { _id: postId, ...rest } = blogs;
       const updatedBlogs = { postId, ...rest };
 
-      dispatch(setLoadedBlogs({blogData:[updatedBlogs]} ));
+      dispatch(setLoadedBlogs({blogData:[updatedBlogs],loading:false} ));
 
       const apiSuccess: ApiSuccess = {
         statusCode: response.status,

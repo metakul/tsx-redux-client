@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AppDispatch } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedCryptos } from "../../redux/slices/CryptoSlices/CryptoSlice"; // assuming you have an action to update crypto data
+import { selectedCryptos } from "../../redux/slices/CryptoSlices/CryptoSlice";
 import { fetchSingleCryptoDispatcher } from "../../redux/slices/CryptoSlices/CryptoApiSlice";
-import { CryptoInfo } from "../../redux/slices/CryptoSlices/CryptoSlice";
+import { Box, Skeleton, Stack } from "@mui/material";
 
 const MarqueeCryptoNew = () => {
     const cryptoData = useSelector(selectedCryptos);
     const dispatch = useDispatch();
-    const [displayedCryptos, setDisplayedCryptos] = useState<CryptoInfo[]>([]);
 
     const fetchCryptoInfo = async (_id: string, cryptoSymbol: string) => {
         try {
@@ -17,6 +16,7 @@ const MarqueeCryptoNew = () => {
             console.error('Error fetching crypto info:', error);
         }
     };
+
     useEffect(() => {
         fetchCryptoInfo("BTC", "BTC");
         fetchCryptoInfo("ETH", "ETH");
@@ -26,30 +26,30 @@ const MarqueeCryptoNew = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(() => {
-        if (cryptoData.length > 0) {
-            const marqueeData = [...cryptoData, ...cryptoData.slice(0, 4)];
-            setDisplayedCryptos(marqueeData);
-        }
-    }, [cryptoData]);
-
     return (
-        <section className="overflow-hidden ">
-         
-            <div className="">
-                <div
-                    className="flex flex-shrink-0 items-center justify-center rounded-2.5xl border border-jacarta-100  p-2"
-                >
-                    {displayedCryptos && displayedCryptos.map((crypto, index) => (
-                        <div key={index} className="ml-12 flex animate-marquee space-x-8 ">
-                            <img src={`/CryptoLogo/${crypto.cryptoData.cryptoSymbol}.png`}  alt={crypto.cryptoData.cryptoSymbol} className="w-10 h-10" />
-                            <div className="">
-                                <div >{crypto.cryptoData.cryptoSymbol}</div>
-                                <div >${crypto.cryptoData.price.toFixed(2)}</div>
+        <section className="overflow-hidden">
+            <div className="flex flex-shrink-0 items-center justify-center rounded-2.5xl border border-jacarta-100 p-2">
+                {cryptoData && cryptoData.map((crypto, index) => {
+                    return (
+                        <div key={index} className="ml-8 animate-marquee flex items-center"> {/* Added 'items-center' to align items vertically */}
+
+                            <div className="flex items-center">
+                                <img src={`/CryptoLogo/${crypto.cryptoData.cryptoSymbol}.png`} alt={crypto.cryptoData.cryptoSymbol} className="w-10 h-10 mb-2" />
+                                <Box className='ml-2'>
+                                    <div>{crypto.cryptoData.cryptoSymbol}</div>
+
+                                    {crypto.loading ? (
+                                        <Stack spacing={1}>
+                                            <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+                                        </Stack>
+                                    ) : (
+                                        <div>${Number(crypto.cryptoData.price).toFixed(2)}</div>
+                                    )}
+                                </Box>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    );
+                })}
             </div>
         </section>
     );
