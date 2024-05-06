@@ -1,5 +1,5 @@
 import React from 'react';
-import { VerificationProps } from '../../interfaces/interface';
+import { VerificationProps } from '../../interfaces/CompInterfaces';
 import { Container } from '@radix-ui/themes';
 import CustomHeading from '../../Components/Typogrpahy/Text/Heading';
 import DataGrid from '../../Components/DataGrid';
