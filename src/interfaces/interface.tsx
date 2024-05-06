@@ -44,6 +44,7 @@ export interface apiCallEndpoint{
   data?: unknown; 
 }
 export interface RequestOptions {
+  apiId:number
   method: AxiosRequestConfig['method'];
   url: string;
   data?: unknown; // Allow any data type initially  // $MAJOR
@@ -117,7 +118,7 @@ export interface Ipost  {
   date?: string;
   cryptoSymbol:string;
   cryptoData?: CryptoData;
-  status:string
+  status?:string
 }
 
 export interface CryptoData {

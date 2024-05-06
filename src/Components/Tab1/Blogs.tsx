@@ -12,6 +12,7 @@ import { SetStateAction, useEffect, useState } from 'react';
 import LikeButton from '../Buttons/LikeButton';
 import { selectUserType } from '../../redux/slices/authSlice';
 import { getColors } from '../../layout/Theme/themes';
+import { BlogsStatusInfo } from '../../DataTypes/enums';
 
 const Blogs = () => {
   // const theme = useTheme()
@@ -32,7 +33,7 @@ const Blogs = () => {
       pageSize,
       blogPage,
       setBlogPage,
-      status: "approved",
+      status: BlogsStatusInfo.APPROVED
     }));
   }
 

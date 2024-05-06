@@ -12,6 +12,7 @@ import { fetchSingleBlogApiSlice, updateBlogSlice } from '../../redux/slices/Blo
 import { Helmet } from 'react-helmet';
 import { handleShare, parseHTML, renderCustomStyles } from '../../scripts/handleBlogCss';
 import EditForm from '../Forms/AddBlogForm';
+import { BlogsStatusInfo } from '../../DataTypes/enums';
 
 const SingleBlogDetails = () => {
 
@@ -62,7 +63,7 @@ const SingleBlogDetails = () => {
     (dispatch as AppDispatch)(updateBlogSlice({
       userType,
       postId: id,
-      status: "approve"
+      status:BlogsStatusInfo.APPROVED
     }));
   }
 
@@ -92,15 +93,15 @@ const SingleBlogDetails = () => {
                     author: author,
                     categories: categories,
                     cryptoSymbol: cryptoSymbol,
-                    status: status
                   }} postType="edit" />
 
                   {status == "pending" &&
                     <Button variant='contained' sx={{
                       position: "fixed",
+                      left:"20px",
                       background: getColors().blueAccent[800],
                       color: getColors().blueAccent[100]
-                    }} onClick={() => { approveBlog }}>
+                    }} onClick={approveBlog}>
                       Approve
                     </Button>
                   }

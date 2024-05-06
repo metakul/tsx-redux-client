@@ -14,12 +14,11 @@ export const navConfig = [
   {
     text: "Dashboard",
     icon: <HomeOutlined />,
-    to: "",
+    to: "/",
   },
   {
     text: "Into the Metaverse",
     icon: null,
-    to: "",
   },
   {
     text: "Claim NFT",
@@ -60,7 +59,6 @@ export const navConfig = [
     {
     text: "Extras",
     icon:null,
-    to: "",
   },
   // {
   //   text: "Profile",

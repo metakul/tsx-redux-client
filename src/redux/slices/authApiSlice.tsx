@@ -19,6 +19,7 @@ export const loginUser = createAsyncThunk(
   async ({ email, password }: LoginData, { rejectWithValue, dispatch }) => {
     try {
       const response = await request({
+        apiId:ApiEndpoint.LOGIN.apiId,
         url: ApiEndpoint.LOGIN.url,
         method: ApiEndpoint.LOGIN.method,
         data: { email, password },
@@ -39,7 +40,6 @@ export const loginUser = createAsyncThunk(
         data: response.data,
       };
   
-    window.location.href = '/';
 
       return apiSuccess;
 

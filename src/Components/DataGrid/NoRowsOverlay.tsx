@@ -1,6 +1,5 @@
 import { styled } from '@mui/system';
 import { Box, Typography } from '@mui/material';
-import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 
 const StyledGridOverlay = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -26,11 +25,9 @@ const StyledGridOverlay = styled('div')(({ theme }) => ({
   },
 }));
 export function CustomNoRowsOverlay() {
-  const address = useAddress()
  
   return (
     <StyledGridOverlay>
-      {address ? (
         <>
           <svg
             style={{ flexShrink: 0 }}
@@ -80,16 +77,6 @@ export function CustomNoRowsOverlay() {
            Launching Soon.
           </Typography></Box>
         </>
-      ) : (
-        <>
-          <Typography variant='h3' sx={{
-            mb:4
-          }}>
-            Conenct Wallet to see Your Orders
-          </Typography>
-          <ConnectWallet />
-        </>
-      )}
 
     </StyledGridOverlay>
   );

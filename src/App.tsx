@@ -53,6 +53,14 @@ function App() {
           <Provider store={store}>
             <BrowserRouter>
             <Toaster position="top-center" reverseOrder={false} />
+            {/* <ToastContainer
+              closeOnClick
+              closeButton={true}
+                position="top-center"
+                hideProgressBar={false}
+                draggable
+                theme="dark"
+              /> */}
               <Router />
             </BrowserRouter>
           </Provider>

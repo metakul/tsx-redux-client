@@ -1,8 +1,7 @@
-import React from 'react'
 import MobileTabNavigation from '../../MobileTabNav/mobileVIew'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PauseCircleFilledOutlinedIcon from '@mui/icons-material/PauseCircleFilledOutlined';
-import AddBlogComp from './AddBlog';
+import AddBlogComp from './ShowBlogs';
 import AddBlogForm from '../../Forms/AddBlogForm';
 function index() {
 

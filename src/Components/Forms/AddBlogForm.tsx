@@ -37,7 +37,6 @@ const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => 
         author: '',
         categories: [],
         cryptoSymbol: '',
-        status:''
     });
     
    
