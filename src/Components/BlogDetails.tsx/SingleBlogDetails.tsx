@@ -11,7 +11,7 @@ import { FetchBlogData } from '../../interfaces/interface';
 import { fetchSingleBlogApiSlice } from '../../redux/slices/Blogs/BlogApiSlice';
 import { Helmet } from 'react-helmet';
 import { handleShare, parseHTML, renderCustomStyles } from '../../scripts/handleBlogCss';
-import AddBlogForm from '../Forms/AddBlogForm';
+import EditForm from '../Forms/AddBlogForm';
 
 const SingleBlogDetails = () => {
 
@@ -78,7 +78,7 @@ const SingleBlogDetails = () => {
 
               {userType === "SYSTEM_ADMIN" ? (
 
-                <AddBlogForm formEvent={"EDIT"} postInfo={{
+                <EditForm formEvent={"EDIT"} postInfo={{
                   postId: id,
                   title,
                   description: truncatedDescription,

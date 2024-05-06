@@ -10,22 +10,22 @@ import { FetchBlogData } from '../../../interfaces/interface';
 import BlogColumn from './blogColumn';
 import CustomDataGrid from '../../DataGrid';
 import SearchBar from '../../SearchBar';
-import UserOptionsMenu from '../../OptionMenu';
-import { Person as PersonIcon, DeleteOutline as DeleteIcon } from "@mui/icons-material";
+// import UserOptionsMenu from '../../OptionMenu';
+// import { Person as PersonIcon, DeleteOutline as DeleteIcon } from "@mui/icons-material";
 
 
 const AddBlogComp = () => {
 
-    const options = [
-        { label: "Approve", value: "approve", icon: PersonIcon },
-        { label: "Scheduled Post", value: "reject", icon: PersonIcon },
-        { label: "Edit", value: "suspend", icon: DeleteIcon },
-        { label: "Revoke Post", value: "suspend/revoke", icon: DeleteIcon }
-    ];
+    // const options = [
+    //     { label: "Approve", value: "approve", icon: PersonIcon },
+    //     { label: "Scheduled Post", value: "reject", icon: PersonIcon },
+    //     { label: "Edit", value: "suspend", icon: DeleteIcon },
+    //     { label: "Revoke Post", value: "suspend/revoke", icon: DeleteIcon }
+    // ];
 
     const [searchQuery, setSearchQuery] = useState("");
-    const [openMenu, setOpenMenu] = useState<HTMLElement | null>(null);
-    const [selectedRowId, setSelectedRowId] = useState<string | null>(null);
+    const [/*openMenu*/, setOpenMenu] = useState<HTMLElement | null>(null);
+    const [/*selectedRowId*/, setSelectedRowId] = useState<string | null>(null);
 
     const columns = BlogColumn(setOpenMenu, setSelectedRowId)
 
@@ -43,11 +43,11 @@ const AddBlogComp = () => {
         row?.postId?.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    const updateBlogStatus = (status: unknown) => {
-        // Assuming updateUserByPage takes userId and status to update the user
-        console.log(status)
-        setOpenMenu(null);
-    };
+    // const updateBlogStatus = (status: unknown) => {
+    //     // Assuming updateUserByPage takes userId and status to update the user
+    //     console.log(status)
+    //     setOpenMenu(null);
+    // };
 
     return (
 
@@ -56,13 +56,13 @@ const AddBlogComp = () => {
                 <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                 <AddBlogForm  formEvent={"ADD BLOG"}/>
                 <CustomDataGrid  getRowId={(row: { _id?: string }) => row._id || ''} columns={columns} rows={filteredRows} />
-                <UserOptionsMenu
+                {/* <UserOptionsMenu
                     openMenu={openMenu}
                     setOpenMenu={setOpenMenu}
                     options={options}
                     selectedRowId={selectedRowId}
                     onClick={updateBlogStatus}
-                />
+                /> */}
             </Paper>
         </Box>
     );
