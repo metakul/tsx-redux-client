@@ -10,7 +10,7 @@ const BlogColumn = (
   setOpenMenu: (value: React.SetStateAction<HTMLElement | null>) => void,
   setSelectedRowId: (value: React.SetStateAction<string | null>) => void
 ) => [
-    { field: "_id", headerName: "Id", width: 120, editable: false },
+    { field: "postId", headerName: "Id", width: 120, editable: false },
     { field: "author", headerName: "Author Name", width: 120, editable: false },
     {
       field: "title",
@@ -42,13 +42,13 @@ const BlogColumn = (
       headerName: "Actions",
       width: 160,
       editable: false,
-      renderCell: (params: { row: { _id: string; }; }) => (
+      renderCell: (params: { row: { postId: string; }; }) => (
         <div>
           {/* <Button
             variant="contained"
             onClick={(event) => {
               setOpenMenu(event.currentTarget);
-              setSelectedRowId(params.row._id);
+              setSelectedRowId(params.row.postId);
             }}
           >
             <MoreIcon />
@@ -56,8 +56,8 @@ const BlogColumn = (
           
           <Link  onClick={(event) => {
               setOpenMenu(event.currentTarget);
-              setSelectedRowId(params.row._id);
-            }} to={`/blogDetails/${params.row._id}`}>
+              setSelectedRowId(params.row.postId);
+            }} to={`/blogDetails/${params.row.postId}`}>
         <Button variant="contained">
           <PreviewOutlined />
         </Button>

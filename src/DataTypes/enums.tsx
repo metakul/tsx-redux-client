@@ -42,7 +42,7 @@ export enum ProtectedPageInfo{
     GETBLOG: { apiId:3,url: 'https://blog-app-1-7mgt.onrender.com/post/postType', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
     GETSINGLEBLOG: { apiId:4, url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
     ADD_BLOG: { apiId:5, url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Adding New Blog"},
-    UPDATE_BLOG: { apiId:6, url: 'https://blog-app-1-7mgt.onrender.com/post/updateStatus', method: 'PUT', headers: { 'Content-Type': 'application/json'},loadingMessage:"Adding New Blog"},
+    UPDATE_BLOG: { apiId:6, url: 'https://blog-app-1-7mgt.onrender.com/post/updateStatus', method: 'PATCH', headers: { 'Content-Type': 'application/json'},loadingMessage:"Adding New Blog"},
     EDIT_BLOG: { apiId:7, url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'PATCH', headers: { 'Content-Type': 'application/json'},loadingMessage:"Editing Blog"},
     FetchCryptoInfo: { apiId:8, url: "https://rest.coinapi.io/v1/exchangerate", method: 'GET', headers: { "X-CoinAPI-Key":"21F0E4E9-1955-4555-A4DA-51524A1E8ED3"}, loadingMessage:"Loading Crypto"},
   };

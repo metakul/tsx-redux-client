@@ -153,7 +153,7 @@ export const updateBlogSlice = createAsyncThunk(
         url: `${ApiEndpoint.UPDATE_BLOG.url}/${postId}`,
         method: ApiEndpoint.UPDATE_BLOG.method,
         headers: ApiEndpoint.UPDATE_BLOG.headers,
-        data: status,
+        data: {status:status},
         loadingMessage: ApiEndpoint.UPDATE_BLOG.loadingMessage
       });
       const loadForUser: FetchBlogData = {

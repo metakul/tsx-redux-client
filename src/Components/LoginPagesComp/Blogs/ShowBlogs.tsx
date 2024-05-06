@@ -58,7 +58,7 @@ const AddBlogComp: React.FC<BlogInfo>=({status}) => {
         <Box sx={{ width: "100%", position: "relative" }} className="sm:w-full overflow-hidden mx-auto ">
             <Paper sx={{ mb: 2, overflow: "hidden", borderRadius: 4, padding: 2 }}>
                 <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-                <CustomDataGrid  getRowId={(row: { _id?: string }) => row._id || ''} columns={columns} rows={filteredRows} />
+                <CustomDataGrid  getRowId={(row: { postId?: string }) => row.postId || ''} columns={columns} rows={filteredRows} />
                 {/* <UserOptionsMenu
                     openMenu={openMenu}
                     setOpenMenu={setOpenMenu}
