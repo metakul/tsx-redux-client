@@ -7,6 +7,7 @@ import request from '../../../Backend/axiosCall/apiCall';
 import { ApiSuccess } from '../../../interfaces/interface';
 import { FetchBlogData } from '../../../interfaces/interface';
 import { Ipost } from '../../../interfaces/interface';
+
 export const fetchBlogApiSlice = createAsyncThunk(
   'blogCollection/setLoadedBlogs',
   // eslint-disable-next-line no-empty-pattern
@@ -42,6 +43,9 @@ export const fetchBlogApiSlice = createAsyncThunk(
       return apiSuccess;
 
     } catch (error) {
+      dispatch(setLoadedBlogs({
+        loading: false,
+      }));
       const castedError =error as ApiError
       console.error('Error Fetching Blogs:', error);
       return rejectWithValue(castedError?.error === "string" ? castedError?.error : 'Unknown Error');
@@ -51,7 +55,7 @@ export const fetchBlogApiSlice = createAsyncThunk(
 export const fetchSingleBlogApiSlice = createAsyncThunk(
   'blogCollection/setLoadedBlogs',
   // eslint-disable-next-line no-empty-pattern
-  async ({ fetchBlogData,id  }: { fetchBlogData: FetchBlogData,id:string }, { rejectWithValue, dispatch }) => {
+  async ({ fetchBlogData,id  }: { fetchBlogData: FetchBlogData,id?:string }, { rejectWithValue, dispatch }) => {
     dispatch(setLoadedBlogs({
       loading: true,
     }));
@@ -124,6 +128,40 @@ export const addBlogApiSlice = createAsyncThunk(
 
       setDialogOpen(false)
   
+      return apiSuccess;
+
+    } catch (error) {
+      const castedError = error as ApiError;
+      console.error('Error Adding Blog:', error);
+      return rejectWithValue(castedError?.error === "string" ? castedError?.error : 'Unknown Error');
+    }
+  }
+);
+
+
+export const updateBlogSlice = createAsyncThunk(
+  'blogCollection/addBlog',
+  async ({postId,status, userType}:  { status:string,postId?:string, userType:string }, { rejectWithValue, dispatch }) => {
+    try {
+
+        const  response = await request({
+          url: `${ApiEndpoint.EDIT_BLOG.url}/${postId}`,
+          method: ApiEndpoint.EDIT_BLOG.method,
+          headers: ApiEndpoint.EDIT_BLOG.headers,
+          data: status,
+          loadingMessage:ApiEndpoint.EDIT_BLOG.loadingMessage
+        });
+    const loadForUser:FetchBlogData={
+      userType
+    }
+      
+      dispatch(fetchSingleBlogApiSlice( {fetchBlogData:loadForUser, id:postId })); // Dispatch addBlog action with new blog data
+      
+      const apiSuccess: ApiSuccess = {
+        statusCode: response.status,
+        message: 'Blog Added Successfully',
+        data: response.data,
+      };
       return apiSuccess;
 
     } catch (error) {

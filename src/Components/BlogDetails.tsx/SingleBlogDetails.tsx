@@ -8,7 +8,7 @@ import { selectUserType } from '../../redux/slices/authSlice';
 import BreadCrumbs from '../elements/BreadCrumbs';
 import { AppDispatch } from '../../redux/store';
 import { FetchBlogData } from '../../interfaces/interface';
-import { fetchSingleBlogApiSlice } from '../../redux/slices/Blogs/BlogApiSlice';
+import { fetchSingleBlogApiSlice, updateBlogSlice } from '../../redux/slices/Blogs/BlogApiSlice';
 import { Helmet } from 'react-helmet';
 import { handleShare, parseHTML, renderCustomStyles } from '../../scripts/handleBlogCss';
 import EditForm from '../Forms/AddBlogForm';
@@ -55,13 +55,21 @@ const SingleBlogDetails = () => {
   const title = selectedBlog?.title ?? '';
   const author = selectedBlog?.author ?? '';
   const cryptoSymbol = selectedBlog?.cryptoSymbol ?? '';
+  const status = selectedBlog?.status ?? '';
   const categories = selectedBlog?.categories ?? [];
 
+  const approveBlog = () => {
+    (dispatch as AppDispatch)(updateBlogSlice({
+      userType,
+      postId: id,
+      status: "approve"
+    }));
+  }
 
   return (
     <div className='px-4 mt-4 ml-2 mr-2'>
 
-      <Helmet> 
+      <Helmet>
         <title>{title}</title>
         <meta name="description" content={truncatedDescription} />
         <meta property="og:title" content={title} />
@@ -74,27 +82,36 @@ const SingleBlogDetails = () => {
           <div>
             <div className="flex mt-6 flex-wrap justify-between items-center space-x-2 text-md mb-2 text-jacarta-400">
 
-
-
               {userType === "SYSTEM_ADMIN" ? (
+                <>
+                  <EditForm formEvent={"EDIT"} postInfo={{
+                    postId: id,
+                    title,
+                    description: truncatedDescription,
+                    image: image,
+                    author: author,
+                    categories: categories,
+                    cryptoSymbol: cryptoSymbol,
+                    status: status
+                  }} postType="edit" />
 
-                <EditForm formEvent={"EDIT"} postInfo={{
-                  postId: id,
-                  title,
-                  description: truncatedDescription,
-                  image: image,
-                  author: author,
-                  categories: categories,
-                  cryptoSymbol: cryptoSymbol,
-                  status:status
-                }} postType="edit" />
-              ):(
-                
-              <Button variant='contained' sx={{
-                position: "fixed",
-                background: getColors().blueAccent[800],
-                color: getColors().blueAccent[100]
-              }} onClick={() => {
+                  {status == "pending" &&
+                    <Button variant='contained' sx={{
+                      position: "fixed",
+                      background: getColors().blueAccent[800],
+                      color: getColors().blueAccent[100]
+                    }} onClick={() => { approveBlog }}>
+                      Approve
+                    </Button>
+                  }
+                </>
+              ) : (
+
+                <Button variant='contained' sx={{
+                  position: "fixed",
+                  background: getColors().blueAccent[800],
+                  color: getColors().blueAccent[100]
+                }} onClick={() => {
 
                 window.history.back();
               }}>
@@ -118,7 +135,7 @@ const SingleBlogDetails = () => {
             </div>
             <Typography variant='h3' sx={{
               mb: 1,
-              mt:6
+              mt: 6
             }}>
               {title}
             </Typography>
