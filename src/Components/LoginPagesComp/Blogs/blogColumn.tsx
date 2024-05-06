@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import {
-  MoreVert as MoreIcon,
+  // MoreVert as MoreIcon,
   PreviewOutlined,
 } from "@mui/icons-material";
 import { Link } from 'react-router-dom';
@@ -44,7 +44,7 @@ const BlogColumn = (
       editable: false,
       renderCell: (params: { row: { _id: string; }; }) => (
         <div>
-          <Button
+          {/* <Button
             variant="contained"
             onClick={(event) => {
               setOpenMenu(event.currentTarget);
@@ -52,7 +52,7 @@ const BlogColumn = (
             }}
           >
             <MoreIcon />
-          </Button>
+          </Button> */}
           
           <Link  onClick={(event) => {
               setOpenMenu(event.currentTarget);
