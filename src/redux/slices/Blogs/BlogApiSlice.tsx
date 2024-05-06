@@ -118,7 +118,7 @@ export const addBlogApiSlice = createAsyncThunk(
           loadingMessage: ApiEndpoint.ADD_BLOG.loadingMessage
         });
       }
-      const newBlog: Ipost = response.data.newPost
+      const newBlog: Ipost = response?.data?.newPost || response?.data
 
       const { _id: postId, ...rest } = newBlog;
       const updatedBlogs = { postId, ...rest };

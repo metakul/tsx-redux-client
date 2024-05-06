@@ -6,7 +6,7 @@ const Request = async (options: RequestOptions) => {
   let toastId
   const storedAccessToken = localStorage.getItem('access');
   if (options.loadingMessage) {
-    toastId = toast.loading(options.loadingMessage as string, { duration: 8000 }); // Corrected this line
+    toastId = toast.loading(options.loadingMessage as string); // Corrected this line
   }
   try {
     // Construct the full request URL, prepending the API endpoint if necessary
