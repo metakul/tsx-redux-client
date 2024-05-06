@@ -1,7 +1,6 @@
 
-import  { useState, useEffect } from 'react';
+import  React, { useState, useEffect } from 'react';
 import { Box, Paper } from '@mui/material';
-import AddBlogForm from '../../Forms/AddBlogForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectedBlogs } from '../../../redux/slices/Blogs/BlogSlice';
 import { AppDispatch } from '../../../redux/store';
@@ -14,7 +13,11 @@ import SearchBar from '../../SearchBar';
 // import { Person as PersonIcon, DeleteOutline as DeleteIcon } from "@mui/icons-material";
 
 
-const AddBlogComp = () => {
+interface BlogInfo {
+    status: string;
+  }
+
+const AddBlogComp: React.FC<BlogInfo>=({status}) => {
 
     // const options = [
     //     { label: "Approve", value: "approve", icon: PersonIcon },
@@ -36,12 +39,13 @@ const AddBlogComp = () => {
             const userType: FetchBlogData = {
                 userType: "user",
             };
-            (dispatch as AppDispatch)(fetchBlogApiSlice({ fetchBlogData: userType,status:"approved" }));
-    }, [dispatch]);
+            (dispatch as AppDispatch)(fetchBlogApiSlice({ fetchBlogData: userType,status:status }));
+    }, [dispatch, status]);
 
-    const filteredRows = blogsData.filter((row) =>
-        row?.postId?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+        const filteredRows = blogsData.filter((row) =>
+            row?.status === status && row?.postId?.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        
 
     // const updateBlogStatus = (status: unknown) => {
     //     // Assuming updateUserByPage takes userId and status to update the user
@@ -54,7 +58,6 @@ const AddBlogComp = () => {
         <Box sx={{ width: "100%", position: "relative" }} className="sm:w-full overflow-hidden mx-auto ">
             <Paper sx={{ mb: 2, overflow: "hidden", borderRadius: 4, padding: 2 }}>
                 <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-                <AddBlogForm  formEvent={"ADD BLOG"}/>
                 <CustomDataGrid  getRowId={(row: { _id?: string }) => row._id || ''} columns={columns} rows={filteredRows} />
                 {/* <UserOptionsMenu
                     openMenu={openMenu}

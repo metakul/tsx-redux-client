@@ -117,6 +117,7 @@ export interface Ipost  {
   date?: string;
   cryptoSymbol:string;
   cryptoData?: CryptoData;
+  status:string
 }
 
 export interface CryptoData {

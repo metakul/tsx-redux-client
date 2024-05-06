@@ -13,7 +13,7 @@ import 'react-quill/dist/quill.snow.css';
 interface AddBlogProps {
     postInfo?:Ipost;
     postType?:string;
-    formEvent:string
+    formEvent:string;
 }
 
 interface ErrorMessages {
@@ -37,6 +37,7 @@ const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => 
         author: '',
         categories: [],
         cryptoSymbol: '',
+        status:''
     });
     
    

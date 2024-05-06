@@ -9,7 +9,7 @@ import { selectUserType } from './../../redux/slices/authSlice';
 import MobileTabNavigation from '../../Components/MobileTabNav/mobileVIew.tsx';
 import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
 import { LogoutRounded } from '@mui/icons-material';
-import AddBlogComp from '../../Components/LoginPagesComp/Blogs/AddBlog.tsx';
+import AddBlogComp from '../../Components/LoginPagesComp/Blogs';
 const ProtectedPage: React.FC<ProtectedPageProps> = (
   props
 ) => {

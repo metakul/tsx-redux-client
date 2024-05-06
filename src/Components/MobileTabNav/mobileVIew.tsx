@@ -44,7 +44,7 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position
           color:getColors().redAccent[500],
 
         }}
-        className={`  ${position=="top" ? "" : "fixed bottom-0 left-0"} w-full flex flex-row  z-20`}
+        className={`  ${position=="top" ? " mt-2" : "fixed bottom-0 left-0"} w-full flex flex-row  z-20`}
       >
         {tabs.map(({ value }, index) => (
           <Tab key={index} icon={React.createElement('div', null, value)} {...a11yProps(index)} sx={{
@@ -85,7 +85,7 @@ const CustomTabPanel: React.FC<CustomTabPanelProps> = ({isNonMobile, children, v
       marginBottom:"50px",
     }}
     >
-    {value === index && <Box   className={` ${position=="top" ? "pt-12" : ""}`} sx={{ pl: isNonMobile ? 3 : 0 }}>{children}</Box>}
+    {value === index && <Box   className={` ${position=="top" ? "pt-2" : ""}`} sx={{ pl: isNonMobile ? 3 : 0 }}>{children}</Box>}
   </div>
 );
 

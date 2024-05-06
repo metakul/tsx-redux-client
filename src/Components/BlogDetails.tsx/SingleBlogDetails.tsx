@@ -85,7 +85,8 @@ const SingleBlogDetails = () => {
                   image: image,
                   author: author,
                   categories: categories,
-                  cryptoSymbol: cryptoSymbol
+                  cryptoSymbol: cryptoSymbol,
+                  status:status
                 }} postType="edit" />
               ):(
                 
