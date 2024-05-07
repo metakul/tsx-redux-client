@@ -63,7 +63,7 @@ const SingleBlogDetails = () => {
     (dispatch as AppDispatch)(updateBlogSlice({
       userType,
       postId: id,
-      status:BlogsStatusInfo.APPROVED
+      status: BlogsStatusInfo.APPROVED
     }));
   }
 
@@ -93,18 +93,8 @@ const SingleBlogDetails = () => {
                     author: author,
                     categories: categories,
                     cryptoSymbol: cryptoSymbol,
-                  }} postType="edit" />
+                  }} userType={userType} postType="edit" />
 
-                  {status == "pending" &&
-                    <Button variant='contained' sx={{
-                      position: "fixed",
-                      left:"20px",
-                      background: getColors().blueAccent[800],
-                      color: getColors().blueAccent[100]
-                    }} onClick={approveBlog}>
-                      Approve
-                    </Button>
-                  }
                 </>
               ) : (
 
@@ -114,10 +104,10 @@ const SingleBlogDetails = () => {
                   color: getColors().blueAccent[100]
                 }} onClick={() => {
 
-                window.history.back();
-              }}>
-                BACK
-              </Button>
+                  window.history.back();
+                }}>
+                  BACK
+                </Button>
               )
               }
               <Button
@@ -132,6 +122,17 @@ const SingleBlogDetails = () => {
               >
                 Share
               </Button>
+
+              {status == "pending" && userType === "SYSTEM_ADMIN" &&
+                <Button variant='contained' sx={{
+                  position: "relative",
+                  right: "80px",
+                  background: getColors().blueAccent[800],
+                  color: getColors().blueAccent[100]
+                }} onClick={approveBlog}>
+                  Approve
+                </Button>
+              }
 
             </div>
             <Typography variant='h3' sx={{

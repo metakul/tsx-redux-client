@@ -39,7 +39,7 @@ export enum ProtectedPageInfo{
   export const ApiEndpoint: Record<string, RequestOptions> = {
     LOGIN: {apiId:1, url: 'https://smart-wallet-us83.onrender.com/auth/user/login', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Logging In"},
     ADMINLOGGIN: {apiId:2, url: '/smartwallet/auth/systemAdmin/login', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Logging In"},
-    GETBLOG: { apiId:3,url: 'https://blog-app-1-7mgt.onrender.com/post/postType', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Blogs"},
+    GETBLOG: { apiId:3,url: 'https://blog-app-1-7mgt.onrender.com/post/postType', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:""},
     GETSINGLEBLOG: { apiId:4, url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'GET', headers: { 'Content-Type': 'application/json'},loadingMessage:"Loading Current Blogs"},
     ADD_BLOG: { apiId:5, url: 'https://blog-app-1-7mgt.onrender.com/post', method: 'POST', headers: { 'Content-Type': 'application/json'},loadingMessage:"Adding New Blog"},
     UPDATE_BLOG: { apiId:6, url: 'https://blog-app-1-7mgt.onrender.com/post/updateStatus', method: 'PATCH', headers: { 'Content-Type': 'application/json'},loadingMessage:"Approving Blog"},

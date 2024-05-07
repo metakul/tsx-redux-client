@@ -20,10 +20,10 @@ import "./style.css"
 
 interface HeaderProps{
   setIsSidebarOpen: () => void;
-
+  APP_BAR:string
 }
 
- const Header : React.FC<HeaderProps>=({setIsSidebarOpen})=>{
+ const Header : React.FC<HeaderProps>=({setIsSidebarOpen,APP_BAR})=>{
   const colorMode = useContext(ColorModeContext);
   const theme = useTheme()
   const [isOn, setIsOn] = useState(false);
@@ -38,7 +38,8 @@ interface HeaderProps{
 
   return (
     <AppBar sx={{
-      backgroundColor:getColors().blueAccent[900]
+      backgroundColor:getColors().blueAccent[900],
+      height:APP_BAR
     }} >
       <Toolbar>
         <IconButton

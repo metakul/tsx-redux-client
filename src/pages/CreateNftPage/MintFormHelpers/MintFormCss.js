@@ -28,11 +28,7 @@ export const ResponsiveWrapper = styled("div")`
   flex-direction: column;
   justify-content: stretched;
   align-items: stretched;
-  padding: 10px 10% 10px 5%;
-  @media (min-width: 1000px) {
-    flex-direction: column;
-    padding: 0px 25% 10px 25%;
-  }
+ 
 `;
 
 

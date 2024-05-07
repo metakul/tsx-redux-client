@@ -14,6 +14,7 @@ interface AddBlogProps {
     postInfo?:Ipost;
     postType?:string;
     formEvent:string;
+    userType:string
 }
 
 interface ErrorMessages {
@@ -28,7 +29,7 @@ const newErrors: ErrorMessages = {
     cryptoSymbol: '',
 };
 
-const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => {
+const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent,userType}) => {
     const dispatch = useDispatch();
     const [isDialogOpen, setDialogOpen] = useState<boolean>(false);
     const [formData, setFormData] = useState<Ipost>(postInfo ? postInfo : {
@@ -38,7 +39,7 @@ const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => 
         categories: [],
         cryptoSymbol: '',
     });
-    
+        
    
     const [description, setDescription] = useState(postInfo ? postInfo.description : "");
 
@@ -91,6 +92,7 @@ const AddBlogForm: React.FC<AddBlogProps> = ({postInfo,postType, formEvent}) => 
                     newBlogData: { ...formData, description, postId: postInfo?.postId },
                     setDialogOpen,
                     postType,
+                    userType
                 })
             );
         }

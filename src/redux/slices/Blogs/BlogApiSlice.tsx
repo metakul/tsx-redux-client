@@ -94,7 +94,7 @@ export const fetchSingleBlogApiSlice = createAsyncThunk(
 
 export const addBlogApiSlice = createAsyncThunk(
   'blogCollection/addBlog',
-  async ({ newBlogData, setDialogOpen, postType }: { newBlogData: Ipost, setDialogOpen: (open: boolean) => void, postType?: string }, { rejectWithValue, dispatch }) => {
+  async ({ newBlogData, setDialogOpen, postType,userType }: { newBlogData: Ipost, setDialogOpen: (open: boolean) => void, postType?: string, userType:string }, { rejectWithValue, dispatch }) => {
     try {
 
       let response
@@ -107,6 +107,11 @@ export const addBlogApiSlice = createAsyncThunk(
           data: newBlogData,
           loadingMessage: ApiEndpoint.EDIT_BLOG.loadingMessage
         });
+        const loadForUser: FetchBlogData = {
+          userType
+        }
+        dispatch(fetchSingleBlogApiSlice({ fetchBlogData: loadForUser, id: newBlogData.postId })); // Dispatch addBlog action with new blog data
+
       }
       else {
         response = await request({
@@ -164,7 +169,7 @@ export const updateBlogSlice = createAsyncThunk(
 
       const apiSuccess: ApiSuccess = {
         statusCode: response.status,
-        message: 'Blog Added Successfully',
+        message: 'Blog Updated Successfully',
         data: response.data,
       };
       return apiSuccess;

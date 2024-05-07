@@ -22,7 +22,7 @@ export default function DashboardLayout() {
   const isNonMobile = useMediaQuery("(min-width: 766px)");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showOutlet, setShowOutlet] = useState<boolean>(false);
-
+  const APP_BAR="64px"
   const handleSideBarState = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -38,8 +38,9 @@ export default function DashboardLayout() {
 
   return (
     <Box>
-      <Header setIsSidebarOpen={handleSideBarState} />
+      <Header APP_BAR={APP_BAR} setIsSidebarOpen={handleSideBarState} />
       <MiniDrawer
+        APP_BAR={APP_BAR}
         setShowOutlet={setShowOutlet}
         isNonMobile={isNonMobile}
         isSidebarOpen={isSidebarOpen}

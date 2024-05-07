@@ -2,9 +2,12 @@
 import React, { useEffect, useRef, useMemo } from 'react';
 import * as THREE from 'three';
 import AddBlogForm from '../../Forms/AddBlogForm';
+import { useSelector } from 'react-redux';
+import { selectUserType } from '../../../redux/slices/authSlice';
 interface UserpageProps {}
 const Userpage: React.FC<UserpageProps> = () => {
   const scene = new THREE.Scene();
+  const userType = useSelector(selectUserType);
 
   // Sizes
   const sizes = {
@@ -84,7 +87,7 @@ const Userpage: React.FC<UserpageProps> = () => {
       {/* <a href="#" onClick={() => setBg(!bg)}>
         <div ref={mount}></div>
       </a> */}
-        <AddBlogForm formEvent={"ADD blog"}  />
+        <AddBlogForm userType={userType} formEvent={"ADD blog"}  />
     </div>
   );
 };
