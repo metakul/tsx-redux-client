@@ -27,7 +27,7 @@ export interface MiniDrawerProps {
 }
 
 
-const MiniDrawer: React.FC<MiniDrawerProps> = ({ setIsSidebarOpen, isNonMobile, isSidebarOpen, navConfig, setShowOutlet, APP_BAR }) => {
+const MiniDrawer: React.FC<MiniDrawerProps> = ({ setIsSidebarOpen, isNonMobile, isSidebarOpen, navConfig, setShowOutlet }) => {
     const theme = useTheme();
 
     return (
