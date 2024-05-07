@@ -18,18 +18,18 @@ const BlogColumn = (
       width: 120,
       editable: false,
     },
-    {
-      field: "description",
-      headerName: "Description",
-      width: 120,
-      editable: false,
-    },
-    {
-      field: "image",
-      headerName: "Image Info",
-      width: 120,
-      editable: false,
-    },
+    // {
+    //   field: "description",
+    //   headerName: "Description",
+    //   width: 120,
+    //   editable: false,
+    // },
+    // {
+    //   field: "image",
+    //   headerName: "Image Info",
+    //   width: 120,
+    //   editable: false,
+    // },
     {
       field: "status",
       headerName: "Status",
