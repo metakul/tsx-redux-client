@@ -1,5 +1,5 @@
 import  { FC } from 'react';
-import { TextField, Typography, Box } from "@mui/material";
+import { TextField, Box } from "@mui/material";
 
 interface SearchBarProps {
   searchQuery: string;
