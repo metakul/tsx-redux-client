@@ -83,6 +83,7 @@ export default function ViewLaundryDetails() {
             style={{ marginBottom: 16 }}
           />
           <CustomDataGrid
+            loading={false}
             rows={mockOrders}
             columns={orderColumn}
             getRowId={(row) => row.orderNumber}

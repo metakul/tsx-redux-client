@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { DataGrid, GridRowIdGetter, GridValidRowModel } from "@mui/x-data-grid";
 import { CustomNoRowsOverlay } from "./NoRowsOverlay";
+import LoadingOverlay from './LoadingOverLay';
 
 interface Column {
   field: string;
@@ -13,12 +14,14 @@ interface DatagridProps {
   rows: GridValidRowModel[];
   getRowId: GridRowIdGetter<GridValidRowModel>;
   hideFooter?: boolean;
+  loading:boolean | undefined
 }
 
-const CustomDataGrid: FC<DatagridProps> = ({getRowId, hideFooter, columns, rows }) => {
+const CustomDataGrid: FC<DatagridProps> = ({getRowId, hideFooter, columns, rows, loading }) => {
   const [overlayHeight] = useState('300px');
 
   return (
+    <>
     <DataGrid
       autoHeight
       columns={columns}
@@ -29,7 +32,17 @@ const CustomDataGrid: FC<DatagridProps> = ({getRowId, hideFooter, columns, rows 
       sx={{ 
         '--DataGrid-overlayHeight': overlayHeight,
       }}
-    />
+      initialState={{
+        pagination: { paginationModel: { pageSize: 10 } },
+      }}
+      pageSizeOptions={[10, 25, { value: 100, label: '100' }]}
+      onCellClick={(e)=>{
+        console.log(e);
+        
+      }}
+      />
+      <LoadingOverlay loading={loading}/>
+      </>
   );
 };
 

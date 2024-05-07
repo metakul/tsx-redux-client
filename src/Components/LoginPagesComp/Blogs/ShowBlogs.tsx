@@ -1,6 +1,6 @@
 
 import  React, { useState, useEffect } from 'react';
-import { Box, Paper } from '@mui/material';
+import { Box, Container, Paper } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectedBlogs } from '../../../redux/slices/Blogs/BlogSlice';
 import { AppDispatch } from '../../../redux/store';
@@ -9,6 +9,7 @@ import { FetchBlogData } from '../../../interfaces/interface';
 import BlogColumn from './blogColumn';
 import CustomDataGrid from '../../DataGrid';
 import SearchBar from '../../SearchBar';
+import { RefreshOutlined } from '@mui/icons-material';
 // import UserOptionsMenu from '../../OptionMenu';
 // import { Person as PersonIcon, DeleteOutline as DeleteIcon } from "@mui/icons-material";
 
@@ -33,17 +34,29 @@ const AddBlogComp: React.FC<BlogInfo>=({status}) => {
     const columns = BlogColumn(setOpenMenu, setSelectedRowId)
 
     const dispatch = useDispatch()
-    const blogsData = useSelector(selectedBlogs).blogs
+    let {blogs,loading} = useSelector(selectedBlogs)
 
+    const fetchData = (status: string) => {
+        const userType: FetchBlogData = {
+            userType: "user",
+        };
+        (dispatch as AppDispatch)(fetchBlogApiSlice({ fetchBlogData: userType,status:status }));
+
+    };
+    
     useEffect(() => {
-            const userType: FetchBlogData = {
-                userType: "user",
-            };
-            (dispatch as AppDispatch)(fetchBlogApiSlice({ fetchBlogData: userType,status:status }));
+        fetchData(status);
     }, [dispatch, status]);
 
-        const filteredRows = blogsData.filter((row) =>
-            row?.status === status && row?.postId?.toLowerCase().includes(searchQuery.toLowerCase())
+
+
+    const handleRefresh = () => {
+        blogs=[]
+        fetchData("all"); // assuming "all" is a status indicating to fetch all blogs
+    };
+
+        const filteredRows = blogs.filter((row) =>
+            row?.postId?.toLowerCase().includes(searchQuery.toLowerCase())
         );
         
 
@@ -57,8 +70,15 @@ const AddBlogComp: React.FC<BlogInfo>=({status}) => {
 
         <Box sx={{ width: "100%", position: "relative" }} className="sm:w-full overflow-hidden mx-auto ">
             <Paper sx={{ mb: 2, overflow: "hidden", borderRadius: 4, padding: 2 }}>
+                <Container sx={{
+                    display:"flex",
+                    justifyContent:"space-between"
+                }}>
                 <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-                <CustomDataGrid  getRowId={(row: { postId?: string }) => row.postId || ''} columns={columns} rows={filteredRows} />
+                <RefreshOutlined sx={{mb:2}} onClick={handleRefresh} />
+                </Container>
+                
+                <CustomDataGrid loading={ loading} getRowId={(row: { postId?: string }) => row.postId || ''} columns={columns} rows={filteredRows} />
                 {/* <UserOptionsMenu
                     openMenu={openMenu}
                     setOpenMenu={setOpenMenu}
