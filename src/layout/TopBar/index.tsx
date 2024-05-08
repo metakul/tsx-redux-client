@@ -8,7 +8,6 @@ import {
   Toolbar,
   IconButton,
   useTheme,
-  Button,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
