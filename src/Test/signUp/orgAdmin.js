@@ -36,7 +36,6 @@ function generateRandomServiceNo() {
     // Click on the ORGANISATION radio button
     await page.click(orgAdminRadioSelector);
 
-    await page.type('input[name="orgName"]', 'org1');
     await page.type('input[name="userName"]', 'Shubham Kunwar');
     await page.type('input[name="mailId"]', generateRandomEmail());
     await page.type('input[name="serviceNo"]', generateRandomServiceNo());

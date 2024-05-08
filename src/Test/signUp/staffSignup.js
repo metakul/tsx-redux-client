@@ -26,7 +26,7 @@ import puppeteer from 'puppeteer';
 
     await page.type('#confirmPassword', 'Anurag@123');
     await page.type('#department', 'eye');
-    await page.type('#hospitalId', 'H0001');
+    // await page.type('#hospitalId', 'H0001');
     await page.type('#appointment', 'appointment');
 
     await page.click('.handleNext')

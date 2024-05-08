@@ -60,7 +60,7 @@ import puppeteer from 'puppeteer';
     await page.type('#password-signup', 'Anurag@123');
 
     await page.type('#confirmPassword', 'Anurag@123');
-    await page.type('#hospitalId', hospitalId);
+    // await page.type('#hospitalId', hospitalId);
     await page.type('#appointment', 'appointment');
 
     await page.click('.handleNext')

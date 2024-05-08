@@ -46,8 +46,8 @@ function generateRandomServiceNo() {
     await page.goto('http://localhost:3000/admin/signup');
 
   
-    await page.type('input[name="orgName"]', 'org1');
-    await page.type('input[name="hospitalId"]', hospitalId);
+    // await page.type('input[name="orgName"]', 'org1');
+    // await page.type('input[name="hospitalId"]', hospitalId);
     await page.type('input[name="userName"]', 'Shubham Kunwar');
     await page.type('input[name="serviceNo"]', generateRandomServiceNo());
     await page.type('input[name="mobileNo"]', generateRandomPhone());
