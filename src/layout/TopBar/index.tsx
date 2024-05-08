@@ -8,6 +8,7 @@ import {
   Toolbar,
   IconButton,
   useTheme,
+  Button,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
@@ -17,6 +18,7 @@ import { ColorModeContext, getColors } from "../Theme/themes";
 import { motion } from "framer-motion";
 // const NAV_WIDTH = 280;
 import "./style.css"
+import { NavLink as RouterLink } from "react-router-dom";
 
 interface HeaderProps{
   setIsSidebarOpen: () => void;
@@ -50,6 +52,13 @@ interface HeaderProps{
         >
           <MenuIcon />
         </IconButton>
+        <Box 
+           component={RouterLink}
+                to={"/"}>
+
+        <img src={`logo.svg`} alt="logo" className="w-8 h-8 ml-4" />
+           </Box>
+
         <Box sx={{ flexGrow: 1 }} />
         <Stack
           direction="row"
