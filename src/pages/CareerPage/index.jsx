@@ -229,7 +229,7 @@ const Career = () => {
                     </Grid>
                 </Grid>
             </Container>
-            <div class="map">
+            {/* <div class="map">
                 <div class="container-fluid px-0">
                     <div class="map__wrapper">
                         <iframe
@@ -237,7 +237,7 @@ const Career = () => {
                             allowFullScreen="" loading="lazy"></iframe>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </Container>
     );
 };

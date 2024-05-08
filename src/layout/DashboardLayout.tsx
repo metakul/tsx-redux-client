@@ -9,8 +9,8 @@ import MiniDrawer from "./Navigation/index";
 import { Tabs } from '../DataTypes/enums';
 import MobileTabNavigation from '../Components/MobileTabNav/mobileVIew';
 import MetakulCollection from '../Components/Tab2/MetakulCollection';
-import DexPage from '../Components/Tab3';
-import Tab4 from "../Components/Tab4";
+import DexPage from '../Components/Tab3/temp';
+import Tab4 from "../Components/Tab4/temp";
 
 
 import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';

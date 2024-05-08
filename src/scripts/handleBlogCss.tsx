@@ -23,12 +23,12 @@ import React from "react";
         case 'em':
           return <em key={index}>{Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}</em>;
         case 'ul':
-          return <ul key={index} className="list-disc list-inside">{Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}</ul>;
+          return <ul key={index} className="list-disc list-inside mt-6 mb-6">{Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}</ul>;
         case 'li':
           return <li key={index} className="mb-2">{Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}</li>;
-        case 'p':
-          return <p key={index} className="mb-4">{Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}</p>;
-        // Add additional cases for other HTML elements as needed
+          case 'p':
+            return <p key={index} className="mb-4 text-lg">{Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}</p>;
+          // Add additional cases for other HTML elements as needed
         default:
           return <React.Fragment key={index}>{Array.from(node.childNodes).map((childNode, idx) => renderCustomStyles(childNode, idx))}</React.Fragment>;
       }
