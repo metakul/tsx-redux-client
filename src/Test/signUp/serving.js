@@ -103,7 +103,7 @@ function generateRandomServiceNo() {
   await page.type('input[name="mobileNoOfKin"]', generateRandomPhone());
 
   // registered Hospital
-  await page.type('input[name="registeredHospital"]', 'H0004');
+  // await page.type('input[name="registeredHospital"]', 'H0004');
 
   // orgName
   await page.type('#password-signup', "Anurag@123");
