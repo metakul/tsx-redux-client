@@ -56,13 +56,14 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs, positio
                 color: getColors().blueAccent[100],
                 borderTopLeftRadius: "10px", 
                 borderTopRightRadius: "10px", 
-                position:index===value ? "fixed top-2" : "fixed top-4",
+                borderRight: "2px solid",
+                borderLeft: "2px solid",
                 '& .MuiSvgIcon-root': {
-                  fontSize: "2.5rem", // Update icon size if tab is active
+                  fontSize: "2rem", 
+              color: getColors().blueAccent[500],
                 },
               },
-              borderRight: "2px solid",
-              color: getColors().primary[100],
+              color: getColors().secondary[100],
             }}
           />
         ))}
