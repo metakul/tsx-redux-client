@@ -7,12 +7,11 @@ import { getColors } from '../../layout/Theme/themes';
 
 interface MobileTabNavigationProps {
   tabs: { value: ReactNode; content: ReactNode; label: string }[];
-  position?:string;
-  showOutlet?:boolean
+  position?: string;
+  showOutlet?: boolean;
 }
 
-const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position ,showOutlet}) => {
- 
+const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs, position, showOutlet }) => {
   useEffect(() => {
     if (showOutlet) {
       setValue(0);
@@ -40,21 +39,32 @@ const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({ tabs,position
         aria-label="mobile tabs example"
         variant="fullWidth"
         sx={{
-          backgroundColor:getColors().blueAccent[900],
-          color:getColors().redAccent[500],
-
+          backgroundColor: getColors().blueAccent[900],
+          color: getColors().redAccent[500],
         }}
-        className={`  ${position=="top" ? " mt-2" : "fixed bottom-0 left-0"} w-full flex flex-row  z-20`}
+        className={` ${position === "top" ? " mt-2" : "fixed bottom-0 left-0"} w-full flex flex-row  z-20`}
       >
         {tabs.map(({ value }, index) => (
-          <Tab key={index} icon={React.createElement('div', null, value)} {...a11yProps(index)} sx={{
-            '&.Mui-selected': {
-              backgroundColor:getColors().greenAccent[800],
-              color:getColors().blueAccent[100],
-            },
-          color:getColors().blueAccent[300],
-
-          }}/>
+          <Tab 
+            key={index} 
+            icon={React.createElement('div', null, value)} 
+            {...a11yProps(index)} 
+            sx={{
+              height:"60px",
+              '&.Mui-selected': {
+                backgroundColor: getColors().greenAccent[800],
+                color: getColors().blueAccent[100],
+                borderTopLeftRadius: "10px", 
+                borderTopRightRadius: "10px", 
+                position:index===value ? "fixed top-2" : "fixed top-4",
+                '& .MuiSvgIcon-root': {
+                  fontSize: "2.5rem", // Update icon size if tab is active
+                },
+              },
+              borderRight: "2px solid",
+              color: getColors().primary[100],
+            }}
+          />
         ))}
       </Tabs>
       {tabs.map(({ content }, index) => (
@@ -70,22 +80,22 @@ interface CustomTabPanelProps {
   children: React.ReactNode;
   index: number;
   value: number;
-  isNonMobile:boolean
-  position?:string
+  isNonMobile: boolean;
+  position?: string;
 }
 
-const CustomTabPanel: React.FC<CustomTabPanelProps> = ({isNonMobile, children, value, index,position  }) => (
+const CustomTabPanel: React.FC<CustomTabPanelProps> = ({ isNonMobile, children, value, index, position }) => (
   <div
     role="tabpanel"
     hidden={value !== index}
     id={`simple-tabpanel-${index}`}
     aria-labelledby={`simple-tab-${index}`}
     style={{
-      paddingBottom:"50px",
-      marginBottom:"50px",
+      paddingBottom: "50px",
+      marginBottom: "50px",
     }}
-    >
-    {value === index && <Box   className={` ${position=="top" ? "pt-2" : ""}`} sx={{ pl: isNonMobile ? 3 : 0 }}>{children}</Box>}
+  >
+    {value === index && <Box className={` ${position === "top" ? "pt-2" : ""}`} sx={{ pl: isNonMobile ? 3 : 0 }}>{children}</Box>}
   </div>
 );
 

@@ -95,9 +95,9 @@ const Blogs = () => {
 
 
                   </Grid>
-                  <Grid item xs={4} md={4} lg={4} className='mx-auto flex items-end justify-around pr-8 pb-4'>
+                  <Grid item xs={4} md={4} lg={4} className='mx-auto flex flex-end justify-end pr-8 pb-4'>
                     <ShareButton link={`${currentDomain}/blogDetails/${post.postId}`} />
-                    <LikeButton />
+                    {/* <LikeButton /> */}
 
                   </Grid>
                   <h2
