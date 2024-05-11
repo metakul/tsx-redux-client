@@ -7,14 +7,14 @@ export default defineConfig({
   server:{
     proxy: {
       '/smartwallet': {
-        // target: 'https://smart-wallet-us83.onrender.com',
-        target: 'http://localhost:8003/',
+        target: 'https://smart-wallet-us83.onrender.com',
+        // target: 'http://localhost:8003/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/smartwallet/, ''),
       },
       '/blogApi': {
-        // target: 'https://blog-app-1-7mgt.onrender.com/',
-        target: 'http://localhost:8000/',
+        target: 'https://blog-app-1-7mgt.onrender.com/',
+        // target: 'http://localhost:8000/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/blogApi/, ''),
       },
