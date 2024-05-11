@@ -9,7 +9,7 @@ import { Grid } from '@mui/material';
 import ShareButton from '../Buttons/ShareButton';
 import BlogDetails from '../BlogInfoTabs';
 import { SetStateAction, useEffect, useState } from 'react';
-import LikeButton from '../Buttons/LikeButton';
+// import LikeButton from '../Buttons/LikeButton';
 import { selectUserType } from '../../redux/slices/authSlice';
 import { getColors } from '../../layout/Theme/themes';
 import { BlogsStatusInfo } from '../../DataTypes/enums';
